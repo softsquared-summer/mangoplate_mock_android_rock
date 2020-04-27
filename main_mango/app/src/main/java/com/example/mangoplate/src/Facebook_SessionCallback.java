@@ -1,8 +1,11 @@
-package com.example.mangoplate.src.main;
+package com.example.mangoplate.src;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.mangoplate.src.home.HomeAcitivity;
 import com.facebook.AccessToken;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -14,11 +17,22 @@ import org.json.JSONObject;
 
 public class Facebook_SessionCallback implements FacebookCallback<LoginResult> {
 
+
+
+    Activity act;
+    public Facebook_SessionCallback(Activity act)
+    {
+        this.act=act;
+    }
+
     // 로그인 성공 시 호출 됩니다. Access Token 발급 성공.
     @Override
     public void onSuccess(LoginResult loginResult) {
         Log.e("Callback :: ", "onSuccess");
         requestMe(loginResult.getAccessToken());
+        Intent Homemove=new Intent(act, HomeAcitivity.class);
+        act.startActivity(Homemove);
+        act.finish();
     }
 
     // 로그인 창을 닫을 경우, 호출됩니다.

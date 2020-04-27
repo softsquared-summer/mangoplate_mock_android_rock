@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+
+<androidx.constraintlayout.widget.ConstraintLayout  android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="0.1dp"
+    android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:text="지금 보고있는 지역은"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/location_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            >
+
+        <TextView
+            android:id="@+id/dongdaemoongu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+            android:text="동대문구"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle=""
+            >
+
+
+        </TextView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/down_arrow"
+                ></ImageView>
+
+        </LinearLayout>
+
+     </LinearLayout>
+
+
+        </LinearLayout>
+
+    <View
+        android:id="@+id/divider_search"
+        android:layout_width="2dp"
+        android:layout_height="36dp"
+        android:background="@color/grey_300"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/restaurant_map"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+
+        android:id="@+id/restaurant_map"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/restaurant_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:baselineAligned="true"
+        android:src="@drawable/restaurant_search"
+        app:layout_constraintEnd_toStartOf="@+id/divider_search"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/photos_viewpager"
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp">
+
+                </androidx.viewpager.widget.ViewPager>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    android:layout_gravity="bottom"
+                    app:tabIndicatorHeight="0dp"
+                    />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!--    [출처] [Android] ScrollView 안에 RecyclerView 스크롤 부드럽게|작성자 Printf-->
+
+
+    <!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.5dp"-->
+<!--        android:background="@color/black"/>-->
+</LinearLayout>

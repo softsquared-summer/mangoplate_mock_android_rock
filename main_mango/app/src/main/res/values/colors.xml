@@ -490,6 +490,8 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
     <color name="dark_blue">#0000A0</color>
+    <color name="Mangoplate_orange">#FF7101</color>
+    <color name="Mangoplate_bottom_textColor">#E1E1E1</color>
     <!-- Mixed Colors -->
 
     <color name="window_background">#FFF5F5F5</color>

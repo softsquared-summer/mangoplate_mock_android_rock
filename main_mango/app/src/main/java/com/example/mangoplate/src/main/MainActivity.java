@@ -8,18 +8,14 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
-import com.example.mangoplate.src.home.HomeAcitivity;
+import com.example.mangoplate.src.Facebook_SessionCallback;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.bumptech.glide.Glide;
@@ -29,8 +25,6 @@ import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.main.interfaces.MainActivityView;
 import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,7 +34,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     private TextView mTvHelloWorld;
     private ImageView mbtn_facebook_login;
 
-    private FacebookCallback mLoginCallback;
+    private Facebook_SessionCallback mLoginCallback;
     private CallbackManager mCallbackManager;
 
 
@@ -51,7 +45,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
         FacebookSdk.sdkInitialize(getApplicationContext());// 여기 순서를 잘 지켜야지.
-        setContentView(R.layout.mainactivity);
+        setContentView(R.layout.main_activity);
 
 
         mbtn_facebook_login = (ImageView) findViewById(R.id.main_facebookbutton);
@@ -85,23 +79,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         // If using in a fragment
 //        facebookLoginButton.setFragment(this);
         mCallbackManager = CallbackManager.Factory.create();
-        mLoginCallback = new FacebookCallback() {
-            @Override
-            public void onSuccess(Object o) {
-
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        };
+        mLoginCallback = new Facebook_SessionCallback(this);
 
 //        mbtn_facebook_login.setReadPermissions(Arrays.asList("public_profile", "email"));
 //        mbtn_facebook_login.registerCallback(mCallbackManager, mLoginCallback);
@@ -117,8 +95,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        Intent Homemove=new Intent(MainActivity.this, HomeAcitivity.class);
-        startActivity(Homemove);
+
     }
     private void getHashKey(){
         PackageInfo packageInfo = null;
