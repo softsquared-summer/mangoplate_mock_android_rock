@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mangoplate.R;
@@ -15,6 +16,11 @@ import androidx.viewpager.widget.PagerAdapter;
 
 class PhotosAdapter extends PagerAdapter {
 
+
+    public static final int mEatDeal=0;
+    public static final int mVisamango=1;
+    public static final int mgahuna=2;
+    public static final int mMangoaward=3;
     Context mContext;
     FragmentManager mfragmentManager;
     public PhotosAdapter(Context mContext,FragmentManager fragmentManager) {
@@ -37,6 +43,18 @@ class PhotosAdapter extends PagerAdapter {
             // LayoutInflater를 통해 "/res/layout/page.xml"을 뷰로 생성.
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.viewpager_custom, container, false);
+
+
+            ImageView frame=view.findViewById(R.id.Fragment_searchRestaurant_ad);
+            switch (position)
+            {
+                case mEatDeal:  frame.setImageResource(R.drawable.ad_eatdeal); break;
+                case mVisamango: frame.setImageResource(R.drawable.ad_visamangoplate);break;
+                case mgahuna: frame.setImageResource(R.drawable.ad_gahuna);break;
+                case mMangoaward: frame.setImageResource(R.drawable.ad_mangoaward);break;
+
+            }
+
 
 
         }

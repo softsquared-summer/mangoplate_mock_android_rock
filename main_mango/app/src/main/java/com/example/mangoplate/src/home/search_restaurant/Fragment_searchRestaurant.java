@@ -37,14 +37,15 @@ public class Fragment_searchRestaurant extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView =(ViewGroup)inflater.inflate(R.layout.searchrestaurant_fragment,container,false);
-        ViewPager pager = (ViewPager) rootView.findViewById(R.id.photos_viewpager);
+        ViewPager pager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager);
         PagerAdapter adapter = new PhotosAdapter(getContext(),getChildFragmentManager());
         pager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
         tabLayout.setupWithViewPager(pager, true);
 
-        mlocation_click=rootView.findViewById(R.id.location_click);
+        mlocation_click=rootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
+//        이건 동대문구와 downarrow 클릭시 벌어지는 이벤트 .
         mlocation_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

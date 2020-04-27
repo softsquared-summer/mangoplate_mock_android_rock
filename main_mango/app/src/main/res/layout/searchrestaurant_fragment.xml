@@ -42,7 +42,7 @@
             android:textColor="@color/black" />
 
         <LinearLayout
-            android:id="@+id/location_click"
+            android:id="@+id/Fragment_searchRestaurant_location_click"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/photos_viewpager"
+                    android:id="@+id/Fragment_searchRestaurant_photos_viewpager"
 
 
                     android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                 </androidx.viewpager.widget.ViewPager>
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
+                    android:id="@+id/Fragment_searchRestaurant_tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
@@ -150,6 +150,9 @@
                     />
 
             </FrameLayout>
+
+
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
