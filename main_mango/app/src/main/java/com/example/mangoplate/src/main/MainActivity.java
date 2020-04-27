@@ -14,13 +14,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.mangoplate.src.Facebook_SessionCallback;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.main.interfaces.MainActivityView;

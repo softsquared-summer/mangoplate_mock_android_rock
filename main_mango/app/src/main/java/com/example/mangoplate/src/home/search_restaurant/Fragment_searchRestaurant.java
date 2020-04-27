@@ -2,6 +2,7 @@ package com.example.mangoplate.src.home.search_restaurant;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.LinearLayout;
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,8 +27,10 @@ import androidx.viewpager.widget.ViewPager;
 public class Fragment_searchRestaurant extends Fragment {
 
     HomeAcitivity mhomeAcitivity;
-
     LinearLayout mlocation_click;
+    public static final int NUM_PAGES=4;
+    int mCurrentPage = 0;
+    ViewPager mPager;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -37,12 +43,46 @@ public class Fragment_searchRestaurant extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView =(ViewGroup)inflater.inflate(R.layout.searchrestaurant_fragment,container,false);
-        ViewPager pager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager);
+        mPager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager);
         PagerAdapter adapter = new PhotosAdapter(getContext(),getChildFragmentManager());
-        pager.setAdapter(adapter);
+
+//...
+
+
+        Timer timer;
+        final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+        final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
+
+
+        mPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
-        tabLayout.setupWithViewPager(pager, true);
+        tabLayout.setupWithViewPager(mPager, true);
+
+        /*After setting the adapter use the timer */
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+
+                if (mCurrentPage == NUM_PAGES-1) {
+                    mCurrentPage = 0;
+                }
+                mPager.setCurrentItem(mCurrentPage++, true);
+            }
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer.schedule(new TimerTask() { // task to be scheduled
+
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, DELAY_MS, PERIOD_MS);
+
+
+
 
         mlocation_click=rootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
 //        이건 동대문구와 downarrow 클릭시 벌어지는 이벤트 .

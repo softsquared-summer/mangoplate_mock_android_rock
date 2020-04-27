@@ -6,7 +6,8 @@
             android:shape="ring"
             android:thickness="5dp"
             android:useLevel="false">
-            <solid android:color="#F2FFFFFF"/>
+            <solid android:color="#1AFFFFFF"/>
         </shape>
     </item>
 </layer-list>
+<!--   투명도 체크 현재는 투명도 10% https://m.blog.naver.com/uko02111/220882369071-->
