@@ -11,6 +11,9 @@
     <style name="Theme.MyDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+
     </style>
 
 

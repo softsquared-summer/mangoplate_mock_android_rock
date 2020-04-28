@@ -29,9 +29,8 @@ class PhotosAdapter extends PagerAdapter {
     Context mContext;
     FragmentManager mfragmentManager;
 
-    public PhotosAdapter(Context mContext, FragmentManager fragmentManager) {
+    public PhotosAdapter(Context mContext) {
 
-        this.mfragmentManager = mfragmentManager; //수정
         this.mContext = mContext;
     }
 
@@ -41,14 +40,10 @@ class PhotosAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = null;
-
-
         if (mContext != null) {
             // LayoutInflater를 통해 "/res/layout/page.xml"을 뷰로 생성.
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.viewpager_custom, container, false);
-
-
             ImageView frame = view.findViewById(R.id.Fragment_searchRestaurant_ad);
             switch (position) {
                 case mEatDeal:
@@ -58,20 +53,15 @@ class PhotosAdapter extends PagerAdapter {
                 case mVisamango:
                     Glide.with(mContext).load(R.drawable.ad_visamangoplate).into(frame);
 //                    frame.setImageResource(R.drawable.ad_visamangoplate);
-
                     break;
                 case mgahuna:
                     Glide.with(mContext).load(R.drawable.ad_gahuna).into(frame);
 //                    frame.setImageResource(R.drawable.ad_gahuna);
-
-
                     break;
                 case mMangoaward:
 
                     Glide.with(mContext).load(R.drawable.ad_mangoaward).into(frame);
 //                    frame.setImageResource(R.drawable.ad_mangoaward);
-
-
                     break;
 
             }

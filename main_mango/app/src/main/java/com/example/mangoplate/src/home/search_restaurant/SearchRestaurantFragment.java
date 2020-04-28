@@ -2,13 +2,11 @@ package com.example.mangoplate.src.home.search_restaurant;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.mangoplate.R;
@@ -22,8 +20,6 @@ import java.util.TimerTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -38,10 +34,12 @@ public class SearchRestaurantFragment extends Fragment { //스태
     Handler mHandler;
     boolean mHandlerFlag = true; //주석을 달던가 변수ㅁ명을 isFirst...
 
+    Context mContext;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
+        mContext=context;
         mHomeAcitivity = (HomeAcitivity) getActivity();
     }
 
@@ -49,10 +47,10 @@ public class SearchRestaurantFragment extends Fragment { //스태
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.searchrestaurant_fragment, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
         mPager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         // 코드에서 그 사람의 얼굴이 보인다 .
-        PagerAdapter adapter = new PhotosAdapter(getContext(), getChildFragmentManager());
+        PagerAdapter adapter = new PhotosAdapter(getContext());
 
 //...
 
@@ -103,7 +101,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
 //                intent.putExtra("data", "Test Popup");
 
                startActivity(intent);
-//                startActivityForResult(intent, 1);
+////                startActivityForResult(intent, 1);
 
 
 
@@ -112,16 +110,19 @@ public class SearchRestaurantFragment extends Fragment { //스태
         return rootView;
     }
 
+    // 중요한 정보는 저장한다 .
 
     @Override
     public void onPause() {
         super.onPause();
         mHandlerFlag = false;
+        mHandler.removeMessages(0);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+
         mHandlerFlag = false;
     }
 
