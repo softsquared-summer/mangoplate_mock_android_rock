@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:background="@color/white"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:gravity="center_horizontal"
+
+    tools:context="com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout">
+
+
+
+
+    <com.google.android.material.tabs.TabLayout
+
+        android:id="@+id/layout_tab"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        app:tabGravity="center"
+
+        app:tabMode="fixed"
+
+        app:tabTextColor="@color/grey_500"
+
+        app:tabSelectedTextColor="@color/Mangoplate_orange"
+
+        app:tabIndicatorColor="@color/Mangoplate_orange"/>
+
+
+
+<!--내 주변이 고정이므로 현재 내 위치를 받아야함.-->
+</LinearLayout>

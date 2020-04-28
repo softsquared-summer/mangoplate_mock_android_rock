@@ -1,4 +1,4 @@
-package com.example.mangoplate.src;
+package com.example.mangoplate.src.main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,12 @@ import com.facebook.login.LoginResult;
 
 import org.json.JSONObject;
 
-public class Facebook_SessionCallback implements FacebookCallback<LoginResult> {
+public class FacebookSessionCallback implements FacebookCallback<LoginResult> {
 
 
 
     Activity act;
-    public Facebook_SessionCallback(Activity act)
+    public FacebookSessionCallback(Activity act)
     {
         this.act=act;
     }

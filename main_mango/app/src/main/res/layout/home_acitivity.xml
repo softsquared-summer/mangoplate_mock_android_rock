@@ -20,6 +20,21 @@
 
 
     </FrameLayout>
+    <it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator
+        android:layout_centerHorizontal="true"
+        android:id="@+id/animator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animationDuration="@android:integer/config_longAnimTime"
+        app:vra_hideBeforeReveal="true"
+        android:measureAllChildren="true"
+        android:animateFirstView="true"
+        android:outAnimation="@anim/out_animation"
+        android:inAnimation="@anim/in_animation"
+        android:interpolator="@android:interpolator/accelerate_decelerate">
+
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -40,7 +55,7 @@
         app:menu="@menu/home_bottom">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/home_floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
@@ -55,7 +70,11 @@
             android:adjustViewBounds="true"
 
             app:srcCompat="@drawable/addinformation" />
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+    </it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator>
 <!--bottom_navigation_item_color.xml에 선택자를 만들어서 클릭시 , 아닐 때 글씨를 설정-->
 <!--    app:labelVisibilityMode="labeled" 해야지 타이틀이 항상 떠 있음-->
 <!--    app:itemIconTint="@drawable/bottom_navigation_item_color" 아이템 색깔-->
@@ -65,4 +84,6 @@
 <!--  이것도 해줘야 테두리가 안 보여 .  app:borderWidth="0dp"-->
 <!--   이것도  android:adjustViewBounds="true"-->
 <!--    결국 fab사이즈를 줄여야 해결 되는 것이었다.. 테두리는 안 없어지고 -->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

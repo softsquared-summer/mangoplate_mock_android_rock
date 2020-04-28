@@ -1,4 +1,4 @@
-package com.example.mangoplate.src;
+package com.example.mangoplate.src.main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,12 @@ import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
 
-public class Kakaotalk_SessionCallback implements ISessionCallback {
+public class KakaotalkSessionCallback implements ISessionCallback {
 
 
 
     Activity act;
-    Kakaotalk_SessionCallback(Activity act)
+    KakaotalkSessionCallback(Activity act)
     {
         this.act=act;
     }

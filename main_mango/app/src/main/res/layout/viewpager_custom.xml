@@ -7,7 +7,6 @@
     <ImageView
         android:id="@+id/Fragment_searchRestaurant_ad"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_weight="1"
+        android:layout_height="168dp"
         app:srcCompat="@drawable/ad_eatdeal" />
 </LinearLayout>

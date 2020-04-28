@@ -1,11 +1,11 @@
-package com.example.mangoplate.src;
+package com.example.mangoplate.src.home;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.mangoplate.config.XAccessTokenInterceptor;
-import com.example.mangoplate.config.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -15,11 +15,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApplicationClass extends Application { //쓸꺼면 여기에 상수 싱글톤 패턴 자주 쓰는 스태틱은 가비지 컬렉터 조심. 널값체크
-    //스태틱은 지양
-    // 써야한다면 싱글톤 패턴
-    // 언제든지 없어질지 생각하고
-    //널이면 재할당.
+public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=uft-8");
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
@@ -52,7 +48,7 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
     }
 
     public static Retrofit getRetrofit() {
-        if (retrofit == null) { //널 체크
+        if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
                     .readTimeout(5000, TimeUnit.MILLISECONDS)
                     .connectTimeout(5000, TimeUnit.MILLISECONDS)
@@ -66,6 +62,6 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
                     .build();
         }
 
-        return retrofit; //널이 아니면 리턴
+        return retrofit;
     }
 }

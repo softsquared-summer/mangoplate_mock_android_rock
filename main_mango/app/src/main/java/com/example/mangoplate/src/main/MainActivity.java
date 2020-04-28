@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-import com.example.mangoplate.src.Facebook_SessionCallback;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -34,7 +33,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     private TextView mTvHelloWorld;
     private ImageView mbtn_facebook_login;
 
-    private Facebook_SessionCallback mLoginCallback;
+    private FacebookSessionCallback mLoginCallback;
     private CallbackManager mCallbackManager;
 
 
@@ -79,7 +78,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         // If using in a fragment
 //        facebookLoginButton.setFragment(this);
         mCallbackManager = CallbackManager.Factory.create();
-        mLoginCallback = new Facebook_SessionCallback(this);
+        mLoginCallback = new FacebookSessionCallback(this);
 
 //        mbtn_facebook_login.setReadPermissions(Arrays.asList("public_profile", "email"));
 //        mbtn_facebook_login.registerCallback(mCallbackManager, mLoginCallback);

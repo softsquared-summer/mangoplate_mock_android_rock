@@ -22,27 +22,25 @@ import androidx.viewpager.widget.PagerAdapter;
 class PhotosAdapter extends PagerAdapter {
 
 
-    public static final int mEatDeal=0;
-    public static final int mVisamango=1;
-    public static final int mgahuna=2;
-    public static final int mMangoaward=3;
+    public static final int mEatDeal = 0;
+    public static final int mVisamango = 1;
+    public static final int mgahuna = 2;
+    public static final int mMangoaward = 3;
     Context mContext;
     FragmentManager mfragmentManager;
-    public PhotosAdapter(Context mContext,FragmentManager fragmentManager) {
 
-        this.mfragmentManager=mfragmentManager;
-        this.mContext=mContext;
+    public PhotosAdapter(Context mContext, FragmentManager fragmentManager) {
+
+        this.mfragmentManager = mfragmentManager; //수정
+        this.mContext = mContext;
     }
 
     // LayoutInflater 서비스 사용을 위한 Context 참조 저장.
 
 
-
-
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = null ;
+        View view = null;
 
 
         if (mContext != null) {
@@ -51,11 +49,8 @@ class PhotosAdapter extends PagerAdapter {
             view = inflater.inflate(R.layout.viewpager_custom, container, false);
 
 
-
-
-            ImageView frame=view.findViewById(R.id.Fragment_searchRestaurant_ad);
-            switch (position)
-            {
+            ImageView frame = view.findViewById(R.id.Fragment_searchRestaurant_ad);
+            switch (position) {
                 case mEatDeal:
                     Glide.with(mContext).load(R.drawable.ad_eatdeal).into(frame);
 //                    frame.setImageResource(R.drawable.ad_eatdeal);
@@ -64,32 +59,30 @@ class PhotosAdapter extends PagerAdapter {
                     Glide.with(mContext).load(R.drawable.ad_visamangoplate).into(frame);
 //                    frame.setImageResource(R.drawable.ad_visamangoplate);
 
-                break;
+                    break;
                 case mgahuna:
                     Glide.with(mContext).load(R.drawable.ad_gahuna).into(frame);
 //                    frame.setImageResource(R.drawable.ad_gahuna);
 
 
-                break;
+                    break;
                 case mMangoaward:
 
                     Glide.with(mContext).load(R.drawable.ad_mangoaward).into(frame);
 //                    frame.setImageResource(R.drawable.ad_mangoaward);
 
 
-
-                break;
+                    break;
 
             }
-
 
 
         }
 
         // 뷰페이저에 추가.
-        container.addView(view) ;
+        container.addView(view);
 
-        return view ;
+        return view;
     }
 
     @Override
@@ -106,6 +99,6 @@ class PhotosAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return (view == (View)object);
+        return (view == (View) object);
     }
 }
