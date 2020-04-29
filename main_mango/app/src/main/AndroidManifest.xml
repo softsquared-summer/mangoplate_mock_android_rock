@@ -19,10 +19,10 @@
         <activity
             android:name=".src.home.search_restaurant.searchTab_layout.SearchTabLayout"
             android:theme="@style/Theme.MyDialog"
-
-
             >
-<!--            android:theme="@android:style/Theme.Translucent"           -->
+<!--     "        -->
+
+            <!--            android:theme="@android:style/Theme.Translucent"           -->
         </activity>
         <activity
             android:name=".src.home.HomeAcitivity"

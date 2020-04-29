@@ -3,34 +3,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+
+
     tools:context="com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout">
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/layout_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
         app:tabGravity="center"
+
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/Mangoplate_orange"
         app:tabMode="fixed"
-        app:tabTextColor="@color/grey_500"
         app:tabSelectedTextColor="@color/Mangoplate_orange"
-        app:tabIndicatorColor="@color/Mangoplate_orange"/>
+        app:tabTextColor="@color/grey_500" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager_contents"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+
+        android:background="@color/white"
+        />
 
 
-    <Button
-        android:layout_width="100dp"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="적용">
 
-    </Button>
+        android:gravity="center"
+        android:background="@color/white"
+        android:text="적용"/>
+
+
 <!--내 주변이 고정이므로 현재 내 위치를 받아야함.-->
 </LinearLayout>
