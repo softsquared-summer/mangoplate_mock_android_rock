@@ -7,10 +7,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
+import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -33,13 +35,15 @@ public class SearchRestaurantFragment extends Fragment { //스태
     ViewPager mPager;
     Handler mHandler;
     boolean mHandlerFlag = true; //주석을 달던가 변수ㅁ명을 isFirst...
-
+    private Boolean blockClickFlag = true;// 위치를 클릭하면 다이얼로그가 나온다. 그 때 문제가 생기는게 블러처리된 위치에 버튼을 클릭하면 또 다이얼로그가 나온다. 이 플래그는 이를 막기 위함이다.
     Context mContext;
+    ImageView mDistanceSelector;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        mContext=context;
+        mContext = context;
         mHomeAcitivity = (HomeAcitivity) getActivity();
     }
 
@@ -90,28 +94,54 @@ public class SearchRestaurantFragment extends Fragment { //스태
             }, DELAY_MS, PERIOD_MS);
 
         }
-
-
+        mDistanceSelector = rootView.findViewById(R.id.distance_selector);
+        mDistanceSelector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mHomeAcitivity, DistanceSelectedLayout.class);
+                startActivityForResult(intent, 2);
+            }
+        });
         mLocationClick = rootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
+
 //        이건 동대문구와 downarrow 클릭시 벌어지는 이벤트 .
         mLocationClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mHomeAcitivity, SearchTabLayout.class);
+                if (blockClickFlag) {
+                    Intent intent = new Intent(mHomeAcitivity, SearchTabLayout.class);
 //                intent.putExtra("data", "Test Popup");
+                    startActivityForResult(intent, 1);
+//                    startActivity(intent);
+                    blockClickFlag = false; // 얘를  다시 돌아오면 true로 바꾼다 .
 
-               startActivity(intent);
-////                startActivityForResult(intent, 1);
 
-
-
+                }
             }
         });
+
+
         return rootView;
     }
 
-    // 중요한 정보는 저장한다 .
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 2) {
+            if (resultCode == mHomeAcitivity.RESULT_OK) {
+                //데이터 받기
+                String result = data.getStringExtra("result");
 
+                if(Integer.parseInt(result)==3)
+                {
+
+                    mDistanceSelector.setImageResource(R.drawable.three_hundred_m);
+                }
+
+            }
+
+
+        }
+    }
     @Override
     public void onPause() {
         super.onPause();

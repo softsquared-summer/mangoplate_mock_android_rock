@@ -16,32 +16,32 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
+        <activity android:name=".src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout"
+            android:theme="@style/Theme.MyDialog"
+            ></activity>
         <activity
             android:name=".src.home.search_restaurant.searchTab_layout.SearchTabLayout"
-            android:theme="@style/Theme.MyDialog"
-            >
-<!--     "        -->
+            android:theme="@style/Theme.MyDialog">
 
-            <!--            android:theme="@android:style/Theme.Translucent"           -->
+            <!-- " -->
+
+
+            <!-- android:theme="@android:style/Theme.Translucent" -->
         </activity>
         <activity
             android:name=".src.home.HomeAcitivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".src.main.MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -77,11 +77,10 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

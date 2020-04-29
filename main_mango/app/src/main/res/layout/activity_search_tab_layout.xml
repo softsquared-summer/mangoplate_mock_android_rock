@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-
+    android:clickable="true"
+    android:focusable="true"
 
     tools:context="com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout">
 

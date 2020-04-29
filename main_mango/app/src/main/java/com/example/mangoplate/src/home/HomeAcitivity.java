@@ -38,6 +38,7 @@ public class HomeAcitivity extends BaseActivity {
     private Fragment_news mFragmentNews = new Fragment_news();
     private Fragment_mystatus mystatus = new Fragment_mystatus();
 
+
     private Animation fab_open, fab_close;
     private Boolean isFabOpen = false;
     FloatingActionButton mFloatingActionButton;

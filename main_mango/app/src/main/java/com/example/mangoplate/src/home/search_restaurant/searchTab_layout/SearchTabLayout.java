@@ -82,6 +82,14 @@ public class SearchTabLayout extends BaseActivity {
 //        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0,0);
+        finish();
+        //액티비티 애니메이션 x
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -92,17 +100,7 @@ public class SearchTabLayout extends BaseActivity {
         return false;
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        // TODO Auto-generated method stub
-        Rect dialogBounds = new Rect();
-        getWindow().getDecorView().getHitRect(dialogBounds);
-        if (!dialogBounds.contains((int) ev.getX(), (int) ev.getY())) {
-            // Tapped outside so we finish the activity
-           this.finish();
-        }
-        return super.dispatchTouchEvent(ev);
-    }
+
 }
 //        getWindow().setBackgroundDrawable( new ColorDrawable( Color.TRANSPARENT ) ) ;
 ////
