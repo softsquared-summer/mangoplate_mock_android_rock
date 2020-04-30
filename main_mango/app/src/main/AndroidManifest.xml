@@ -16,10 +16,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.home.search_restaurant.filter_button.FilterLayout"
-            android:theme="@style/Theme.MyDialog"
-
-            ></activity>
+        <activity android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
+            android:theme="@style/Theme.MyDialog"></activity>
+        <activity
+            android:name=".src.home.search_restaurant.filter_button.FilterLayout"
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout"
             android:theme="@style/Theme.MyDialog" />
@@ -81,10 +82,10 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

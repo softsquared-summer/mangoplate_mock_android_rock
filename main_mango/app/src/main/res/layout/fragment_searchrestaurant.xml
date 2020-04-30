@@ -162,7 +162,7 @@
                 android:layout_marginTop="-7dp"
                 >
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/alignment_button"
                     android:layout_width="0dp"
                     android:layout_weight="0.14"
                     android:layout_height="wrap_content"

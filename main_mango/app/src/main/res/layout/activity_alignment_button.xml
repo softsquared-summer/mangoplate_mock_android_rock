@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:columnCount="4"
+    android:rowCount="3"
+    android:background="@color/white"
+    tools:context=".src.home.search_restaurant.alignment_button.AlignmentButton">
+
+    <ImageView
+
+        android:src="@drawable/down_arrow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="hi"
+        android:textSize="30dp"
+        android:background="@color/white"
+        >
+    </ImageView>
+
+    <TextView
+        android:layout_columnSpan="2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="정렬"
+        android:textSize="30dp"
+        android:background="@color/white"
+        >
+    </TextView>
+
+
+    <TextView
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+
+        >
+    </TextView>
+
+    <Button
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="평점순"
+        android:textSize="30dp"
+        android:background="@color/white"
+        android:stateListAnimator="@null"
+        >
+    </Button>
+
+    <Button
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="추천순"
+        android:textSize="30dp"
+        android:background="@color/white"
+        android:stateListAnimator="@null"
+        >
+    </Button>
+
+    <TextView
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="리뷰순"
+        android:textSize="30dp"
+        android:stateListAnimator="@null"
+        >
+    </TextView>
+
+    <TextView
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="거리순"
+        android:textSize="30dp"
+
+        >
+    </TextView>
+
+    <TextView
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="0.5"
+        android:layout_rowWeight="1"
+        android:textSize="30dp"
+
+        >
+    </TextView>
+    <TextView
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="0.5"
+        android:layout_rowWeight="1"
+        android:textSize="30dp"
+
+        >
+    </TextView>
+
+    <TextView
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="0.5"
+        android:layout_rowWeight="1"
+        android:layout_columnSpan="2"
+        android:text="*거리순은 위치가 켜져있을 떄 가능 "
+        android:textSize="14dp"
+
+
+        >
+    </TextView>
+
+</GridLayout>

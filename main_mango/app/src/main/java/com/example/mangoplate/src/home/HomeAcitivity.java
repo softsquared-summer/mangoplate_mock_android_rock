@@ -44,6 +44,7 @@ public class HomeAcitivity extends BaseActivity {
     FloatingActionButton mFloatingActionButton;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +56,7 @@ public class HomeAcitivity extends BaseActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         // 첫 화면 지정
         FragmentTransaction transaction = mfragmentManager.beginTransaction();
-
-
-
-
-//        출처: https://debugdaldal.tistory.com/110 [달달한 디버깅]
-
-
-//        출처: https://mc10sw.tistory.com/16 [Make it possible]
-
         transaction.replace(R.id.frame_layout, mFragmentSearch_restaurant).commitAllowingStateLoss();
-
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {

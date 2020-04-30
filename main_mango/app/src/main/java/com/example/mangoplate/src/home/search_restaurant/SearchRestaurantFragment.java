@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
+import com.example.mangoplate.src.home.search_restaurant.alignment_button.AlignmentButton;
 import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
 import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
@@ -29,6 +31,9 @@ import androidx.viewpager.widget.ViewPager;
 //정렬
 public class SearchRestaurantFragment extends Fragment { //스태
 
+    //리퀘스트 코드
+
+
     HomeAcitivity mHomeAcitivity;
     LinearLayout mLocationClick; //LinearLayout의 범위:동대문구와 downArrow 합친게 클릭 됌.
     private final int NUM_PAGES = 4; // private ,public 함부로 바꾸면 안된다..
@@ -40,6 +45,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
     Context mContext;
     ImageView mDistanceSelector;
 
+    TextView alignmentButton;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -56,6 +62,16 @@ public class SearchRestaurantFragment extends Fragment { //스태
         mPager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         // 코드에서 그 사람의 얼굴이 보인다 .
         ImageView filter= rootView.findViewById(R.id.filter);
+        alignmentButton=rootView.findViewById(R.id.alignment_button);
+
+        alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mHomeAcitivity, AlignmentButton.class);
+//                intent.putExtra("data", "Test Popup");
+                startActivityForResult(intent, 3);
+            }
+        });
         PagerAdapter adapter = new PhotosAdapter(getContext());
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
