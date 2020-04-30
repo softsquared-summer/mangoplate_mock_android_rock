@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
 import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
+import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -54,9 +55,24 @@ public class SearchRestaurantFragment extends Fragment { //스태
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
         mPager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         // 코드에서 그 사람의 얼굴이 보인다 .
+        ImageView filter= rootView.findViewById(R.id.filter);
         PagerAdapter adapter = new PhotosAdapter(getContext());
-
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mHomeAcitivity, FilterLayout.class);
+//                intent.putExtra("data", "Test Popup");
+                startActivityForResult(intent, 3);
+            }
+        });
 //...
+
+
+
+
+
+
+
 
 //안드로이드 drwa
         Timer timer;

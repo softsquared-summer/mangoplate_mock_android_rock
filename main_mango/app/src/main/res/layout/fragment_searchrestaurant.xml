@@ -202,7 +202,7 @@
                 </ImageView>
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/filter"
                     android:layout_height="36dp"
 
                    android:layout_margin="5dp"
