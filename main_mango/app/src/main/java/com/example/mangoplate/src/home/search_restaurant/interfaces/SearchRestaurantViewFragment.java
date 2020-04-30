@@ -1,6 +1,6 @@
 package com.example.mangoplate.src.home.search_restaurant.interfaces;
 
-public interface Fragment_searchRestaurantView {
+public interface SearchRestaurantViewFragment {
 
     void validateSuccess(String text);
 
