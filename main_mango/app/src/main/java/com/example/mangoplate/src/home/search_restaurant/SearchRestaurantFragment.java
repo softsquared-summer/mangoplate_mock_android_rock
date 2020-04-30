@@ -17,6 +17,7 @@ import com.example.mangoplate.src.home.search_restaurant.alignment_button.Alignm
 import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
 import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RestaurantRecyclerData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Timer;
@@ -25,6 +26,9 @@ import java.util.TimerTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -44,8 +48,13 @@ public class SearchRestaurantFragment extends Fragment { //스태
     private Boolean blockClickFlag = true;// 위치를 클릭하면 다이얼로그가 나온다. 그 때 문제가 생기는게 블러처리된 위치에 버튼을 클릭하면 또 다이얼로그가 나온다. 이 플래그는 이를 막기 위함이다.
     Context mContext;
     ImageView mDistanceSelector;
+    ViewGroup mRootView;
+    private GridLayoutManager mGridLayoutManager;
+
+    private RestaurantRecyclerAdapter madapter;
 
     TextView alignmentButton;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -58,11 +67,11 @@ public class SearchRestaurantFragment extends Fragment { //스태
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
-        mPager = (ViewPager) rootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
+         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
+        mPager = (ViewPager) mRootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         // 코드에서 그 사람의 얼굴이 보인다 .
-        ImageView filter= rootView.findViewById(R.id.filter);
-        alignmentButton=rootView.findViewById(R.id.alignment_button);
+        ImageView filter = mRootView.findViewById(R.id.filter);
+        alignmentButton = mRootView.findViewById(R.id.alignment_button);
 
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
@@ -82,26 +91,13 @@ public class SearchRestaurantFragment extends Fragment { //스태
             }
         });
 //...
-
-
-
-
-
-
-
-
-//안드로이드 drwa
         Timer timer;
-        final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-        final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
-
-
+        final long DELAY_MS = 500;
+        final long PERIOD_MS = 3000;
         mPager.setAdapter(adapter);
-
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
+        TabLayout tabLayout = (TabLayout) mRootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
         tabLayout.setupWithViewPager(mPager, true);
-
-        /*After setting the adapter use the timer *///주석 신경.
+        ///주석 신경.
         if (mHandlerFlag) //들여쓰기를 통일감 있게 , 회사의 룰에 맞게 .
         {
             mHandler = new Handler();
@@ -115,7 +111,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
                 }
             };
 
-            timer = new Timer(); // This will create a new Thread
+            timer = new Timer(); // 쓰레드 시작.
             timer.schedule(new TimerTask() { // task to be scheduled
 
 
@@ -126,7 +122,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
             }, DELAY_MS, PERIOD_MS);
 
         }
-        mDistanceSelector = rootView.findViewById(R.id.distance_selector);
+        mDistanceSelector = mRootView.findViewById(R.id.distance_selector);
         mDistanceSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +130,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
                 startActivityForResult(intent, 2);
             }
         });
-        mLocationClick = rootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
+        mLocationClick = mRootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
 
 //        이건 동대문구와 downarrow 클릭시 벌어지는 이벤트 .
         mLocationClick.setOnClickListener(new View.OnClickListener() {
@@ -151,9 +147,11 @@ public class SearchRestaurantFragment extends Fragment { //스태
                 }
             }
         });
+        init();
+        getData();
+//        madapter.notifyDataSetChanged();
 
-
-        return rootView;
+        return mRootView;
     }
 
     @Override
@@ -163,8 +161,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
                 //데이터 받기
                 String result = data.getStringExtra("result");
 
-                if(Integer.parseInt(result)==3)
-                {
+                if (Integer.parseInt(result) == 3) {
 
                     mDistanceSelector.setImageResource(R.drawable.three_hundred_m);
                 }
@@ -174,6 +171,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
 
         }
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -226,6 +224,71 @@ public class SearchRestaurantFragment extends Fragment { //스태
 //        });
 //        return rootView;
 //    }
+
+
+    private void init() {
+        int numberOfColumns=2;// 한줄에 2개의 컬럼을 추가
+        RecyclerView recyclerView = mRootView.findViewById(R.id.recyclerView);
+//        mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+
+
+        madapter = new RestaurantRecyclerAdapter();
+        recyclerView.setAdapter(madapter);
+    }
+
+    private void getData() {
+//         임의의 데이터입니다.
+//        List<String> listTitle = Arrays.asList("국화", "사막", "수국", "해파리", "코알라", "등대", "펭귄", "튤립",
+//                "국화", "사막", "수국", "해파리", "코알라", "등대", "펭귄", "튤립");
+//        List<String> listContent = Arrays.asList(
+//                "이 꽃은 국화입니다.",
+//                "여기는 사막입니다.",
+//                "이 꽃은 수국입니다.",
+//                "이 동물은 해파리입니다.",
+//                "이 동물은 코알라입니다.",
+//                "이것은 등대입니다.",
+//                "이 동물은 펭귄입니다.",
+//                "이 꽃은 튤립입니다.",
+//                "이 꽃은 국화입니다.",
+//                "여기는 사막입니다.",
+//                "이 꽃은 수국입니다.",
+//                "이 동물은 해파리입니다.",
+//                "이 동물은 코알라입니다.",
+//                "이것은 등대입니다.",
+//                "이 동물은 펭귄입니다.",
+//                "이 꽃은 튤립입니다."
+//        );
+//        List<Integer> listResId = Arrays.asList(
+//                R.drawable.chrysanthemum,
+//                R.drawable.desert,
+//                R.drawable.hydrangeas,
+//                R.drawable.jellyfish,
+//                R.drawable.koala,
+//                R.drawable.lighthouse,
+//                R.drawable.penguins,
+//                R.drawable.tulips,
+//                R.drawable.chrysanthemum,
+//                R.drawable.desert,
+//                R.drawable.hydrangeas,
+//                R.drawable.jellyfish,
+//                R.drawable.koala,
+//                R.drawable.lighthouse,
+//                R.drawable.penguins,
+//                R.drawable.tulips
+//        );
+//        for (int i = 0; i < listTitle.size(); i++) {
+//         각 List의 값들을 data 객체에 set 해줍니다.
+        RestaurantRecyclerData data = new RestaurantRecyclerData();
+//            data.setTitle(listTitle.get(i));
+//            data.setContent(listContent.get(i));
+//            data.setResId(listResId.get(i));
+
+        // 각 값이 들어간 data를 adapter에 추가합니다.
+        madapter.addItem(data);
+    }
 
 
 }

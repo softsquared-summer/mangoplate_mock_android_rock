@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/dummy_data">
+
+    </ImageView>
+<!--    이미지랑 그리드 뷰 크기 맞추기 .-->
+    <GridLayout
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:columnCount="4"
+        android:rowCount="5">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_columnSpan="3"
+            android:layout_rowSpan="2"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1.7"
+            android:text="2. 티하우스 나니"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowSpan="5"
+            android:gravity="center"
+            android:layout_columnWeight="0.5"
+            android:layout_rowWeight="1"
+            android:text="4.3"
+            >
+
+        </TextView><TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        >
+
+    </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView><TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1.2"
+        android:text="중랑구 - 1.06 Km"
+        android:textSize="10dp"
+        >
+
+    </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:textSize="10dp"
+            android:text="10,326"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1.2"
+
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="hihi"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            >
+
+        </TextView>
+
+
+
+
+
+    </GridLayout>
+</LinearLayout>

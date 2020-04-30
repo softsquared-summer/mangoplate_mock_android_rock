@@ -5,6 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 import android.content.Context;
@@ -25,7 +28,9 @@ import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.home.discount.Fragment_discount;
 import com.example.mangoplate.src.home.mystatus.Fragment_mystatus;
 import com.example.mangoplate.src.home.news.Fragment_news;
+import com.example.mangoplate.src.home.search_restaurant.RestaurantRecyclerAdapter;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RestaurantRecyclerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -38,11 +43,9 @@ public class HomeAcitivity extends BaseActivity {
     private Fragment_news mFragmentNews = new Fragment_news();
     private Fragment_mystatus mystatus = new Fragment_mystatus();
 
-
     private Animation fab_open, fab_close;
     private Boolean isFabOpen = false;
     FloatingActionButton mFloatingActionButton;
-
 
 
     @Override
@@ -63,6 +66,7 @@ public class HomeAcitivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 //                mViewAnimator.showNext();
+
                 anim();
 
 
@@ -137,4 +141,12 @@ public class HomeAcitivity extends BaseActivity {
             isFabOpen = true;
         }
     }
-}
+
+
+//     adapter의 값이 변경되었다는 것을 알려줍니다.
+//        madapter.notifyDataSetChanged();
+    }
+
+
+
+
