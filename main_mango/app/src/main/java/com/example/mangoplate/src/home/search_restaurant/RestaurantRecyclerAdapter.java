@@ -22,7 +22,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_recyclerview_restaurantlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_restaurantlist, parent, false);
         return new ItemViewHolder(view);
     }
 

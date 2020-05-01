@@ -5,5 +5,7 @@
     <string name="kakao_app_key">d237e7e765c1648ea97101ecf6820b8f</string>
     <string name="facebook_app_id">281730756182589</string>
     <string name="fb_login_protocol_scheme">fb281730756182589</string>
-
+    <string name="appbar_scrolling_view_behavior" translatable="false">
+        com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
+    </string>
 </resources>

@@ -48,7 +48,7 @@ public class SearchTabLayout extends BaseActivity {
         setContentView(R.layout.activity_search_tab_layout);
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
-        mContext = getApplicationContext();
+
         mTabLayout = (TabLayout) findViewById(R.id.layout_tab);
         mTabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_TOP);
         mTabLayout.addTab(mTabLayout.newTab().setText("최근지역"));
