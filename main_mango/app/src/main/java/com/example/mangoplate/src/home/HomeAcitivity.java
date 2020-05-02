@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Toast;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
@@ -23,6 +24,8 @@ import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 public class HomeAcitivity extends BaseActivity {
 
@@ -132,7 +135,19 @@ public class HomeAcitivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+            @Override
+            public void onCompleteLogout() {
+                Log.e("되긴되니?","ㅇ?");
+                Toast.makeText(HomeAcitivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+//                                redirectLoginActivity();
+            }
+        });
+    }
 //     adapter의 값이 변경되었다는 것을 알려줍니다.
 //        madapter.notifyDataSetChanged();
     }

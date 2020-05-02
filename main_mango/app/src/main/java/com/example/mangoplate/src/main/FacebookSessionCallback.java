@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.mangoplate.src.ApplicationClass;
 import com.example.mangoplate.src.home.HomeAcitivity;
 import com.facebook.AccessToken;
 import com.facebook.FacebookCallback;
@@ -14,6 +15,8 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 
 import org.json.JSONObject;
+
+import static com.example.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 
 public class FacebookSessionCallback implements FacebookCallback<LoginResult> {
 

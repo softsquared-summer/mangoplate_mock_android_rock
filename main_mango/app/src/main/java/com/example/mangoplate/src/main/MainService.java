@@ -68,26 +68,17 @@ class MainService { //여기서는 서비스 컨트롤
                     if (resultList.getResult() != null ) {
 
                         ApplicationClass.X_ACCESS_TOKEN=resultList.getResult().getJwt();
+//                        mMainActivityView.validateSuccess(defaultResponse.getMessage());
 
-                                Log.e("성공",""+ resultList.getResult().getJwt());
+                        Log.e("성공",""+ resultList.getResult().getJwt());
 
-                    }
-                    if(resultList.getResult()!=null)
-                    {
-
-
-                    }else{
-                        mMainActivityView.validateFailure(null);
-                        Log.e("실패","응");
                     }
 
                 }else{
-                    Log.e("실패","응");
-
+                    mMainActivityView.validateFailure(null);
                 }
 
 
-//                mMainActivityView.validateSuccess(defaultResponse.getMessage());
             }
 
             @Override
