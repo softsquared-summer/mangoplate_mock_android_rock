@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.example.mangoplate.src.home.HomeAcitivity;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
@@ -54,10 +55,9 @@ public class KakaotalkSessionCallback implements ISessionCallback {
                     @Override
                     public void onSuccess(MeV2Response result) {
                         Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
-//                        Intent intent =new Intent(act,test.class);
-//                        act.startActivity(intent);
-//                      act.finish();
-                        // 이걸 이용해서 메인 화면으로 가기 .
+                        Intent intent =new Intent(act, HomeAcitivity.class);
+                        act.startActivity(intent);
+                        act.finish();
 
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {

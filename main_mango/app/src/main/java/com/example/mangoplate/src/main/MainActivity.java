@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,11 +38,12 @@ import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.main.interfaces.MainActivityView;
 import com.facebook.login.LoginManager;
-
+import com.kakao.auth.AuthType;
+import com.kakao.auth.KakaoSDK;
+import com.kakao.auth.Session;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-
 public class MainActivity extends BaseActivity implements MainActivityView { // 여기서는 뷰만 컨트롤
     private TextView mTvHelloWorld;
     private ImageView mbtn_facebook_login;
@@ -48,13 +51,16 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     private FacebookSessionCallback mLoginCallback;
     private CallbackManager mCallbackManager;
     private String mMainJsonString;
-
+    private KakaotalkSessionCallback sessionCallback = new KakaotalkSessionCallback(this);
+    Session session;
+    private ImageView mbtnCustomLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getHashKey();//VbKsFknDcqZ3CHUR47Mlsw2cGOU=
+// mainApplication.java
 
-        FacebookSdk.sdkInitialize(getApplicationContext());// 여기 순서를 잘 지켜야지.
+        FacebookSdk.sdkInitialize(getApplicationContext());// 페이스북은 이렇게 카카오톡은 Application 수정해야함.
         setContentView(R.layout.activity_main);
 
 
@@ -74,6 +80,30 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         Glide.with(this).load(R.drawable.mangoplate).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.mangoplate)
                .into(gifImage);
 //        출처: https://gogorchg.tistory.com/entry/Android-Glide-에서-Gif-로드가-너무-느려요 [항상 초심으로]
+
+
+        mbtnCustomLogin =  findViewById(R.id.main_kakaobutton);
+//        btn_custom_login_out = (TextView) findViewById(R.id.btn_custom_login_out);
+
+
+
+
+        mbtnCustomLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                session = Session.getCurrentSession();
+                session.addCallback(sessionCallback);
+
+                session.open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
+
+
+            }
+        });
+
+
+
+
+
         AccessToken token = AccessToken.getCurrentAccessToken();
         mMainJsonString="{\"at\" : \""+token.getToken()+"\"}";
         Log.e("보내줘",""+mMainJsonString);
@@ -96,8 +126,6 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
                     Log.e("유저아이디.", "UserID: " + token.getUserId());
                 }
                 loginManager.registerCallback(mCallbackManager, mLoginCallback);
-
-
             }
         });
         // If using in a fragment
@@ -175,5 +203,14 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
             default:
                 break;
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // 세션 콜백 삭제
+        com.kakao.auth.Session.getCurrentSession().removeCallback(sessionCallback);
     }
 }

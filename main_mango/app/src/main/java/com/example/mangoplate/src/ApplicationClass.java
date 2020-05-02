@@ -6,6 +6,13 @@ import android.content.SharedPreferences;
 
 import com.example.mangoplate.config.XAccessTokenInterceptor;
 import com.example.mangoplate.config.*;
+import com.kakao.auth.ApprovalType;
+import com.kakao.auth.AuthType;
+import com.kakao.auth.IApplicationConfig;
+import com.kakao.auth.ISessionConfig;
+import com.kakao.auth.KakaoAdapter;
+import com.kakao.auth.KakaoSDK;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +27,16 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
     // 써야한다면 싱글톤 패턴
     // 언제든지 없어질지 생각하고
     //널이면 재할당.
+
+    private static ApplicationClass instance;
+
+    public static ApplicationClass getGlobalApplicationContext() {
+        if (instance == null) {
+            throw new IllegalStateException("This Application does not inherit com.kakao.GlobalApplication");
+        }
+        return instance;
+    }
+
     public static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=uft-8");
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
@@ -44,8 +61,13 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
 
     @Override
     public void onCreate() {
+
         super.onCreate();
 
+        instance = this;
+
+        // Kakao Sdk 초기화
+        KakaoSDK.init(new KakaoSDKAdapter());
         if (sSharedPreferences == null) {
             sSharedPreferences = getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         }
@@ -67,5 +89,49 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
         }
 
         return retrofit; //널이 아니면 리턴
+    }
+
+    public class KakaoSDKAdapter extends KakaoAdapter {
+
+        @Override
+        public ISessionConfig getSessionConfig() {
+            return new ISessionConfig() {
+                @Override
+                public AuthType[] getAuthTypes() {
+                    return new AuthType[] {AuthType.KAKAO_LOGIN_ALL};
+                }
+
+                @Override
+                public boolean isUsingWebviewTimer() {
+                    return false;
+                }
+
+                @Override
+                public boolean isSecureMode() {
+                    return false;
+                }
+
+                @Override
+                public ApprovalType getApprovalType() {
+                    return ApprovalType.INDIVIDUAL;
+                }
+
+                @Override
+                public boolean isSaveFormData() {
+                    return true;
+                }
+            };
+        }
+
+        // Application이 가지고 있는 정보를 얻기 위한 인터페이스
+        @Override
+        public IApplicationConfig getApplicationConfig() {
+            return new IApplicationConfig() {
+                @Override
+                public Context getApplicationContext() {
+                    return ApplicationClass.getGlobalApplicationContext();
+                }
+            };
+        }
     }
 }

@@ -65,14 +65,9 @@ public class FacebookSessionCallback implements FacebookCallback<LoginResult> {
 }
 /*
 LoginCallback이라는 클래스를 새로 생성해주시고 다음 코드를 넣습니다.
-
 LoginCallback클래스는 Facebook에서 제공하는 FacebookCallback<LoginResult>를 상속해서 만들었고,
-
 성공 시 onSuccess()를 호출
-
 로그인 화면을 닫아 로그인을 취소했을 시 onCancel()을 호출
-
 에러상황으로 로그인을 실패했을 경우 onError()을 호출
-
 이렇게 결과를 받을 수 있는 부분을 구성하였습니다.
  */
