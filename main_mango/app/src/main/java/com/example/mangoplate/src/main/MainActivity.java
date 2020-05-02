@@ -125,7 +125,6 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     @Override
     public void validateSuccess(String text) {
         hideProgressDialog();
-        mTvHelloWorld.setText(text);
     }
 
     @Override
