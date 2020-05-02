@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mangoplate.R;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RestaurantRecyclerData;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRecyclerAdapter.ItemViewHolder> {
 
     // adapter에 들어갈 list 입니다.
-    private ArrayList<RestaurantRecyclerData> listData = new ArrayList<>();
+    private ArrayList<RecyclerRestaurantData> listData = new ArrayList<>();
 
     @NonNull
     @Override
@@ -29,6 +29,8 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
+
+
         holder.onBind(listData.get(position));
     }
 
@@ -38,7 +40,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         return listData.size();
     }
 
-    public void addItem(RestaurantRecyclerData data) {
+    public void addItem(RecyclerRestaurantData data) {
         // 외부에서 item을 추가시킬 함수입니다.
 //        listData.add(data);
         listData.add(data);
@@ -60,7 +62,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
 //            imageView = itemView.findViewById(R.id.imageView);
         }
 
-        void onBind(RestaurantRecyclerData data) {
+        void onBind(RecyclerRestaurantData data) {
 //            textView1.setText(data.getTitle());
 //            textView2.setText(data.getContent());
 //            imageView.setImageResource(data.getResId());

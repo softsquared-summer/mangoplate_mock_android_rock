@@ -4,11 +4,11 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--https://readystory.tistory.com/127 coordinator레이아웃 설명은 여기서 -->
+    <!--https://readystory.tistory.com/127 coordinator레이아웃 설명은 여기서 -->
 
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbar_discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
@@ -16,7 +16,7 @@
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/app_toolbar"
+            android:id="@+id/app_toolbar_discount_discount"
             android:layout_width="wrap_content"
 
             android:gravity="left"
@@ -34,7 +34,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/news_layout_tab"
+            android:id="@+id/fragment_tab_discount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="center"
@@ -53,7 +53,7 @@
 
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/newspager_contents"
+        android:id="@+id/viewPager_discount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -63,7 +63,7 @@
 
 
 
-<!--    여기다가 리사이클러 뷰 커스텀 카드뷰로 해서 .-->
+    <!--    여기다가 리사이클러 뷰 커스텀 카드뷰로 해서 .-->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

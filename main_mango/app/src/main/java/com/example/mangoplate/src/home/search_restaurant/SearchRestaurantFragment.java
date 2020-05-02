@@ -17,7 +17,7 @@ import com.example.mangoplate.src.home.search_restaurant.alignment_button.Alignm
 import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
 import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RestaurantRecyclerData;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Timer;
@@ -281,7 +281,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
 //        );
 //        for (int i = 0; i < listTitle.size(); i++) {
 //         각 List의 값들을 data 객체에 set 해줍니다.
-        RestaurantRecyclerData data = new RestaurantRecyclerData();
+        RecyclerRestaurantData data = new RecyclerRestaurantData();
 //            data.setTitle(listTitle.get(i));
 //            data.setContent(listContent.get(i));
 //            data.setResId(listResId.get(i));

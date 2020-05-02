@@ -1,7 +1,6 @@
 package com.example.mangoplate.src.home;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +17,8 @@ import android.view.animation.OvershootInterpolator;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
-import com.example.mangoplate.src.home.discount.Fragment_discount;
-import com.example.mangoplate.src.home.mystatus.Fragment_mystatus;
+import com.example.mangoplate.src.home.mystatus.MystatusFragment;
+import com.example.mangoplate.src.home.news.DiscountFragment;
 import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,9 +29,9 @@ public class HomeAcitivity extends BaseActivity {
     private FragmentManager mfragmentManager = getSupportFragmentManager();
     ViewRevealAnimator mViewAnimator;
     private SearchRestaurantFragment mFragmentSearch_restaurant = new SearchRestaurantFragment();
-    private Fragment_discount mFragmentDiscount = new Fragment_discount();
+    private DiscountFragment mFragmentDiscount = new DiscountFragment();
     private NewsFragment mFragmentNews = new NewsFragment();
-    private Fragment_mystatus mystatus = new Fragment_mystatus();
+    private MystatusFragment mystatus = new MystatusFragment();
 
     private Animation fab_open, fab_close;
     private Boolean isFabOpen = false;

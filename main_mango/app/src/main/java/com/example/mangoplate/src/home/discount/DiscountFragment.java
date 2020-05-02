@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-public class NewsFragment extends Fragment {
+public class DiscountFragment extends Fragment {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
@@ -48,19 +48,14 @@ public class NewsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_news, container, false);
-
-//        ActionBar actionBar = mHomeAcitivity.getSupportActionBar();
-//        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
-
-        ;
-        mAppToolbar = mRootView.findViewById(R.id.app_toolbar);
-        mTabLayout = (TabLayout) mRootView.findViewById(R.id.news_layout_tab);
+        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_discount, container, false);
+        mAppToolbar = mRootView.findViewById(R.id.app_toolbar_discount_discount);
+        mTabLayout = (TabLayout) mRootView.findViewById(R.id.fragment_tab_discount);
         mTabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
-        mTabLayout.addTab(mTabLayout.newTab().setText("전체"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("팔로잉"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("홀릭"));
-        mViewPager = (ViewPager) mRootView.findViewById(R.id.newspager_contents);
+        mTabLayout.addTab(mTabLayout.newTab().setText("EAT딜"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("망고픽 스토리"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("TOP 리스트"));
+        mViewPager = (ViewPager) mRootView.findViewById(R.id.viewPager_discount);
 //        mViewPager.setOffscreenPageLimit(4);
         mContentPagerAdapter = new ContentsPagerAdapter(
                 mHomeAcitivity.getSupportFragmentManager(), mTabLayout.getTabCount());

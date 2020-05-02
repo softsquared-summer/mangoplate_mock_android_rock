@@ -10,11 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.example.mangoplate.src.ApplicationClass;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -41,10 +44,9 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getHashKey();//VbKsFknDcqZ3CHUR47Mlsw2cGOU=
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
+
         FacebookSdk.sdkInitialize(getApplicationContext());// 여기 순서를 잘 지켜야지.
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
 
         mbtn_facebook_login = (ImageView) findViewById(R.id.main_facebookbutton);
@@ -79,7 +81,14 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
 //        facebookLoginButton.setFragment(this);
         mCallbackManager = CallbackManager.Factory.create();
         mLoginCallback = new FacebookSessionCallback(this);
+        AccessToken token = AccessToken.getCurrentAccessToken();
 
+        ApplicationClass.X_ACCESS_TOKEN=token.getToken();
+        if (token != null) {
+            Toast.makeText(this, token.toString(), Toast.LENGTH_SHORT).show();
+            Log.e("토큰", "Token: " + token.getToken());
+            Log.e("", "UserID: " + token.getUserId());
+        }
 //        mbtn_facebook_login.setReadPermissions(Arrays.asList("public_profile", "email"));
 //        mbtn_facebook_login.registerCallback(mCallbackManager, mLoginCallback);
         // Callback registration
