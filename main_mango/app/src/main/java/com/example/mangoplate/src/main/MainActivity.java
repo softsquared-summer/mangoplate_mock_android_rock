@@ -14,9 +14,18 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.example.mangoplate.src.ApplicationClass;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.interfaces.SearchTapRetrofitInterface;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.models.Result;
+import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.models.ResultList;
+import com.example.mangoplate.src.main.models.DefaultResponse;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -38,7 +47,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
 
     private FacebookSessionCallback mLoginCallback;
     private CallbackManager mCallbackManager;
-
+    private String mMainJsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,30 +74,37 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         Glide.with(this).load(R.drawable.mangoplate).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.mangoplate)
                .into(gifImage);
 //        출처: https://gogorchg.tistory.com/entry/Android-Glide-에서-Gif-로드가-너무-느려요 [항상 초심으로]
-
-
-        main_menu.setOnClickListener(new View.OnClickListener() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        mMainJsonString="{\"at\" : \""+token.getToken()+"\"}";
+        Log.e("보내줘",""+mMainJsonString);
+        System.out.println("제발");
+        mbtn_facebook_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 LoginManager loginManager = LoginManager.getInstance();
                 loginManager.logInWithReadPermissions(MainActivity.this,
                         Arrays.asList("public_profile", "email"));
+                AccessToken token = AccessToken.getCurrentAccessToken();
+                mMainJsonString="{\"at\" : \""+token.getToken()+"\"}";
+                Log.e("보낼려는 토큰",""+mMainJsonString);
+                main_tryPost("facebook",mMainJsonString);
+
+                if (token != null) {
+
+                    Log.e("토큰", "Token: " + token.getToken());
+                    Log.e("유저아이디.", "UserID: " + token.getUserId());
+                }
                 loginManager.registerCallback(mCallbackManager, mLoginCallback);
+
+
             }
         });
         // If using in a fragment
 //        facebookLoginButton.setFragment(this);
         mCallbackManager = CallbackManager.Factory.create();
         mLoginCallback = new FacebookSessionCallback(this);
-        AccessToken token = AccessToken.getCurrentAccessToken();
 
-        ApplicationClass.X_ACCESS_TOKEN=token.getToken();
-        if (token != null) {
-            Toast.makeText(this, token.toString(), Toast.LENGTH_SHORT).show();
-            Log.e("토큰", "Token: " + token.getToken());
-            Log.e("", "UserID: " + token.getUserId());
-        }
 //        mbtn_facebook_login.setReadPermissions(Arrays.asList("public_profile", "email"));
 //        mbtn_facebook_login.registerCallback(mCallbackManager, mLoginCallback);
         // Callback registration
@@ -97,6 +113,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
 
 
     }
+
 
 
     @Override
@@ -125,12 +142,13 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
             }
         }
     }
-
-    private void tryGetTest() {
+// 이름이 같아서 나도 헷갈려
+    private void main_tryPost(String type, String jsonString) {
         showProgressDialog();
 
         final MainService mainService = new MainService(this);
-        mainService.getTest();
+//        mainService.getTest();
+        mainService.tryPost(type,jsonString);
     }
 
     @Override
@@ -147,6 +165,10 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
 
     public void customOnClick(View view) {
         switch (view.getId()) {
+
+
+//            case main_facebookbutton:
+//                break;
 //            case R.id.main_btn_hello_world:
 //                tryGetTest();
 //                break;

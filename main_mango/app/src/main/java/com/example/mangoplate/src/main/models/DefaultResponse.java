@@ -3,8 +3,15 @@ package com.example.mangoplate.src.main.models;
 import com.google.gson.annotations.SerializedName;
 
 public class DefaultResponse {
+    @SerializedName("result")
+    private Result result;
+
     @SerializedName("code")
     private int code;
+
+    public Result getResult() {
+        return result;
+    }
 
     @SerializedName("message")
     private String message;
