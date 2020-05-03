@@ -229,9 +229,9 @@ public class SearchRestaurantFragment extends Fragment { //스태
     private void init() {
         int numberOfColumns=2;// 한줄에 2개의 컬럼을 추가
         RecyclerView recyclerView = mRootView.findViewById(R.id.recyclerView);
-//        mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        recyclerView.setLayoutManager(mGridLayoutManager);
 
 
 
@@ -288,6 +288,12 @@ public class SearchRestaurantFragment extends Fragment { //스태
 
         // 각 값이 들어간 data를 adapter에 추가합니다.
         madapter.addItem(data);
+        madapter.addItem(data);
+        madapter.addItem(data);
+        madapter.addItem(data);
+        madapter.addItem(data);
+        madapter.addItem(data);
+
     }
 
 

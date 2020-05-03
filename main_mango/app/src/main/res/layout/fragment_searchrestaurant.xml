@@ -105,7 +105,7 @@
     <ImageView
         android:layout_width="28dp"
         android:layout_height="24dp"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:baselineAligned="true"
@@ -121,16 +121,21 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+
+       >
 
         <LinearLayout
+            android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+          >
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                >
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/Fragment_searchRestaurant_photos_viewpager"
@@ -221,12 +226,15 @@
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:background="#F0F0F0"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
+<!--    https://black-jin0427.tistory.com/164 recyclerview 이중 스크롤 문제 -->
     <!--    [출처] [Android] ScrollView 안에 RecyclerView 스크롤 부드럽게|작성자 Printf-->
 
 
