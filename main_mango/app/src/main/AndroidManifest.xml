@@ -16,8 +16,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
-            android:theme="@style/Theme.MyDialog"></activity>
+        <activity android:name=".src.home.advertisement.Advertisement"></activity>
+        <activity
+            android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".src.home.search_restaurant.filter_button.FilterLayout"
             android:theme="@style/Theme.MyDialog" />
@@ -35,21 +37,17 @@
         </activity>
         <activity
             android:name=".src.home.HomeAcitivity"
-            android:theme="@style/AppTheme"
-
-
-
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity android:name=".src.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".src.main.MainActivity"
-            >
 
         </activity>
         <activity
@@ -87,10 +85,10 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

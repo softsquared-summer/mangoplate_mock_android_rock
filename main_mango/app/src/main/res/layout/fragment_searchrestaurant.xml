@@ -120,14 +120,15 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:fillViewport="true"
        >
 
         <LinearLayout
             android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
           >
 
@@ -224,14 +225,14 @@
 
 
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
+                android:id="@+id/fragment_recyclerView_searchRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:background="#F0F0F0"/>
+                android:nestedScrollingEnabled="false"
+
+                />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 <!--    https://black-jin0427.tistory.com/164 recyclerview 이중 스크롤 문제 -->

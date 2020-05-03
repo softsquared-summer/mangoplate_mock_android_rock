@@ -20,6 +20,7 @@ import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.Search
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -51,6 +52,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
     ViewGroup mRootView;
     private GridLayoutManager mGridLayoutManager;
 
+    RecyclerView recyclerViewSearchRestaurant;
     private RestaurantRecyclerAdapter madapter;
 
     TextView alignmentButton;
@@ -72,7 +74,8 @@ public class SearchRestaurantFragment extends Fragment { //스태
         // 코드에서 그 사람의 얼굴이 보인다 .
         ImageView filter = mRootView.findViewById(R.id.filter);
         alignmentButton = mRootView.findViewById(R.id.alignment_button);
-
+        recyclerViewSearchRestaurant=mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
+        recyclerViewSearchRestaurant.setNestedScrollingEnabled(false);
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
             public void onClick(View v) {
@@ -148,7 +151,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
             }
         });
         init();
-        getData();
+         getData();
 //        madapter.notifyDataSetChanged();
 
         return mRootView;
@@ -228,7 +231,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
 
     private void init() {
         int numberOfColumns=2;// 한줄에 2개의 컬럼을 추가
-        RecyclerView recyclerView = mRootView.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
         mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(mGridLayoutManager);
@@ -289,10 +292,10 @@ public class SearchRestaurantFragment extends Fragment { //스태
         // 각 값이 들어간 data를 adapter에 추가합니다.
         madapter.addItem(data);
         madapter.addItem(data);
-        madapter.addItem(data);
-        madapter.addItem(data);
-        madapter.addItem(data);
-        madapter.addItem(data);
+        madapter.addItem(data);madapter.addItem(data);
+
+
+
 
     }
 
