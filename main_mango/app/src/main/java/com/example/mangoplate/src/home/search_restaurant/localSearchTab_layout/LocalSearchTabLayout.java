@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.home.search_restaurant.searchTab_layout;
+package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout;
 
 import androidx.viewpager.widget.ViewPager;
 
@@ -13,12 +13,12 @@ import com.example.mangoplate.src.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 
 //https://ghj1001020.tistory.com/9 여기 확인해서 완성할 것 .
-public class SearchTabLayout extends BaseActivity {
+public class LocalSearchTabLayout extends BaseActivity {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
     private SeoulSouthContentsPagerAdapter mContentPagerAdapter;
-
+   public static int mAdjustmnetColorChanger = 0;// 하나라도 체크 되면 적용 주황색 표시
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

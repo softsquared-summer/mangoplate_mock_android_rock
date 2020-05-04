@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_north.interfaces.models;
+package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_north.models;
 
 import java.util.List;
 

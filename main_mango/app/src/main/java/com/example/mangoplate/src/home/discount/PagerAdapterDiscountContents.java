@@ -8,10 +8,6 @@ import android.content.Context;
 import com.example.mangoplate.src.home.discount.eat_deal.FragmentEatDeal;
 import com.example.mangoplate.src.home.discount.mangopickstory.FragmentMangopickStory;
 import com.example.mangoplate.src.home.discount.toplist.FragmentTopList;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.mylocation_search.MyLocationSearch;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.recent_location.RecentLocation;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_north.SeoulNorth;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.SeoulSouth;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

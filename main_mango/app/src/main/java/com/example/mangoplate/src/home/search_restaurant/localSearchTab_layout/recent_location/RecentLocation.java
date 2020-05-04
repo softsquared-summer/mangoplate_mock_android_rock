@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.home.search_restaurant.searchTab_layout.recent_location;
+package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.recent_location;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

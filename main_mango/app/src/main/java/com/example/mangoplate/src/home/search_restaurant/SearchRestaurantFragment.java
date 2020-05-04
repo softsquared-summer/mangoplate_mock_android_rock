@@ -1,10 +1,13 @@
 package com.example.mangoplate.src.home.search_restaurant;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +20,8 @@ import com.example.mangoplate.src.home.HomeAcitivity;
 import com.example.mangoplate.src.home.search_restaurant.alignment_button.AlignmentButton;
 import com.example.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
 import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.models.RecyclerRestaurantData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Timer;
@@ -26,6 +29,7 @@ import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +59,11 @@ public class SearchRestaurantFragment extends Fragment { //스태
     private RestaurantRecyclerAdapter madapter;
     private Runnable mUpdate;// 광고 핸들러 Runnable
     TextView alignmentButton;
+    private LocationManager mLocationManager;
+    private static final int REQUEST_CODE_LOCATION = 2;
+
+    public static double lat;
+    public static double  lng;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -86,6 +95,20 @@ public class SearchRestaurantFragment extends Fragment { //스태
         //광고 이미지 .
         PagerAdapter adapter = new AdvertisementPhotosAdapter(getContext());
 
+//사용자의 위치 수신을 위한 세팅
+        mLocationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
+//사용자의 현재 위치
+        Location userLocation = getMyLocation();
+        if( userLocation != null ) {
+            double latitude = userLocation.getLatitude();
+            double longitude = userLocation.getLongitude();
+            lat =latitude;
+            lng= longitude;
+            System.out.println("////////////현재 내 위치값 : "+latitude+","+longitude);
+        }
+
+
+
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +139,7 @@ public class SearchRestaurantFragment extends Fragment { //스태
             @Override
             public void onClick(View v) {
                 if (blockClickFlag) {
-                    Intent intent = new Intent(mHomeAcitivity, SearchTabLayout.class);
+                    Intent intent = new Intent(mHomeAcitivity, LocalSearchTabLayout.class);
 //                intent.putExtra("data", "Test Popup");
                     startActivityForResult(intent, 1);
 //                    startActivity(intent);
@@ -153,7 +176,30 @@ public class SearchRestaurantFragment extends Fragment { //스태
 
         }
     }
+    /**
+     * 사용자의 위치를 수신
+     */
+    private Location getMyLocation() {
+        Location currentLocation = null;
+        // Register the listener with the Location Manager to receive location updates
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            System.out.println("////////////사용자에게 권한을 요청해야함");
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, this.REQUEST_CODE_LOCATION);
+            getMyLocation(); //이건 써도되고 안써도 되지만, 전 권한 승인하면 즉시 위치값 받아오려고 썼습니다!
+        }
+        else {
+            System.out.println("////////////권한요청 안해도됨");
 
+            // 수동으로 위치 구하기
+            String locationProvider = LocationManager.GPS_PROVIDER;
+            currentLocation = mLocationManager.getLastKnownLocation(locationProvider);
+            if (currentLocation != null) {
+                double lng = currentLocation.getLongitude();
+                double lat = currentLocation.getLatitude();
+            }
+        }
+        return currentLocation;
+    }
     @Override
     public void onStart() {
         super.onStart();

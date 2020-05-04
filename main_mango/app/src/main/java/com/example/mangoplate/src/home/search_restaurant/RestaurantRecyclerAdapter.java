@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mangoplate.R;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.models.RecyclerRestaurantData;
 
 import java.util.ArrayList;
 

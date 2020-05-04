@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south;
+package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,18 +12,15 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.ApplicationClass;
-import com.example.mangoplate.src.home.HomeAcitivity;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.SearchTabLayout;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.interfaces.SeoulSouthRetrofitInterface;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.models.Result;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.models.ResultList;
-import com.google.android.material.chip.Chip;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.interfaces.SeoulSouthRetrofitInterface;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.Result;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.ResultList;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -40,10 +37,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 
 public class SeoulSouth extends Fragment {
-    SearchTabLayout searchTabLayout;
+    LocalSearchTabLayout localSearchTabLayout;
     ViewGroup mView;
+    TabLayout mTabLayout;
+
     int i = 0;
     int j = 0;
+    ArrayList<Integer> textViewIdValue;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,39 +53,39 @@ public class SeoulSouth extends Fragment {
         fetchDistricts(1);
         return mView;
     }
-    public SeoulSouth(SearchTabLayout searchTabLayout)
-    {
-        this.searchTabLayout=searchTabLayout;
+
+    public SeoulSouth(LocalSearchTabLayout localSearchTabLayout) {
+        this.localSearchTabLayout = localSearchTabLayout;
     }
+
     private void fetchDistricts(int districts) {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ApplicationClass.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         SeoulSouthRetrofitInterface searchTapRetrofitInterface = retrofit.create(SeoulSouthRetrofitInterface.class);
         searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN).enqueue(new Callback<ResultList>() {
-            int checkNumber=0;// 얘는 포문 돌아가는 숫자를 세기 위해서 존재.
+            int checkNumber = 0;// 얘는 포문 돌아가는 숫자를 세기 위해서 존재.
 
 
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onResponse(Call<ResultList> call, Response<ResultList> response) {
                 if (response.code() == 200) {
-                    ResultList resultList = response.body();
-                    LayoutInflater inflater =(LayoutInflater)searchTabLayout.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    GridLayout gridLayout = (GridLayout)mView.findViewById(R.id.seoulSouth_dynamic_layout);
+                    final ResultList resultList = response.body();
+                    LayoutInflater inflater = (LayoutInflater) localSearchTabLayout.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final GridLayout gridLayout = (GridLayout) mView.findViewById(R.id.seoulSouth_dynamic_layout);
                     if (resultList.result != null && resultList.result.size() > 0) {
                         for (Result result : resultList.result) {
                             Log.e("성공", "" + result.id);
                             Log.e("성공", "" + result.name);
 
 
-
-                            final boolean[] textViewFlag = new boolean[resultList.result.size()+1];// 버튼 온 오프 체크
-                            for(int i=0;i<resultList.result.size()+1;i++)
-                            {
-                                textViewFlag[i]=true;
+                            final boolean[] textViewFlag = new boolean[resultList.result.size() + 1];// 버튼 온 오프 체크
+//                            TextView[] textView=new TextView[resultList.result.size()+1];
+                            for (int i = 0; i < resultList.result.size() + 1; i++) {
+                                textViewFlag[i] = true;
 
                             }
-                            final FrameLayout frameLayout=new FrameLayout(getContext());
+
 //                            Chip chip = new Chip(getContext());
 //                            chip.setCheckable(true);
 //                            chip.setChipBackgroundColorResource(R.color.white);
@@ -96,44 +97,49 @@ public class SeoulSouth extends Fragment {
 //                            chip.setChipStrokeWidth(1f);
 //                            chip.setText(result.name);
 //                            chip.setTextColor(getResources().getColor(R.color.grey_300));
-//                            chip.setRippleColorResource(R.color.grey_200);
-                            final TextView textView=new TextView(getContext());
+//
+
+//                                textView.setText("전체");
+
+                            final TextView textView = new TextView(getContext());
+                            final FrameLayout frameLayout = new FrameLayout(getContext());
                             textView.setText(result.name);
 
-//                            button.setId(View.generateViewId());
-                            FrameLayout.LayoutParams paramsOne = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,Gravity.CENTER);
 
-                            paramsOne.setMargins(5,10,5,10);
+//                            button.setId(View.generateViewId());
+                            FrameLayout.LayoutParams paramsOne = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+
+                            paramsOne.setMargins(5, 10, 5, 10);
                             textView.setLayoutParams(paramsOne);
                             textView.setForegroundGravity(Gravity.END);
                             textView.setGravity(Gravity.CENTER);
 
-                            textView.setId(View.generateViewId());
-                            ArrayList<Integer> al = new ArrayList<Integer>();
-                            al.add(View.generateViewId());
-                            Log.e("id값좀 보자",""+View.generateViewId());
-                            ArrayList<Boolean> checkOnOffTextView=new ArrayList<Boolean>();
+                            int inputId = View.generateViewId(); // 고정으로 해야돼
+                            textView.setId(inputId);
+                            textViewIdValue = new ArrayList<Integer>();
+                            textViewIdValue.add(textView.getId());
+                            Log.e("id값좀 보자", "" + inputId);
+                            Log.e("TextViewid값좀 보자", "" + textView.getId());
+                            ArrayList<Boolean> checkOnOffTextView = new ArrayList<Boolean>();
 
-                            textView.setWidth(320);
+                            textView.setWidth(310);
                             textView.setHeight(90);
                             textView.setTextColor(getResources().getColor(R.color.offborder));
                             textView.setBackgroundResource(R.drawable.off_rouned_border_textview);
-                            final ImageView imageView=new ImageView(getContext());
+                            final ImageView imageView = new ImageView(getContext());
                             imageView.setImageResource(R.drawable.checkimage);
 
                             imageView.setId(View.generateViewId());
 
-                            int imagviewId=imageView.getId();
+                            int imagviewId = imageView.getId();
 //                            params.setMarginStart(100);
 //                            imageView.setForegroundGravity(Gravity.END| Gravity.TOP);
 
 
-
-
-                            FrameLayout.LayoutParams paramsTwo = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,Gravity.TOP|Gravity.RIGHT);
+                            FrameLayout.LayoutParams paramsTwo = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.TOP | Gravity.RIGHT);
 //                레이아웃을 맞춰줘야 한다.
 //                            https://stackoverflow.com/questions/8005526/setting-of-imageviews-gravity-to-the-center-in-android-programmatically 리니어인 경우 이 경우 참조
-                            paramsTwo.setMargins(0,9,9,0);
+                            paramsTwo.setMargins(0, 9, 9, 0);
                             imageView.setLayoutParams(paramsTwo);
                             imageView.getLayoutParams().height = 30;
                             imageView.getLayoutParams().width = 30;
@@ -141,64 +147,83 @@ public class SeoulSouth extends Fragment {
                             frameLayout.setForegroundGravity(Gravity.CENTER);
                             frameLayout.addView(textView);
 
-                        textView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if(textViewFlag[checkNumber]) {
-                                    textView.setBackgroundResource(R.drawable.on_rouned_border_textview);
-                                    frameLayout.addView(imageView);
-                                    textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
-                                    textViewFlag[checkNumber] =false;
-                                }
-                                else{
-                                    textView.setBackgroundResource(R.drawable.off_rouned_border_textview);
-                                    ((ViewGroup)imageView.getParent()).removeView(imageView);
-                                    textView.setTextColor(getResources().getColor(R.color.offborder));
-                                    textViewFlag[checkNumber] =true;
 
+                            final TextView adjustment = localSearchTabLayout.findViewById(R.id.adjustment); // 클릭시 버튼 색깔 바꾸기
+                            final TextView cancelAllbutton =localSearchTabLayout.findViewById(R.id.cancel_allbutton);
+                            cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
+                            adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
+                            adjustment.setTextColor(getResources().getColor(R.color.white));
+                            textView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    if (textViewFlag[checkNumber]) {
+
+                                        LocalSearchTabLayout.mAdjustmnetColorChanger++;
+                                        adjustment.setBackgroundResource(R.drawable.adjustment_on_rouned_border_textview);
+                                        adjustment.setTextColor(getResources().getColor(R.color.white));
+                                        textView.setBackgroundResource(R.drawable.on_rouned_border_textview);
+                                        cancelAllbutton.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
+                                        frameLayout.addView(imageView);
+                                        textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
+                                        textViewFlag[checkNumber] = false;
+                                    } else {
+                                        LocalSearchTabLayout.mAdjustmnetColorChanger--;
+                                        if (LocalSearchTabLayout.mAdjustmnetColorChanger == 0) {
+                                            adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
+                                            adjustment.setTextColor(getResources().getColor(R.color.white));
+                                            cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
+                                        }
+                                        textView.setBackgroundResource(R.drawable.off_rouned_border_textview);
+                                        ((ViewGroup) imageView.getParent()).removeView(imageView);
+                                        textView.setTextColor(getResources().getColor(R.color.offborder));
+                                        textViewFlag[checkNumber] = true;
+
+                                    }
                                 }
 
-                                }
-                        });
+                            });
                             gridLayout.setRowCount(resultList.result.size());
                             gridLayout.setColumnCount(2);
                             gridLayout.setOrientation(GridLayout.VERTICAL);
 
+                            if (j == 2) {
+                                j = 0;
+                                i++;
+                                gridLayout.addView(frameLayout, new GridLayout.LayoutParams(
+                                        GridLayout.spec(i, GridLayout.CENTER, 1f),
+                                        GridLayout.spec(j, GridLayout.CENTER, 1f)));
 
-                            if (resultList.result.size() > j) {
-                                if (j == 2) {
-                                    j = 0;
-                                    i++;
 
+                            } else {
 
-                                } else {
-                                    gridLayout.addView(frameLayout, new GridLayout.LayoutParams(
-                                            GridLayout.spec(i, GridLayout.CENTER,1f),
-                                            GridLayout.spec(j, GridLayout.CENTER,1f) ));
-                                    // weight를 줘야함
-                                    Log.e("뭐하는 거야 당신",""+i+j);
+                                gridLayout.addView(frameLayout, new GridLayout.LayoutParams(
+                                        GridLayout.spec(i, GridLayout.CENTER, 1f),
+                                        GridLayout.spec(j, GridLayout.CENTER, 1f)));
+                                // weight를 줘야함
+                                Log.e("뭐하는 거야 당신", "" + i + j);
 
-                                    j++;
-
-                                }
-                                checkNumber++;
+                                j++;
 
                             }
+                            checkNumber++;
+
+
                         }
 
                     }
-                    if(resultList.result!=null)
-                    {
+                    if (resultList.result != null) {
 
 
-                    }else{
+                    } else {
 
-                        Log.e("실패","응");
+                        Log.e("실패", "응");
                     }
 
                 }
-            }
 
+
+            }
 
 
             @Override
@@ -206,5 +231,53 @@ public class SeoulSouth extends Fragment {
 
             }
         });
+//
+//                            if (i == 0 && j == 0) {
+//                                Log.e("되질 않어,", "" + textViewIdValue.get(0));
+//                                textView.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//
+//                                        if (textViewFlag[0])
+//                                        // 전체가 선택되어 있지 않았던 경우에 전체를 선택
+//                                        {
+//                                            Log.e("되질 않어,", "" + textViewIdValue.get(0));
+//
+//                                            for (int index = 0; index < resultList.result.size() + 1; index++) {
+//
+//                                                if (textViewFlag[i] = true) {
+//                                                    Log.e("아 뭔데", "" + textViewIdValue.get(index));
+//                                                    TextView textView1 = gridLayout.findViewById(textViewIdValue.get(index));
+//                                                    textView1.setBackgroundResource(R.drawable.on_rouned_border_textview);
+//                                                    textView1.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
+//                                                    textViewFlag[index] = false;
+//                                                }
+//
+//
+//                                            }
+//                                        } else {
+//                                            for (int index = 1; i < resultList.result.size() + 1; i++) {   //전체가 선택되어 있는데 다시 전체를 선택
+//
+//
+//                                                if (textViewFlag[i] = false) {
+//                                                    TextView textView1 = gridLayout.findViewById(textViewIdValue.get(i));
+//                                                    textView1.setBackgroundResource(R.drawable.off_rouned_border_textview);
+//                                                    textView1.setTextColor(getResources().getColor(R.color.offborder));
+//                                                    textViewFlag[i] = true;
+//                                                }
+//
+//                                            }
+//
+//                                        }
+//                                    }
+//
+//                                });
+//
+//                            }
+
+
     }
+
 }
+
+

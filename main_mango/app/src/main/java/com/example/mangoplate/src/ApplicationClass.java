@@ -36,7 +36,6 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
         }
         return instance;
     }
-
     public static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=uft-8");
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 

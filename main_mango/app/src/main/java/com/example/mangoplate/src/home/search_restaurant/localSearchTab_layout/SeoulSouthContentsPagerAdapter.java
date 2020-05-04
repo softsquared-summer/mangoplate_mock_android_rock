@@ -1,14 +1,14 @@
-package com.example.mangoplate.src.home.search_restaurant.searchTab_layout;
+package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout;
 
 
 
 
 import android.content.Context;
 
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.mylocation_search.MyLocationSearch;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.recent_location.RecentLocation;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_north.SeoulNorth;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.SeoulSouth;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.MyLocationSearch;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.recent_location.RecentLocation;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_north.SeoulNorth;
+import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.SeoulSouth;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -43,16 +43,16 @@ public class SeoulSouthContentsPagerAdapter extends FragmentStatePagerAdapter {
 
             case 1:
 
-                MyLocationSearch myLocationSearch = new MyLocationSearch();
+                MyLocationSearch myLocationSearch = new MyLocationSearch((LocalSearchTabLayout) mContext);
                 return myLocationSearch;
 
 
             case 2:
-                SeoulSouth seoulSouth = new SeoulSouth((SearchTabLayout) mContext);
+                SeoulSouth seoulSouth = new SeoulSouth((LocalSearchTabLayout) mContext);
                 return seoulSouth;
 
             case 3:
-                SeoulNorth seoulNorth = new SeoulNorth();
+                SeoulNorth seoulNorth = new SeoulNorth((LocalSearchTabLayout) mContext);
                 return seoulNorth;
 
             default:
