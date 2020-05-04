@@ -122,6 +122,7 @@ public class SeoulSouth extends Fragment {
                             imageView.setImageResource(R.drawable.checkimage);
 
                             imageView.setId(View.generateViewId());
+
                             int imagviewId=imageView.getId();
 //                            params.setMarginStart(100);
 //                            imageView.setForegroundGravity(Gravity.END| Gravity.TOP);
@@ -134,7 +135,9 @@ public class SeoulSouth extends Fragment {
 //                            https://stackoverflow.com/questions/8005526/setting-of-imageviews-gravity-to-the-center-in-android-programmatically 리니어인 경우 이 경우 참조
                             paramsTwo.setMargins(0,9,9,0);
                             imageView.setLayoutParams(paramsTwo);
-
+                            imageView.getLayoutParams().height = 30;
+                            imageView.getLayoutParams().width = 30;
+                            imageView.requestLayout();
                             frameLayout.setForegroundGravity(Gravity.CENTER);
                             frameLayout.addView(textView);
 
