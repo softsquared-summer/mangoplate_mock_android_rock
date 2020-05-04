@@ -122,6 +122,13 @@ public class KakaotalkSessionCallback implements ISessionCallback {
                                 }
                                 mainService.tryPost("kakao",mKakaoJsonString);
 
+                                Thread sleep=new Thread();
+                                try {
+                                    sleep.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }// 안되면 속도를 늦추면 되지 .
+
                                 Intent intent =new Intent(act, HomeAcitivity.class);
                                 act.startActivity(intent);
                                 act.finish();

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -16,32 +17,30 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
-import android.widget.Toast;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
 import com.example.mangoplate.src.home.advertisement.Advertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
 import com.example.mangoplate.src.home.mystatus.MystatusFragment;
-import com.example.mangoplate.src.home.news.DiscountFragment;
+import com.example.mangoplate.src.home.news.FragmentDiscount;
 import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
-import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HomeAcitivity extends BaseActivity implements HomeActivityView {
 
     private FragmentManager mfragmentManager = getSupportFragmentManager();
     private ViewRevealAnimator mViewAnimator;
     private SearchRestaurantFragment mFragmentSearch_restaurant = new SearchRestaurantFragment();
-    private DiscountFragment mFragmentDiscount = new DiscountFragment();
+    private FragmentDiscount mFragmentDiscount = new FragmentDiscount();
     private NewsFragment mFragmentNews = new NewsFragment();
     private MystatusFragment mystatus = new MystatusFragment();
-
     private Animation mFab_open, mFab_close;
     private Boolean isFabOpen = false;
     private FloatingActionButton mFloatingActionButton;
@@ -50,6 +49,7 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
     HomeContentsPagerAdapter mHomeContentsPagerAdapter;
     BottomNavigationView mBottomNavigationView;
 
+    Context mContext;
     String mImageUrl;
     int mEventId;
     @Override
@@ -59,8 +59,9 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
 //        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
         setContentView(R.layout.acitivity_home);
         mhomeService=new HomeService(this);
-        mhomeService.tryGet();
-
+        mhomeService.tryEventGet();
+        mhomeService.tryEventsGet();
+        mContext=this;
 
         mViewAnimator = findViewById(R.id.animator);
          mFloatingActionButton=findViewById(R.id.home_floatingActionButton);
@@ -79,6 +80,7 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
 
 
         });
+
         mHomeViewPager = (ViewPager) findViewById(R.id.viewpager_home);
         mHomeContentsPagerAdapter = new HomeContentsPagerAdapter(
                 getSupportFragmentManager(), 4);
@@ -179,14 +181,14 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-            @Override
-            public void onCompleteLogout() {
-                Log.e("되긴되니?","ㅇ?");
-                Toast.makeText(HomeAcitivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-//                                redirectLoginActivity();
-            }
-        });
+//        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+//            @Override
+//            public void onCompleteLogout() {
+//                Log.e("되긴되니?","ㅇ?");
+//                Toast.makeText(HomeAcitivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+////                                redirectLoginActivity();
+//            }
+//        });
     }
 
     @Override
@@ -201,6 +203,9 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
     }
 //     adapter의 값이 변경되었다는 것을 알려줍니다.
 //        madapter.notifyDataSetChanged();
+
+
+
     }
 
 

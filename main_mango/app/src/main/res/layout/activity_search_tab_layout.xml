@@ -34,13 +34,13 @@
         />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
 
-        android:gravity="center"
-        android:background="@color/white"
-        android:text="적용"/>
+<!--        android:gravity="center"-->
+<!--        android:background="@color/white"-->
+<!--        android:text="적용"/>-->
 
 
 <!--내 주변이 고정이므로 현재 내 위치를 받아야함.-->

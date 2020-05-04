@@ -3,19 +3,15 @@ package com.example.mangoplate.src.home;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.mangoplate.src.ApplicationClass;
 import com.example.mangoplate.src.home.advertisement.Advertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
 import com.example.mangoplate.src.home.interfaces.HomeRetrofitInterface;
-import com.example.mangoplate.src.home.models.HomeResponse;
-import com.example.mangoplate.src.main.interfaces.MainActivityView;
-import com.example.mangoplate.src.main.interfaces.MainRetrofitInterface;
-import com.example.mangoplate.src.main.models.DefaultResponse;
+import com.example.mangoplate.src.home.models.HomeEventResponse;
+import com.example.mangoplate.src.home.models.HomeEventsResponse;
+import com.example.mangoplate.src.home.models.HomeResult;
 
 import java.util.HashMap;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,46 +20,43 @@ import static com.example.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.example.mangoplate.src.ApplicationClass.getRetrofit;
 
 public class HomeService {
-    private  HomeActivityView mHomeActivityView;
+    private HomeActivityView mHomeActivityView;
 
-    private  HomeAcitivity mHomeAcitivity;
-    private HashMap<String,String> mEventresponse;
+    private HomeAcitivity mHomeAcitivity;
+    private HashMap<String, String> mEventresponse;
 
-    HomeService(final HomeAcitivity homeAcitivity)
-    {
-        this.mHomeAcitivity=homeAcitivity;
+    HomeService(final HomeAcitivity homeAcitivity) {
+        this.mHomeAcitivity = homeAcitivity;
     }
 
 
-    void tryGet(){
+    void tryEventGet() {
 
         final HomeRetrofitInterface mainRetrofitInterface = getRetrofit().create(HomeRetrofitInterface.class);
-        Log.e("성공",""+"돌긴 도니 ");
+        Log.e("성공", "" + "돌긴 도니 ");
         mainRetrofitInterface.toString();
-        mainRetrofitInterface.GetEvent(X_ACCESS_TOKEN).enqueue(new Callback<HomeResponse>() {
+        mainRetrofitInterface.GetEvent(X_ACCESS_TOKEN).enqueue(new Callback<HomeEventResponse>() {
             @Override
-            public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
-                final HomeResponse homeResponse = response.body();
+            public void onResponse(Call<HomeEventResponse> call, Response<HomeEventResponse> response) {
+                final HomeEventResponse homeEventResponse = response.body();
 
-                Log.e("실패","응");
 
                 if (response.code() == 200) {
 
-                    if (homeResponse.getResult() != null ) {
+                    if (homeEventResponse.getResult() != null) {
 
-                   mEventresponse=new HashMap<String,String>();
-               Log.e("홈리스폰스",""+homeResponse.getResult().getEventId());
+                        mEventresponse = new HashMap<String, String>();
+                        Log.e("홈리스폰스", "" + homeEventResponse.getResult().getEventId());
 
-               Log.e("이미지URL",""+homeResponse.getResult().getImageUrl());
+                        Log.e("Jwt토큰",""+X_ACCESS_TOKEN);
+                        Log.e("이미지URL", "" + homeEventResponse.getResult().getImageUrl());
+                        Intent advestismentActivitytoMove = new Intent(mHomeAcitivity, Advertisement.class);
+                        advestismentActivitytoMove.putExtra("ImageUrl", homeEventResponse.getResult().getImageUrl());
+                        advestismentActivitytoMove.putExtra("EventId", Integer.toString(homeEventResponse.getResult().getEventId()));
+                        mHomeAcitivity.startActivity(advestismentActivitytoMove);
                     }
 
-                    mEventresponse.put("EventId",Integer.toString(homeResponse.getResult().getEventId()));
-                    mEventresponse.put("ImageUrl",homeResponse.getResult().getImageUrl());
-                    Intent advestismentActivitytoMove=new Intent(mHomeAcitivity, Advertisement.class);
-                    advestismentActivitytoMove.putExtra("ImageUrl",mEventresponse.get("ImageUrl"));
-                    advestismentActivitytoMove.putExtra("EventId",mEventresponse.get("EventId"));
-                    mHomeAcitivity.startActivity(advestismentActivitytoMove);
-                }else{
+                } else {
                     mHomeActivityView.validateFailure(null);
                 }
 
@@ -71,12 +64,56 @@ public class HomeService {
             }
 
             @Override
-            public void onFailure(Call<HomeResponse> call, Throwable t) {
-                mHomeActivityView.validateFailure(null);
+            public void onFailure(Call<HomeEventResponse> call, Throwable t) {
+
             }
+
+
         });
 
+    }
+
+    void tryEventsGet() {
+
+        final HomeRetrofitInterface mainRetrofitInterface = getRetrofit().create(HomeRetrofitInterface.class);
+        Log.e("성공", "" + "돌긴 도니 ");
+        mainRetrofitInterface.toString();
+        mainRetrofitInterface.GetEvents("main", X_ACCESS_TOKEN).enqueue(new Callback<HomeEventsResponse>() {
+            @Override
+            public void onResponse(Call<HomeEventsResponse> call, Response<HomeEventsResponse> response) {
+                final HomeEventsResponse homeEventsResponse = response.body();
 
 
+                if (homeEventsResponse.getResult() != null && homeEventsResponse.getResult().size() > 0) {
+                    for (HomeResult homeResult : homeEventsResponse.getResult()) {
+
+                        if (response.code() == 200) {
+
+                            if (homeEventsResponse.getResult() != null) {
+
+                                Log.e("광고 홈리스폰스", "" +homeResult.getImageUrl());
+
+                                Log.e("광고 이미지URL", "" + homeResult.getImageUrl());
+
+                            }
+
+                        } else {
+                            mHomeActivityView.validateFailure(null);
+                        }
+
+
+                    }
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<HomeEventsResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

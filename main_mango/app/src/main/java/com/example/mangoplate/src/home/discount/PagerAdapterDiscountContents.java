@@ -1,8 +1,13 @@
-package com.example.mangoplate.src.home.search_restaurant.searchTab_layout;
+package com.example.mangoplate.src.home.discount;
 
 
 
 
+import android.content.Context;
+
+import com.example.mangoplate.src.home.discount.eat_deal.FragmentEatDeal;
+import com.example.mangoplate.src.home.discount.mangopickstory.FragmentMangopickStory;
+import com.example.mangoplate.src.home.discount.toplist.FragmentTopList;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.mylocation_search.MyLocationSearch;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.recent_location.RecentLocation;
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_north.SeoulNorth;
@@ -14,15 +19,15 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
-public class ContentsPagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapterDiscountContents extends FragmentStatePagerAdapter {
 
     private int mPageCount;
     private ViewPager mViewPager;
-    private ContentsPagerAdapter mContentPagerAdapter;
-    public ContentsPagerAdapter(FragmentManager fm, int pageCount) {
+    private PagerAdapterDiscountContents mContentPagerAdapter;
+    private Context mContext;
+    public PagerAdapterDiscountContents(FragmentManager fm, int pageCount) {
 
         super(fm);
-
         this.mPageCount = pageCount;
 
     }
@@ -35,22 +40,20 @@ public class ContentsPagerAdapter extends FragmentStatePagerAdapter {
 
             case 0:
 
-            RecentLocation recentLocation = new RecentLocation();
-            return recentLocation;
+            FragmentEatDeal fragmentEatDeal = new FragmentEatDeal();
+            return fragmentEatDeal;
 
             case 1:
 
-                MyLocationSearch myLocationSearch = new MyLocationSearch();
-                return myLocationSearch;
+                FragmentMangopickStory fragmentMangopickStory = new FragmentMangopickStory();
+                return fragmentMangopickStory;
 
             case 2:
-                SeoulNorth seoulNorth = new SeoulNorth();
-                return seoulNorth;
+                FragmentTopList fragmentTopList = new FragmentTopList();
+                return fragmentTopList;
 
 
-            case 3:
-                SeoulSouth seoulSouth = new SeoulSouth();
-                return seoulSouth;
+
                 default:
                 return null;
         }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.Search
 import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -45,16 +44,16 @@ public class SearchRestaurantFragment extends Fragment { //스태
     int mCurrentPage = 0;
     ViewPager mPager;
     Handler mHandler;
-    boolean mHandlerFlag = true; //주석을 달던가 변수ㅁ명을 isFirst...
+    boolean mHandlerFlag = true; //주석을 달던가 변수명을 isFirst...
     private Boolean blockClickFlag = true;// 위치를 클릭하면 다이얼로그가 나온다. 그 때 문제가 생기는게 블러처리된 위치에 버튼을 클릭하면 또 다이얼로그가 나온다. 이 플래그는 이를 막기 위함이다.
     Context mContext;
     ImageView mDistanceSelector;
     ViewGroup mRootView;
     private GridLayoutManager mGridLayoutManager;
-
+    Timer mTimer;
     RecyclerView recyclerViewSearchRestaurant;
     private RestaurantRecyclerAdapter madapter;
-
+    private Runnable mUpdate;// 광고 핸들러 Runnable
     TextView alignmentButton;
 
     @Override
@@ -69,12 +68,12 @@ public class SearchRestaurantFragment extends Fragment { //스태
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
+        mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
         mPager = (ViewPager) mRootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         // 코드에서 그 사람의 얼굴이 보인다 .
         ImageView filter = mRootView.findViewById(R.id.filter);
         alignmentButton = mRootView.findViewById(R.id.alignment_button);
-        recyclerViewSearchRestaurant=mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
+        recyclerViewSearchRestaurant = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
         recyclerViewSearchRestaurant.setNestedScrollingEnabled(false);
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
@@ -84,54 +83,31 @@ public class SearchRestaurantFragment extends Fragment { //스태
                 startActivityForResult(intent, 3);
             }
         });
-        PagerAdapter adapter = new PhotosAdapter(getContext());
+        //광고 이미지 .
+        PagerAdapter adapter = new AdvertisementPhotosAdapter(getContext());
+
+
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mHomeAcitivity, FilterLayout.class);
-//                intent.putExtra("data", "Test Popup");
                 startActivityForResult(intent, 3);
             }
         });
 //...
-        Timer timer;
-        final long DELAY_MS = 500;
-        final long PERIOD_MS = 3000;
+
+
         mPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) mRootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
         tabLayout.setupWithViewPager(mPager, true);
         ///주석 신경.
-        if (mHandlerFlag) //들여쓰기를 통일감 있게 , 회사의 룰에 맞게 .
-        {
-            mHandler = new Handler();
-            final Runnable Update = new Runnable() {
-                public void run() {
 
-                    if (mCurrentPage == NUM_PAGES) {
-                        mCurrentPage = 0;
-                    }
-                    mPager.setCurrentItem(mCurrentPage++, true);
-                }
-            };
-
-            timer = new Timer(); // 쓰레드 시작.
-            timer.schedule(new TimerTask() { // task to be scheduled
-
-
-                @Override
-                public void run() {
-                    mHandler.post(Update);
-                }
-            }, DELAY_MS, PERIOD_MS);
-
-        }
         mDistanceSelector = mRootView.findViewById(R.id.distance_selector);
         mDistanceSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mHomeAcitivity, DistanceSelectedLayout.class);
-                startActivityForResult(intent, 2);
-            }
+                startActivityForResult(intent, 2); }
         });
         mLocationClick = mRootView.findViewById(R.id.Fragment_searchRestaurant_location_click);
 
@@ -144,14 +120,17 @@ public class SearchRestaurantFragment extends Fragment { //스태
 //                intent.putExtra("data", "Test Popup");
                     startActivityForResult(intent, 1);
 //                    startActivity(intent);
-                    blockClickFlag = false; // 얘를  다시 돌아오면 true로 바꾼다 .
+
+
+//                    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+//                    blockClickFlag = false; // 얘를  다시 돌아오면 true로 바꾼다 .
 
 
                 }
             }
         });
         init();
-         getData();
+        getData();
 //        madapter.notifyDataSetChanged();
 
         return mRootView;
@@ -176,25 +155,40 @@ public class SearchRestaurantFragment extends Fragment { //스태
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        advertismentTimerStart(); //광고 핸들러 시작
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        mHandlerFlag = false;
-        mHandler.removeMessages(0);
+        mTimer.cancel();
+//        mHandler.removeCallbacksAndMessages(null);
+
+//        mHandler.removeCallbacks(mUpdate);
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        mHandlerFlag = false;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mHandler.removeMessages(0);
-        mHandlerFlag = false;
+    public void onDestroyView() {
+        super.onDestroyView();
+
     }
+
+
 //코드만 봐도 바로 알 수 있게
     //    언더라인 그리기 .
 //    String sitename = "MobilePlace";
@@ -230,12 +224,11 @@ public class SearchRestaurantFragment extends Fragment { //스태
 
 
     private void init() {
-        int numberOfColumns=2;// 한줄에 2개의 컬럼을 추가
+        int numberOfColumns = 2;// 한줄에 2개의 컬럼을 추가
         RecyclerView recyclerView = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
         mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(mGridLayoutManager);
-
 
 
         madapter = new RestaurantRecyclerAdapter();
@@ -292,12 +285,34 @@ public class SearchRestaurantFragment extends Fragment { //스태
         // 각 값이 들어간 data를 adapter에 추가합니다.
         madapter.addItem(data);
         madapter.addItem(data);
-        madapter.addItem(data);madapter.addItem(data);
-
-
+        madapter.addItem(data);
+        madapter.addItem(data);
 
 
     }
 
+    public void advertismentTimerStart()
+    {
+        final long DELAY_MS = 500;
+        final long PERIOD_MS = 3000;
+        mHandler = new Handler();
+            mUpdate = new Runnable() {
+                public void run() {
+                    if (mCurrentPage == NUM_PAGES) {
+                        mCurrentPage = 0; }
+                    mPager.setCurrentItem(mCurrentPage++, true);
+                }
+            };
+            mTimer = new Timer(); // 쓰레드 시작.
+            mTimer.schedule(new TimerTask() { // task to be scheduled
 
-}
+
+                @Override
+                public void run() {
+                    mHandler.post(mUpdate);
+                }
+            }, DELAY_MS, PERIOD_MS);
+        }
+    }
+
+

@@ -4,13 +4,9 @@ package com.example.mangoplate.src.home;
 
 
 import com.example.mangoplate.src.home.mystatus.MystatusFragment;
-import com.example.mangoplate.src.home.news.DiscountFragment;
+import com.example.mangoplate.src.home.news.FragmentDiscount;
 import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.mylocation_search.MyLocationSearch;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.recent_location.RecentLocation;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_north.SeoulNorth;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.seoul_south.SeoulSouth;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -44,8 +40,8 @@ public class HomeContentsPagerAdapter extends FragmentStatePagerAdapter {
 
             case 1:
 
-                DiscountFragment discountFragment = new DiscountFragment();
-                return discountFragment;
+                FragmentDiscount fragmentDiscount = new FragmentDiscount();
+                return fragmentDiscount;
 
             case 2:
                 NewsFragment newsFragment = new NewsFragment();

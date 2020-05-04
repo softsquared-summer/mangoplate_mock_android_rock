@@ -28,7 +28,7 @@
             android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".src.home.search_restaurant.searchTab_layout.SearchTabLayout"
-            android:theme="@style/Theme.MyDialog">
+            android:theme="@style/Theme.addViewDialog">
 
             <!-- " -->
 

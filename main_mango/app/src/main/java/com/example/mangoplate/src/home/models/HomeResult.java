@@ -1,6 +1,6 @@
 package com.example.mangoplate.src.home.models;
 
-public class Result {
+public class HomeResult {
     int eventId;
 
     String imageUrl;

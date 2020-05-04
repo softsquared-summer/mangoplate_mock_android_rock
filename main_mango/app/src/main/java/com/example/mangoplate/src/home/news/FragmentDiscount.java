@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
+import com.example.mangoplate.src.home.discount.PagerAdapterDiscountContents;
 import com.example.mangoplate.src.home.search_restaurant.RestaurantRecyclerAdapter;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.ContentsPagerAdapter;
-import com.example.mangoplate.src.home.search_restaurant.searchTab_layout.models.RecyclerRestaurantData;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -19,15 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-public class DiscountFragment extends Fragment {
+public class FragmentDiscount extends Fragment {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
-    private ContentsPagerAdapter mContentPagerAdapter;
+    private PagerAdapterDiscountContents mPagerAdapterDiscountContents;
     ViewGroup mRootView;
     HomeAcitivity mHomeAcitivity;
     Toolbar mAppToolbar;
@@ -57,9 +55,9 @@ public class DiscountFragment extends Fragment {
         mTabLayout.addTab(mTabLayout.newTab().setText("TOP 리스트"));
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewPager_discount);
 //        mViewPager.setOffscreenPageLimit(4);
-        mContentPagerAdapter = new ContentsPagerAdapter(
+        mPagerAdapterDiscountContents = new PagerAdapterDiscountContents(
                 mHomeAcitivity.getSupportFragmentManager(), mTabLayout.getTabCount());
-        mViewPager.setAdapter(mContentPagerAdapter);
+        mViewPager.setAdapter(mPagerAdapterDiscountContents);
         mViewPager.addOnPageChangeListener(
                 new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 

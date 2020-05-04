@@ -1,46 +1,23 @@
 package com.example.mangoplate.src.home.search_restaurant.searchTab_layout;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.ViewPager;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
-
 //https://ghj1001020.tistory.com/9 여기 확인해서 완성할 것 .
 public class SearchTabLayout extends BaseActivity {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
-    private ContentsPagerAdapter mContentPagerAdapter;
+    private SeoulSouthContentsPagerAdapter mContentPagerAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +34,8 @@ public class SearchTabLayout extends BaseActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText("서울-강북"));
         mViewPager = (ViewPager) findViewById(R.id.pager_contents);
 //        mViewPager.setOffscreenPageLimit(4);
-        mContentPagerAdapter = new ContentsPagerAdapter(
-                getSupportFragmentManager(), mTabLayout.getTabCount());
+        mContentPagerAdapter = new SeoulSouthContentsPagerAdapter(
+                getSupportFragmentManager(), mTabLayout.getTabCount(),this);
         mViewPager.setAdapter(mContentPagerAdapter);
         mViewPager.addOnPageChangeListener(
                 new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));

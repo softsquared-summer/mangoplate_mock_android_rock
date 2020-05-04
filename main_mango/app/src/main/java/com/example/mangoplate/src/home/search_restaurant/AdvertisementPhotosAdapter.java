@@ -19,7 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 
-class PhotosAdapter extends PagerAdapter {
+class AdvertisementPhotosAdapter extends PagerAdapter {
 
 
     public static final int mEatDeal = 0;
@@ -29,7 +29,7 @@ class PhotosAdapter extends PagerAdapter {
     Context mContext;
     FragmentManager mfragmentManager;
 
-    public PhotosAdapter(Context mContext) {
+    public AdvertisementPhotosAdapter(Context mContext) {
 
         this.mContext = mContext;
     }

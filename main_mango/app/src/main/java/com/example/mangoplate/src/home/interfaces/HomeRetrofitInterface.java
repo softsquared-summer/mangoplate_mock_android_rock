@@ -1,20 +1,21 @@
 package com.example.mangoplate.src.home.interfaces;
 
-import com.example.mangoplate.src.home.models.HomeResponse;
-import com.example.mangoplate.src.main.models.DefaultResponse;
+import com.example.mangoplate.src.home.models.HomeEventResponse;
+import com.example.mangoplate.src.home.models.HomeEventsResponse;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface HomeRetrofitInterface {
 
     @GET("/event")
     @Headers("Content-Type: application/json")
-    Call<HomeResponse> GetEvent(@Header ("x-access-token")String acessToken);
+    Call<HomeEventResponse> GetEvent(@Header ("x-access-token")String acessToken);
+
+    @GET("/events")
+    @Headers("Content-Type: application/json")
+    Call<HomeEventsResponse> GetEvents(@Query("type") String type , @Header ("x-access-token")String acessToken);
 }
