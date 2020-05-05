@@ -1,6 +1,7 @@
 package com.example.mangoplate.src.home.search_restaurant;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +103,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
             {
 //                Glide.with(mHomeAcitivity).load(img).into(img_res);
                 Glide.with(itemView.getContext())
-                        .load(data.getImg())
+                        .load(data.getImg()).placeholder(R.drawable.loading)
                         .into(img_res);
 
                 Log.e("뭐가 문제요",""+data.getImg());
@@ -112,13 +113,14 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
             seenNum_res.setText(""+data.getSeenNum());
             reviewNum_res.setText(""+data.getReviewNum());
             rating_res.setText(""+data.getRating());
+            Log.e("뭐가 문제요",""+data.getRatingColor());
             if(data.getRatingColor().equals("gray"))
             {
-                rating_res.setTextColor(R.color.grey_200);
+                rating_res.setTextColor(Color.parseColor("#757575"));
 
             }else if(data.getRatingColor().equals("orange"))
             {
-                rating_res.setTextColor(R.color.Mangoplate_orange);
+                rating_res.setTextColor(Color.parseColor("#FF7101"));
 
             }else{
 

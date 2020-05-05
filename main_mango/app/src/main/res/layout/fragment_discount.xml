@@ -11,39 +11,28 @@
         android:id="@+id/appbar_discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:fitsSystemWindows="true">
 
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/app_toolbar_discount_discount"
-            android:layout_width="wrap_content"
-
-            android:gravity="left"
-            android:layout_height="?android:attr/actionBarSize"
-            app:title="@string/app_name"
-
-            app:titleTextColor="@android:color/black"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:scrimVisibleHeightTrigger="300dp"
-            >
 
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/fragment_tab_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="center"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                app:tabIndicatorColor="@color/Mangoplate_orange"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/Mangoplate_orange"
+                app:tabTextColor="@color/grey_500" />
 
 
-        </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/fragment_tab_discount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabGravity="center"
 
-            android:background="@color/white"
-            app:tabIndicatorColor="@color/Mangoplate_orange"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/Mangoplate_orange"
-            app:tabTextColor="@color/grey_500" />
     </com.google.android.material.appbar.AppBarLayout>
 
 

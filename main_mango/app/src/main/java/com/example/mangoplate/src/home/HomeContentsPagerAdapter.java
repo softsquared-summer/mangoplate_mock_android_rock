@@ -4,7 +4,7 @@ package com.example.mangoplate.src.home;
 
 
 import com.example.mangoplate.src.home.mystatus.MystatusFragment;
-import com.example.mangoplate.src.home.news.FragmentDiscount;
+import com.example.mangoplate.src.home.discount.FragmentDiscount;
 import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 

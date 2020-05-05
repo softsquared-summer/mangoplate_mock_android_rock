@@ -33,7 +33,7 @@ public class Advertisement extends BaseActivity {
         Advertisement_getResponse.getExtras().getInt("EventId");
         // Glide로 이미지 표시하기
 
-        Glide.with(this).load(mImageUrl).into(mAdvertisemnetImage);
+        Glide.with(this).load(mImageUrl).placeholder(R.drawable.loading).into(mAdvertisemnetImage);
 
 
         advertisement_close.setOnClickListener(new View.OnClickListener() {

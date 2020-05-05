@@ -94,13 +94,16 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         ImageView filter = mRootView.findViewById(R.id.filter);
         alignmentButton = mRootView.findViewById(R.id.alignment_button);
         recyclerViewSearchRestaurant = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
-        alignmentButton.setText(Html.fromHtml("<u>" + "추천순▾"+ "</u>"));
+        alignmentButton.setText(Html.fromHtml("<u>" + "추천순 ▾"+ "</u>"));
+//        alignmentButton.setTextColor(getResources().getColor(R.color.grey_200));
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mHomeAcitivity, AlignmentButton.class);
 //                intent.putExtra("data", "Test Popup");
                 startActivityForResult(intent, 3);
+
+
             }
         });
         //광고 이미지 .
@@ -195,7 +198,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
 
 
-                madapter.notifyDataSetChanged();  // 이 값이 뭐든간에 넘어 오면 fetch가 시작 되면 된다 .
 
             }
 
@@ -263,6 +265,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     public void onStop() {
         super.onStop();
 
+        madapter.notifyDataSetChanged();  // 이 값이 뭐든간에 넘어 오면 fetch가 시작 되면 된다 .
     }
 
     @Override

@@ -8,7 +8,6 @@ import androidx.viewpager.widget.ViewPager;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,18 +19,13 @@ import android.view.animation.OvershootInterpolator;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.BaseActivity;
-import com.example.mangoplate.src.home.advertisement.Advertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
 import com.example.mangoplate.src.home.mystatus.MystatusFragment;
-import com.example.mangoplate.src.home.news.FragmentDiscount;
+import com.example.mangoplate.src.home.discount.FragmentDiscount;
 import com.example.mangoplate.src.home.news.NewsFragment;
 import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HomeAcitivity extends BaseActivity implements HomeActivityView {
 

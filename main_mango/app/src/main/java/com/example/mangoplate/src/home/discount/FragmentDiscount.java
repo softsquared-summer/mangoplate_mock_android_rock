@@ -1,4 +1,4 @@
-package com.example.mangoplate.src.home.news;
+package com.example.mangoplate.src.home.discount;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class FragmentDiscount extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_discount, container, false);
-        mAppToolbar = mRootView.findViewById(R.id.app_toolbar_discount_discount);
+//        mAppToolbar = mRootView.findViewById(R.id.app_toolbar_discount_discount);
         mTabLayout = (TabLayout) mRootView.findViewById(R.id.fragment_tab_discount);
         mTabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
         mTabLayout.addTab(mTabLayout.newTab().setText("EAT딜"));
@@ -76,7 +76,7 @@ public class FragmentDiscount extends Fragment {
             }
         });
 //         ToolBar를 ActionBar로 설정해줘야 합니다.
-        ((AppCompatActivity) getActivity()).setSupportActionBar(mAppToolbar);
+//        ((AppCompatActivity) getActivity()).setSupportActionBar(mAppToolbar);
 
 //        init();
 //        getData();
