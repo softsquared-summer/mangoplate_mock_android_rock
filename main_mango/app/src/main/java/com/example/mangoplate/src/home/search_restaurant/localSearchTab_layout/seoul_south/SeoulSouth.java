@@ -86,20 +86,7 @@ public class SeoulSouth extends Fragment {
 
                             }
 
-//                            Chip chip = new Chip(getContext());
-//                            chip.setCheckable(true);
-//                            chip.setChipBackgroundColorResource(R.color.white);
-//                            chip.setChipStrokeColorResource(R.color.grey_300);
-//                            chip.setCloseIconTintResource(R.color.grey_500);
-//                            chip.setWidth(400);
-//                            chip.setHeight(150);
-//                            chip.setGravity(Gravity.CENTER);
-//                            chip.setChipStrokeWidth(1f);
-//                            chip.setText(result.name);
-//                            chip.setTextColor(getResources().getColor(R.color.grey_300));
-//
 
-//                                textView.setText("전체");
 
                             final TextView textView = new TextView(getContext());
                             final FrameLayout frameLayout = new FrameLayout(getContext());
@@ -150,9 +137,7 @@ public class SeoulSouth extends Fragment {
 
                             final TextView adjustment = localSearchTabLayout.findViewById(R.id.adjustment); // 클릭시 버튼 색깔 바꾸기
                             final TextView cancelAllbutton =localSearchTabLayout.findViewById(R.id.cancel_allbutton);
-                            cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
-                            adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
-                            adjustment.setTextColor(getResources().getColor(R.color.white));
+
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -167,6 +152,8 @@ public class SeoulSouth extends Fragment {
                                         frameLayout.addView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
                                         textViewFlag[checkNumber] = false;
+                                        Log.e("잠시 ",""+textView.getText().toString());
+                                        LocalSearchTabLayout.outputDatas.add(textView.getText().toString());
                                     } else {
                                         LocalSearchTabLayout.mAdjustmnetColorChanger--;
                                         if (LocalSearchTabLayout.mAdjustmnetColorChanger == 0) {
@@ -179,6 +166,7 @@ public class SeoulSouth extends Fragment {
                                         textView.setTextColor(getResources().getColor(R.color.offborder));
                                         textViewFlag[checkNumber] = true;
 
+                                        LocalSearchTabLayout.outputDatas.remove(textView.getText().toString());
                                     }
                                 }
 
@@ -231,53 +219,13 @@ public class SeoulSouth extends Fragment {
 
             }
         });
-//
-//                            if (i == 0 && j == 0) {
-//                                Log.e("되질 않어,", "" + textViewIdValue.get(0));
-//                                textView.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//
-//                                        if (textViewFlag[0])
-//                                        // 전체가 선택되어 있지 않았던 경우에 전체를 선택
-//                                        {
-//                                            Log.e("되질 않어,", "" + textViewIdValue.get(0));
-//
-//                                            for (int index = 0; index < resultList.result.size() + 1; index++) {
-//
-//                                                if (textViewFlag[i] = true) {
-//                                                    Log.e("아 뭔데", "" + textViewIdValue.get(index));
-//                                                    TextView textView1 = gridLayout.findViewById(textViewIdValue.get(index));
-//                                                    textView1.setBackgroundResource(R.drawable.on_rouned_border_textview);
-//                                                    textView1.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
-//                                                    textViewFlag[index] = false;
-//                                                }
-//
-//
-//                                            }
-//                                        } else {
-//                                            for (int index = 1; i < resultList.result.size() + 1; i++) {   //전체가 선택되어 있는데 다시 전체를 선택
-//
-//
-//                                                if (textViewFlag[i] = false) {
-//                                                    TextView textView1 = gridLayout.findViewById(textViewIdValue.get(i));
-//                                                    textView1.setBackgroundResource(R.drawable.off_rouned_border_textview);
-//                                                    textView1.setTextColor(getResources().getColor(R.color.offborder));
-//                                                    textViewFlag[i] = true;
-//                                                }
-//
-//                                            }
-//
-//                                        }
-//                                    }
-//
-//                                });
-//
-//                            }
-
-
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
 }
 
 

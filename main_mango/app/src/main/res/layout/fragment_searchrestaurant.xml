@@ -30,7 +30,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,10 +50,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:clickable="true"
-            >
+
+            android:background="@drawable/custom_ripple_effect"
+           >
 
         <TextView
-            android:id="@+id/dongdaemoongu"
+            android:id="@+id/Localname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
@@ -160,6 +164,7 @@
 
             </FrameLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,23 +175,18 @@
                 <TextView
                     android:id="@+id/alignment_button"
                     android:layout_width="0dp"
-                    android:layout_weight="0.14"
+                    android:layout_weight="0.17"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
-                    android:text="추천순 "
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="19dp"
+                    android:text="추천순 ▼"
+                    android:background="@drawable/custom_ripple_effect"
                     android:textColor="@color/grey_700"
+
                     android:textSize="15dp"
                     ></TextView>
 
-                <ImageView
-                    android:layout_height="15dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:src="@drawable/fill_down_arrow"
-                  ></ImageView>
 
                 <TextView
                     android:layout_width="0dp"
@@ -200,9 +200,8 @@
                     android:layout_weight="0.2"
                     android:adjustViewBounds="true"
                     android:src="@drawable/one_km"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-
                     >
 
                 </ImageView>
@@ -211,11 +210,12 @@
                     android:id="@+id/filter"
                     android:layout_height="36dp"
 
-                   android:layout_margin="5dp"
+                    android:layout_marginLeft="5dp"
 
                     android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="0.18"
+                    android:layout_marginTop="11dp"
                     android:src="@drawable/filter"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
@@ -225,11 +225,19 @@
 
 
             </LinearLayout>
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:src="@drawable/band_ad"
+                ></ImageView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_recyclerView_searchRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="100dp"
                 android:nestedScrollingEnabled="false"
 
                 />

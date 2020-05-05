@@ -7,7 +7,9 @@
     <ImageView
         android:id="@+id/Fragment_searchRestaurant_ad"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:layout_height="175dp"
+
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/ad_eatdeal" />
 </LinearLayout>
+<!--    android:scaleType="fitXY"-->

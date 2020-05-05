@@ -76,7 +76,7 @@ public class SeoulNorth extends Fragment {
                     LayoutInflater inflater = (LayoutInflater) localSearchTabLayout.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final GridLayout gridLayout = (GridLayout) mView.findViewById(R.id.seoulSouth_dynamic_layout);
                     if (resultList.result != null && resultList.result.size() > 0) {
-                        for (Result result : resultList.result) {
+                        for (final Result result : resultList.result) {
                             Log.e("성공", "" + result.id);
                             Log.e("성공", "" + result.name);
 
@@ -152,9 +152,7 @@ public class SeoulNorth extends Fragment {
 
                             final TextView adjustment = localSearchTabLayout.findViewById(R.id.adjustment); // 클릭시 버튼 색깔 바꾸기
                             final TextView cancelAllbutton = localSearchTabLayout.findViewById(R.id.cancel_allbutton);
-                            cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
-                            adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
-                            adjustment.setTextColor(getResources().getColor(R.color.white));
+
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -168,19 +166,23 @@ public class SeoulNorth extends Fragment {
                                         cancelAllbutton.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
                                         frameLayout.addView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
+
                                         textViewFlag[checkNumber] = false;
+                                        LocalSearchTabLayout.outputDatas.add(textView.getText().toString());
                                     } else {
                                         LocalSearchTabLayout.mAdjustmnetColorChanger--;
                                         if (LocalSearchTabLayout.mAdjustmnetColorChanger == 0) {
                                             adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
                                             adjustment.setTextColor(getResources().getColor(R.color.white));
                                             cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
+
                                         }
                                         textView.setBackgroundResource(R.drawable.off_rouned_border_textview);
                                         ((ViewGroup) imageView.getParent()).removeView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.offborder));
                                         textViewFlag[checkNumber] = true;
 
+                                        LocalSearchTabLayout.outputDatas.remove(textView.getText().toString());
                                     }
                                 }
 

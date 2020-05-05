@@ -3,5 +3,6 @@ package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.
 import java.util.List;
 
 public class ResultList {
-    public List<Result> result;
+    List<Result> result;
+
 }

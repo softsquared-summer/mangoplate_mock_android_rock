@@ -16,13 +16,13 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
-public class SeoulSouthContentsPagerAdapter extends FragmentStatePagerAdapter {
+public class LocalSearchContentsPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mPageCount;
     private ViewPager mViewPager;
-    private SeoulSouthContentsPagerAdapter mContentPagerAdapter;
+    private LocalSearchContentsPagerAdapter mContentPagerAdapter;
     private Context mContext;
-    public SeoulSouthContentsPagerAdapter(FragmentManager fm, int pageCount, Context context) {
+    public LocalSearchContentsPagerAdapter(FragmentManager fm, int pageCount, Context context) {
 
         super(fm);
         mContext=context;

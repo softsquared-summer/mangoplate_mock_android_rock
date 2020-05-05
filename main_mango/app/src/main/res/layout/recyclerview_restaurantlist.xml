@@ -1,151 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+
+    android:layout_margin="5dp"
+
+    android:background="@color/white"
+   >
+
+
+
+
 
     <ImageView
-        android:layout_width="150dp"
+        android:id="@+id/img_restarant"
+        android:layout_width="160dp"
         android:layout_height="150dp"
-        android:src="@drawable/dummy_data">
+        android:src="@drawable/dummy_picture"
+
+        android:adjustViewBounds="true"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
-<!--    이미지랑 그리드 뷰 크기 맞추기 .-->
-    <GridLayout
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:columnCount="4"
-        android:rowCount="5">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_columnSpan="3"
-            android:layout_rowSpan="2"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1.7"
-            android:text="2. 티하우스 나니"
-            >
+<!--    android:scaleType="fitXY"-->
 
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowSpan="5"
-            android:gravity="center"
-            android:layout_columnWeight="0.5"
-            android:layout_rowWeight="1"
-            android:text="4.3"
-            >
 
-        </TextView><TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        >
+    <ImageView
+        android:id="@+id/eye_grey"
+        android:layout_width="12dp"
+        android:layout_height="14dp"
+        android:src="@drawable/ic_eye_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_restaurant">
 
-    </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
 
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
+    </ImageView>
 
-        </TextView><TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1.2"
-        android:text="중랑구 - 1.06 Km"
+    <TextView
+        android:id="@+id/area_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="동대문구 - 2.94km"
+        android:textSize="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_restarant"></TextView>
+
+    <TextView
+        android:id="@+id/title_restarant"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:text="1. 시키카츠"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_restarant"></TextView>
+
+    <TextView
+        android:id="@+id/seen_num_restarant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 8,902"
         android:textSize="10dp"
-        >
+        app:layout_constraintLeft_toRightOf="@id/eye_grey"
+        app:layout_constraintTop_toBottomOf="@+id/area_restaurant"></TextView>
 
-    </TextView>
+    <ImageView
+        android:id="@+id/pencil_grey"
+        android:layout_width="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_height="10dp"
+        android:src="@drawable/ic_pencil_gray"
+        app:layout_constraintLeft_toRightOf="@+id/seen_num_restarant"
+        app:layout_constraintTop_toBottomOf="@+id/area_restaurant"></ImageView>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
+    <TextView
+        android:id="@+id/review_num_restarant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 8,902"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toRightOf="@id/pencil_grey"
+        app:layout_constraintTop_toBottomOf="@+id/area_restaurant"></TextView>
 
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:textSize="10dp"
-            android:text="10,326"
-            >
+    <TextView
 
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1.2"
+        android:id="@+id/rating_restarant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-            >
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:text="4.3"
+        android:textSize="17dp"
 
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="hihi"
-            >
-
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
-
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
-
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
-
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            >
-
-        </TextView>
-
-
-
-
-
-    </GridLayout>
-</LinearLayout>
+        app:layout_constraintStart_toEndOf="@+id/title_restarant"
+        app:layout_constraintTop_toBottomOf="@+id/img_restarant"></TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

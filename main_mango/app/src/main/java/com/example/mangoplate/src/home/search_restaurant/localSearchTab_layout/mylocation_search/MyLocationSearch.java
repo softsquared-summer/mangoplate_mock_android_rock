@@ -1,6 +1,7 @@
 package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
+import static com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
 
 public class MyLocationSearch extends Fragment {
     LocalSearchTabLayout localSearchTabLayout;
@@ -54,6 +57,8 @@ public class MyLocationSearch extends Fragment {
 
         mView = (ViewGroup) inflater.inflate(R.layout.fragment_seoul_south, container, false);
         fetchDistricts(1);
+
+
         return mView;
     }
 
@@ -65,8 +70,9 @@ public class MyLocationSearch extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ApplicationClass.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         MylocationSearchRetrofitInterface searchTapRetrofitInterface = retrofit.create(MylocationSearchRetrofitInterface.class);
-        Log.e("내 근처 위도,경도 ","lat "+ SearchRestaurantFragment.lat+"lng"+SearchRestaurantFragment.lng);
-        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN, SearchRestaurantFragment.lat ,SearchRestaurantFragment.lng).enqueue(new Callback<ResultList>() {
+
+        Log.e("내 근처 위도,경도 ","lat "+lat+"lng"+lng);
+        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN, lat ,lng).enqueue(new Callback<ResultList>() {
             int checkNumber = 0;// 얘는 포문 돌아가는 숫자를 세기 위해서 존재.
 
 
@@ -154,9 +160,7 @@ public class MyLocationSearch extends Fragment {
 
                             final TextView adjustment = localSearchTabLayout.findViewById(R.id.adjustment); // 클릭시 버튼 색깔 바꾸기
                             final TextView cancelAllbutton = localSearchTabLayout.findViewById(R.id.cancel_allbutton);
-                            cancelAllbutton.setTextColor(getResources().getColor(R.color.offborder));
-                            adjustment.setBackgroundResource(R.drawable.adjustment_off_rouned_border_textview);
-                            adjustment.setTextColor(getResources().getColor(R.color.white));
+
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -171,6 +175,7 @@ public class MyLocationSearch extends Fragment {
                                         frameLayout.addView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
                                         textViewFlag[checkNumber] = false;
+                                        LocalSearchTabLayout.outputDatas.add(textView.getText().toString());
                                     } else {
                                         LocalSearchTabLayout.mAdjustmnetColorChanger--;
                                         if (LocalSearchTabLayout.mAdjustmnetColorChanger == 0) {
@@ -182,7 +187,7 @@ public class MyLocationSearch extends Fragment {
                                         ((ViewGroup) imageView.getParent()).removeView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.offborder));
                                         textViewFlag[checkNumber] = true;
-
+                                        LocalSearchTabLayout.outputDatas.remove(textView.getText().toString());
                                     }
                                 }
 
