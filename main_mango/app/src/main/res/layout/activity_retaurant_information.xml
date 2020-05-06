@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.home.search_restaurant.restaurant_information.RetaurantInformationLayout">
+
+    <TextView
+        android:id="@+id/top_information"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+    <ImageView
+        android:id="@+id/end_arrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_downward_arrow_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/top_information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_information" />
+
+    <ImageView
+        android:id="@+id/register_picture"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/ic_camera_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/top_information"
+        app:layout_constraintEnd_toStartOf="@+id/share_information"
+        app:layout_constraintTop_toTopOf="@id/top_information" />
+
+    <ImageView
+        android:id="@+id/share_information"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_share_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/top_information"
+        app:layout_constraintEnd_toEndOf="@+id/top_information"
+        app:layout_constraintTop_toTopOf="@+id/top_information" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/top_information"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ic_eye_gray"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+                app:srcCompat="@drawable/ic_eye_gray" />
+
+            <ImageView
+                android:id="@+id/pencil_grey_information"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/review_num_information"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+                app:srcCompat="@drawable/ic_pencil_gray" />
+
+            <ImageView
+                android:id="@+id/smallstart_information"
+
+                android:layout_width="11dp"
+                android:layout_height="12dp"
+                app:layout_constraintLeft_toRightOf="@+id/seen_num_information"
+                app:layout_constraintEnd_toStartOf="@+id/star_num_information"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+                app:srcCompat="@drawable/ic_star_filled_gray" />
+
+            <TextView
+                android:id="@+id/star_num_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/pencil_grey_information"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+            <TextView
+                android:id="@+id/rating_informaion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PictureNestedScrollView" />
+
+            <TextView
+                android:id="@+id/name_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="이문동 커피집"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PictureNestedScrollView" />
+
+            <TextView
+                android:id="@+id/review_num_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="128dp"
+                android:layout_marginRight="128dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/rating_informaion"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+            <TextView
+                android:id="@+id/seen_num_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/review_num_information"
+                app:layout_constraintStart_toEndOf="@+id/ic_eye_gray"
+                app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+            <View
+                android:id="@+id/divider_information"
+                android:layout_width="match_parent"
+                android:layout_height="0.05dp"
+                android:layout_marginLeft="152dp"
+                android:layout_marginStart="152dp"
+                android:background="@color/grey_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seen_num_information" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/PictureNestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/top_information"
+                tools:ignore="NotSibling"
+                tools:layout_editor_absoluteX="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_data"></ImageView>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_data"></ImageView>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_data"></ImageView>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_data"></ImageView>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dummy_data"></ImageView>
+
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <ImageView
+                android:id="@+id/star_information"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                app:layout_constraintEnd_toStartOf="@+id/pin_information"
+                app:layout_constraintHorizontal_bias="0.221"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/start_text_informaion"
+                app:layout_constraintTop_toBottomOf="@+id/divider_information"
+                app:srcCompat="@drawable/ic_star_unfilled_orange" />
+
+            <ImageView
+                android:id="@+id/pin_information"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginRight="80dp"
+                app:layout_constraintBottom_toTopOf="@+id/pin_text_informaiton"
+                app:layout_constraintEnd_toStartOf="@+id/pencil_orange_information"
+                app:layout_constraintLeft_toRightOf="@id/star_information"
+                app:layout_constraintTop_toBottomOf="@+id/review_num_information"
+                app:srcCompat="@drawable/ic_pin_unfilled_orange" />
+
+            <ImageView
+                android:id="@+id/pencil_orange_information"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginRight="52dp"
+                app:layout_constraintBottom_toTopOf="@id/mylist_text_information"
+                app:layout_constraintEnd_toStartOf="@+id/mylist_information"
+                app:layout_constraintLeft_toRightOf="@+id/pin_information"
+                app:layout_constraintTop_toBottomOf="@+id/divider_information"
+                app:layout_constraintVertical_bias="0.2"
+                app:srcCompat="@drawable/ic_pencil_orange" />
+
+            <ImageView
+                android:id="@+id/mylist_information"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_information"
+                app:srcCompat="@drawable/ic_add_my_list_orange" />
+
+            <TextView
+                android:id="@+id/start_text_informaion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintRight_toLeftOf="@+id/pin_text_informaiton"
+                android:text="가고싶다"
+                android:textColor="@color/Mangoplate_orange"
+                app:layout_constraintLeft_toLeftOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/star_information" />
+
+            <TextView
+                android:id="@+id/pin_text_informaiton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="52dp"
+                android:layout_marginTop="4dp"
+
+                app:layout_constraintRight_toLeftOf="@+id/pencil_orange_text_information"
+                android:text="가봤어요"
+                android:textColor="@color/Mangoplate_orange"
+                app:layout_constraintLeft_toRightOf="@id/start_text_informaion"
+                app:layout_constraintTop_toBottomOf="@id/pin_information" />
+
+            <TextView
+                android:id="@+id/pencil_orange_text_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="4dp"
+
+                android:text="리뷰쓰기"
+                android:textColor="@color/Mangoplate_orange"
+
+                app:layout_constraintLeft_toRightOf="@id/pin_text_informaiton"
+                app:layout_constraintTop_toBottomOf="@id/pencil_orange_information" />
+
+            <TextView
+                android:id="@+id/mylist_text_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="4dp"
+                android:text="마이리스트"
+                android:textColor="@color/Mangoplate_orange"
+
+                app:layout_constraintLeft_toRightOf="@id/pencil_orange_text_information"
+                app:layout_constraintTop_toBottomOf="@id/mylist_information" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

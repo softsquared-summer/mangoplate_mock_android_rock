@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.mangoplate">
+    package="com.softSquared.mangoplate">
 
     <application
         android:name=".src.ApplicationClass"
@@ -16,7 +16,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.home.mystatus.events.EventsActivity"></activity>
+        <activity android:name=".src.home.search_restaurant.restaurant_information.RetaurantInformationLayout">
+
+
+
+        </activity>
+        <activity android:name=".src.home.mystatus.events.EventsActivity" />
         <activity android:name=".src.home.advertisement.ActivityAdvertisement" />
         <activity
             android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
@@ -40,7 +45,7 @@
             android:name=".src.home.HomeAcitivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="LockedOrientationActivity"></activity>
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".src.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,9 +88,9 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

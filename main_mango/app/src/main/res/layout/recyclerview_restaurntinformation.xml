@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:id="@+id/PictureNestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/dummy_picture"></ImageView>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/dummy_picture"></ImageView>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/dummy_picture"></ImageView>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="5dp"
+
+            android:src="@drawable/dummy_picture"></ImageView>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/dummy_picture"></ImageView>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:id="@+id/ic_eye_gray"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintRight_toLeftOf="@id/seen_num_information"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+            app:srcCompat="@drawable/ic_eye_gray" />
+
+        <ImageView
+            android:id="@+id/pencil_grey_information"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/review_num_information"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+            app:srcCompat="@drawable/ic_pencil_gray" />
+
+        <ImageView
+            android:id="@+id/smallstart_information"
+
+            android:layout_width="11dp"
+            android:layout_height="12dp"
+            app:layout_constraintLeft_toRightOf="@+id/seen_num_information"
+            app:layout_constraintEnd_toStartOf="@+id/star_num_information"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant"
+            app:srcCompat="@drawable/ic_star_filled_gray" />
+
+        <TextView
+            android:id="@+id/star_num_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="d"
+            app:layout_constraintEnd_toStartOf="@+id/pencil_grey_information"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+        <TextView
+            android:id="@+id/rating_informaion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/name_restaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:text="이문동 커피집"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/review_num_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="128dp"
+            android:layout_marginRight="128dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/rating_informaion"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+        <TextView
+            android:id="@+id/seen_num_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/review_num_information"
+            app:layout_constraintStart_toEndOf="@+id/ic_eye_gray"
+            app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+        <View
+            android:id="@+id/divider_information"
+            android:layout_width="match_parent"
+            android:layout_height="0.05dp"
+            android:layout_marginLeft="152dp"
+            android:layout_marginStart="152dp"
+            android:background="@color/grey_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seen_num_information" />
+
+
+        <TextView
+
+            android:id="@+id/ratingd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginLeft="144dp"
+            android:layout_marginRight="28dp"
+            android:text="4.3"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <GridLayout
+        android:background="@color/white"
+        android:columnCount="4"
+        android:rowCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_star_unfilled_orange"
+        android:layout_row="0"
+            android:layout_column="0"
+            />
+
+        <ImageView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_pin_unfilled_orange"
+            android:layout_row="0"
+            android:layout_column="1"
+            />
+        <ImageView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_pencil_orange"
+            android:layout_row="0"
+            android:layout_column="2"
+
+            />
+        <ImageView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_add_my_list_orange"
+            android:layout_row="0"
+            android:layout_column="3"
+
+            />
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="가고싶다"
+            android:layout_row="1"
+            android:textColor="@color/Mangoplate_orange"
+            android:layout_column="0"
+            android:gravity="center"
+            ></TextView>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="가봤어요"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:textColor="@color/Mangoplate_orange"
+            ></TextView>
+
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="리뷰쓰기"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:textColor="@color/Mangoplate_orange"
+            android:gravity="center"
+            ></TextView>
+
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="마이리스트"
+            android:textColor="@color/Mangoplate_orange"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:gravity="center"
+            ></TextView>
+
+
+
+
+
+
+    </GridLayout>
+
+
+    <TextView
+
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="식당소개\n 프로젝트 이문동커피집의 플랫피플과 브루벨류가 합쳐진곳"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="서울특별시 동대문구 이문로25길 34"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="서울특별시 동대문구 이문로25길 34"
+            ></TextView>
+
+        <GridLayout
+            android:columnCount="4"
+            android:rowCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+
+            >
+
+            <ImageView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_right_turn_circle"
+                android:layout_row="0"
+                android:layout_column="0"
+                />
+
+            <ImageView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_car_circle"
+                android:layout_row="0"
+                android:layout_column="1"
+                />
+            <ImageView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_kakao_t_circle"
+                android:layout_row="0"
+                android:layout_column="2"
+
+                />
+            <ImageView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_copy_circle"
+                android:layout_row="0"
+                android:layout_column="3"
+
+                />
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="길 찾기."
+                android:layout_row="1"
+                android:layout_column="0"
+                android:gravity="center"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="네비게이션."
+                android:gravity="center"
+                android:layout_row="1"
+                android:layout_column="1"
+                ></TextView>
+
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="택시부르기."
+                android:layout_row="1"
+                android:layout_column="2"
+                android:gravity="center"
+                ></TextView>
+
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="주소복사"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:gravity="center"
+                ></TextView>
+
+
+
+
+
+
+        </GridLayout>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        >
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:columnCount="2"
+            android:rowCount="4"
+            >
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="편의정보"
+            android:layout_row="0"
+            android:layout_column="0"
+            ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:gravity="right"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="편의정보"
+                android:layout_row="0"
+                android:layout_column="1"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="편의정보"
+                android:layout_row="1"
+                android:layout_column="0"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="편의정보"
+                android:gravity="right"
+
+                android:layout_row="1"
+                android:layout_column="1"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="편의정보"
+                android:layout_row="2"
+                android:layout_column="0"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:gravity="right"
+
+                android:text="편의정보"
+                android:layout_row="2"
+                android:layout_column="1"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="편의정보"
+
+                android:layout_row="3"
+                android:layout_column="0"
+                ></TextView>
+            <TextView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:gravity="right"
+
+                android:text="편의정보"
+                android:layout_row="3"
+                android:layout_column="1"
+                ></TextView>
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>

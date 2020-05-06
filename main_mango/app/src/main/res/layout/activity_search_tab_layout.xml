@@ -10,7 +10,7 @@
     android:clickable="true"
     android:focusable="true"
 
-    tools:context="com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout">
+    tools:context="com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout">
 
 
     <com.google.android.material.tabs.TabLayout

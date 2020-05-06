@@ -6,9 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+
     android:layout_margin="5dp"
 
-    android:background="@color/white"
+    android:background="@drawable/custom_ripple_effect"
    >
 
 
@@ -21,7 +22,8 @@
         android:layout_height="150dp"
         android:src="@drawable/dummy_picture"
 
-        android:adjustViewBounds="true"
+
+        android:scaleType="centerCrop"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
