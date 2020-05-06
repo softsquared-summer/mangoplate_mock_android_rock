@@ -16,9 +16,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.home.advertisement.Advertisement"></activity>
-
-
+        <activity android:name=".src.home.mystatus.events.EventsActivity"></activity>
+        <activity android:name=".src.home.advertisement.Advertisement" />
         <activity
             android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
             android:theme="@style/Theme.MyDialog" />
@@ -41,16 +40,13 @@
             android:name=".src.home.HomeAcitivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity android:name=".src.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -88,8 +84,9 @@
             android:value="@string/kakao_app_key" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -118,7 +118,6 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
               showProgressDialog();
 
         final MainService mainService = new MainService(this);
-//        mainService.getTest();
         mainService.tryPost(type,jsonString);
     }
 

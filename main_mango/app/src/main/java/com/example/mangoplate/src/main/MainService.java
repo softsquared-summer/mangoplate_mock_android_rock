@@ -23,26 +23,6 @@ class MainService { //여기서는 서비스 컨트롤
         this.mMainActivityView = mainActivityView;
     }
 
-//    void getTest() {
-//        final MainRetrofitInterface mainRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
-//        mainRetrofitInterface.getTest().enqueue(new Callback<DefaultResponse>() {
-//            @Override
-//            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-//                final DefaultResponse defaultResponse = response.body();
-//                if (defaultResponse == null) {
-//                    mMainActivityView.validateFailure(null);
-//                    return;
-//                }
-//
-//                mMainActivityView.validateSuccess(defaultResponse.getMessage());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-//                mMainActivityView.validateFailure(null);
-//            }
-//        });
-//    }
 
     void tryPost(String type,String mainJsonString){
 
