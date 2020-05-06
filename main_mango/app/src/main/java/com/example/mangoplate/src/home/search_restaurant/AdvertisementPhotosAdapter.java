@@ -1,21 +1,16 @@
 package com.example.mangoplate.src.home.search_restaurant;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mangoplate.R;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -89,6 +84,6 @@ class AdvertisementPhotosAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return (view == (View) object);
+        return (view == object);
     }
 }

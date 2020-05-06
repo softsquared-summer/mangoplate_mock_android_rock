@@ -1,7 +1,5 @@
 package com.example.mangoplate.src.home.mystatus.events.interfaces;
 
-import com.example.mangoplate.src.home.models.HomeEventResponse;
-import com.example.mangoplate.src.home.models.HomeEventsResponse;
 import com.example.mangoplate.src.home.mystatus.events.models.EventsResponse;
 
 import retrofit2.Call;

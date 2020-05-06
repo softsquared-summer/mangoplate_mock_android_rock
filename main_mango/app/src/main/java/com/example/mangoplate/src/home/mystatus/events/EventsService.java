@@ -1,16 +1,9 @@
 package com.example.mangoplate.src.home.mystatus.events;
 
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.mangoplate.R;
-import com.example.mangoplate.src.home.HomeAcitivity;
-import com.example.mangoplate.src.home.advertisement.Advertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
-import com.example.mangoplate.src.home.interfaces.HomeRetrofitInterface;
-import com.example.mangoplate.src.home.models.HomeEventResponse;
-import com.example.mangoplate.src.home.models.HomeEventsResponse;
-import com.example.mangoplate.src.home.models.HomeResult;
 import com.example.mangoplate.src.home.mystatus.events.interfaces.EventsRetrofitInterface;
 import com.example.mangoplate.src.home.mystatus.events.models.EventsResponse;
 import com.example.mangoplate.src.home.mystatus.events.models.EventsResult;
@@ -67,7 +60,6 @@ public class EventsService {
                                 mAdapter.addItem(eventsResult);
                             }
 
-                        } else {
                         }
 
 
@@ -77,7 +69,6 @@ public class EventsService {
 
                 }
 
-  // 여기에 ADDVIEW
             }
 
             @Override

@@ -1,8 +1,6 @@
 package com.example.mangoplate.src.home;
 
 
-
-
 import com.example.mangoplate.src.home.mystatus.MystatusFragment;
 import com.example.mangoplate.src.home.discount.FragmentDiscount;
 import com.example.mangoplate.src.home.news.NewsFragment;
@@ -19,6 +17,7 @@ public class HomeContentsPagerAdapter extends FragmentStatePagerAdapter {
     private int mPageCount;
     private ViewPager mViewPager;
     private HomeContentsPagerAdapter mContentPagerAdapter;
+
     public HomeContentsPagerAdapter(FragmentManager fm, int pageCount) {
 
         super(fm);
@@ -35,8 +34,8 @@ public class HomeContentsPagerAdapter extends FragmentStatePagerAdapter {
 
             case 0:
 
-            SearchRestaurantFragment searchRestaurantFragment = new SearchRestaurantFragment();
-            return searchRestaurantFragment;
+                SearchRestaurantFragment searchRestaurantFragment = new SearchRestaurantFragment();
+                return searchRestaurantFragment;
 
             case 1:
 
@@ -51,7 +50,7 @@ public class HomeContentsPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 MystatusFragment mystatusFragment = new MystatusFragment();
                 return mystatusFragment;
-                default:
+            default:
                 return null;
         }
     }

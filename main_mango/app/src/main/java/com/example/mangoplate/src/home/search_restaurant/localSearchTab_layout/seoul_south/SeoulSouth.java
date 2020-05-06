@@ -87,7 +87,6 @@ public class SeoulSouth extends Fragment {
                             }
 
 
-
                             final TextView textView = new TextView(getContext());
                             final FrameLayout frameLayout = new FrameLayout(getContext());
                             textView.setText(result.name);
@@ -136,7 +135,7 @@ public class SeoulSouth extends Fragment {
 
 
                             final TextView adjustment = localSearchTabLayout.findViewById(R.id.adjustment); // 클릭시 버튼 색깔 바꾸기
-                            final TextView cancelAllbutton =localSearchTabLayout.findViewById(R.id.cancel_allbutton);
+                            final TextView cancelAllbutton = localSearchTabLayout.findViewById(R.id.cancel_allbutton);
 
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -152,7 +151,7 @@ public class SeoulSouth extends Fragment {
                                         frameLayout.addView(imageView);
                                         textView.setTextColor(getResources().getColor(R.color.Mangoplate_orange));
                                         textViewFlag[checkNumber] = false;
-                                        Log.e("잠시 ",""+textView.getText().toString());
+                                        Log.e("잠시 ", "" + textView.getText().toString());
                                         LocalSearchTabLayout.outputDatas.add(textView.getText().toString());
                                     } else {
                                         LocalSearchTabLayout.mAdjustmnetColorChanger--;

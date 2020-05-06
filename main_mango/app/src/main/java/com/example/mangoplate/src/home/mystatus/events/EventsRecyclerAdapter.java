@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mangoplate.R;
-import com.example.mangoplate.src.home.HomeAcitivity;
 import com.example.mangoplate.src.home.mystatus.events.models.EventsResult;
 
 import java.util.ArrayList;
@@ -58,8 +57,6 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     }
 
     public void addItem(EventsResult data) {
-        // 외부에서 item을 추가시킬 함수입니다.
-//        listData.add(data);
         listData.add(data);
     }
 
@@ -71,21 +68,19 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         ImageView img_res;
         TextView  title_res;
         TextView date_res;
-
+        ConstraintLayout backgruond_recyclerview;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
             title_res=itemView.findViewById(R.id.title_events);
             img_res=itemView.findViewById(R.id.image_events);
-
+            backgruond_recyclerview=itemView.findViewById(R.id.ConstraintLayout_recyclerview_events);
             date_res=itemView.findViewById(R.id.dates_events);
-//            textView1 = itemView.findViewById(R.id.textView1);
-//            textView2 = itemView.findViewById(R.id.textView2);
-//            imageView = itemView.findViewById(R.id.imageView);
+
         }
 
-        @SuppressLint("ResourceAsColor")
+        @SuppressLint({"ResourceAsColor", "SetTextI18n"})
         void onBind(EventsResult data) {
             String end="종료";
             if(data.getImageUrl()!=null)
@@ -104,10 +99,14 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
             }else{
                 title_res.setText(" "+data.getTitle());
-                SpannableStringBuilder ssb = new SpannableStringBuilder(end);
-                ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#FF7101")), 0, end.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                date_res.setText(end+" "+data.getDate());
 
+
+                end=" 종료 "+data.getDate();
+                SpannableStringBuilder endInput = new SpannableStringBuilder(end);
+                endInput.setSpan(new ForegroundColorSpan(Color.parseColor("#FF7101")), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                date_res.setText(endInput);
+
+                backgruond_recyclerview.setBackgroundResource(R.color.grey_500);
 
             }
 

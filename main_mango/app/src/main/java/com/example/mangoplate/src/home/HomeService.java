@@ -3,7 +3,7 @@ package com.example.mangoplate.src.home;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.mangoplate.src.home.advertisement.Advertisement;
+import com.example.mangoplate.src.home.advertisement.ActivityAdvertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
 import com.example.mangoplate.src.home.interfaces.HomeRetrofitInterface;
 import com.example.mangoplate.src.home.models.HomeEventResponse;
@@ -45,12 +45,12 @@ public class HomeService {
 
                     if (homeEventResponse.getResult() != null) {
 
-                        mEventresponse = new HashMap<String, String>();
+                        mEventresponse = new HashMap<>();
                         Log.e("홈리스폰스", "" + homeEventResponse.getResult().getEventId());
 
-                        Log.e("Jwt토큰",""+X_ACCESS_TOKEN);
+                        Log.e("Jwt토큰", "" + X_ACCESS_TOKEN);
                         Log.e("이미지URL", "" + homeEventResponse.getResult().getImageUrl());
-                        Intent advestismentActivitytoMove = new Intent(mHomeAcitivity, Advertisement.class);
+                        Intent advestismentActivitytoMove = new Intent(mHomeAcitivity, ActivityAdvertisement.class);
                         advestismentActivitytoMove.putExtra("ImageUrl", homeEventResponse.getResult().getImageUrl());
                         advestismentActivitytoMove.putExtra("EventId", Integer.toString(homeEventResponse.getResult().getEventId()));
                         mHomeAcitivity.startActivity(advestismentActivitytoMove);
@@ -91,7 +91,7 @@ public class HomeService {
 
                             if (homeEventsResponse.getResult() != null) {
 
-                                Log.e("광고 홈리스폰스", "" +homeResult.getImageUrl());
+                                Log.e("광고 홈리스폰스", "" + homeResult.getImageUrl());
 
                                 Log.e("광고 이미지URL", "" + homeResult.getImageUrl());
 

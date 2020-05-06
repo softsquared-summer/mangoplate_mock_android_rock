@@ -1,8 +1,6 @@
 package com.example.mangoplate.src.home.discount;
 
 
-
-
 import android.content.Context;
 
 import com.example.mangoplate.src.home.discount.eat_deal.FragmentEatDeal;
@@ -21,6 +19,7 @@ public class PagerAdapterDiscountContents extends FragmentStatePagerAdapter {
     private ViewPager mViewPager;
     private PagerAdapterDiscountContents mContentPagerAdapter;
     private Context mContext;
+
     public PagerAdapterDiscountContents(FragmentManager fm, int pageCount) {
 
         super(fm);
@@ -36,8 +35,8 @@ public class PagerAdapterDiscountContents extends FragmentStatePagerAdapter {
 
             case 0:
 
-            FragmentEatDeal fragmentEatDeal = new FragmentEatDeal();
-            return fragmentEatDeal;
+                FragmentEatDeal fragmentEatDeal = new FragmentEatDeal();
+                return fragmentEatDeal;
 
             case 1:
 
@@ -49,8 +48,7 @@ public class PagerAdapterDiscountContents extends FragmentStatePagerAdapter {
                 return fragmentTopList;
 
 
-
-                default:
+            default:
                 return null;
         }
     }

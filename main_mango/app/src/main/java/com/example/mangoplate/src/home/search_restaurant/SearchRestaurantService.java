@@ -1,19 +1,13 @@
 package com.example.mangoplate.src.home.search_restaurant;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
-import com.example.mangoplate.src.home.advertisement.Advertisement;
 import com.example.mangoplate.src.home.interfaces.HomeActivityView;
-import com.example.mangoplate.src.home.interfaces.HomeRetrofitInterface;
 
-import com.example.mangoplate.src.home.models.HomeEventsResponse;
-import com.example.mangoplate.src.home.models.HomeResult;
 import com.example.mangoplate.src.home.search_restaurant.interfaces.SearchRetrofitInterface;
-import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.Result;
 import com.example.mangoplate.src.home.search_restaurant.models.RestaurantResult;
 import com.example.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 
@@ -42,10 +36,11 @@ public class SearchRestaurantService {
     private RestaurantRecyclerAdapter madapter;
     private Context mContext;
     private String area = ""; // 쿼리 ?area= .......;
-    private ArrayList<RestaurantResult> listData = new ArrayList<RestaurantResult>();
+    private ArrayList<RestaurantResult> listData = new ArrayList<>();
+
     SearchRestaurantService(final HomeAcitivity homeAcitivity, final Context context) {
         this.mHomeAcitivity = homeAcitivity;
-        this.mContext=context;
+        this.mContext = context;
     }
 
 
@@ -86,13 +81,12 @@ public class SearchRestaurantService {
 
                             if (mRestaurantResultList.getResult() != null) {
 
-                                Log.e("망고 식당이름",""+result.getTitle());
+                                Log.e("망고 식당이름", "" + result.getTitle());
                                 Log.e("망고 지역", "" + result.getArea());
                                 Log.e("망고 이미지url", "" + result.getImg());
-                                Log.e("망고 rating",""+ result.getRating());
-                                Log.e("망고 본 사람수",""+result.getSeenNum());
+                                Log.e("망고 rating", "" + result.getRating());
+                                Log.e("망고 본 사람수", "" + result.getSeenNum());
                                 madapter.addItem(result);
-
 
 
                             }

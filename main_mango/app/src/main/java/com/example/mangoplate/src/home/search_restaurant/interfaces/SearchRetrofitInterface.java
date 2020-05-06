@@ -1,7 +1,5 @@
 package com.example.mangoplate.src.home.search_restaurant.interfaces;
 
-import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.Result;
-import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.ResultList;
 import com.example.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 
 import retrofit2.Call;

@@ -1,8 +1,6 @@
 package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout;
 
 
-
-
 import android.content.Context;
 
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.MyLocationSearch;
@@ -22,10 +20,11 @@ public class LocalSearchContentsPagerAdapter extends FragmentStatePagerAdapter {
     private ViewPager mViewPager;
     private LocalSearchContentsPagerAdapter mContentPagerAdapter;
     private Context mContext;
+
     public LocalSearchContentsPagerAdapter(FragmentManager fm, int pageCount, Context context) {
 
         super(fm);
-        mContext=context;
+        mContext = context;
         this.mPageCount = pageCount;
 
     }
@@ -38,8 +37,8 @@ public class LocalSearchContentsPagerAdapter extends FragmentStatePagerAdapter {
 
             case 0:
 
-            RecentLocation recentLocation = new RecentLocation();
-            return recentLocation;
+                RecentLocation recentLocation = new RecentLocation();
+                return recentLocation;
 
             case 1:
 

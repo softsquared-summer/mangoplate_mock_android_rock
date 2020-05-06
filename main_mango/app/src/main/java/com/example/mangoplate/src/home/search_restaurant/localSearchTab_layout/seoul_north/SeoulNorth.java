@@ -88,27 +88,9 @@ public class SeoulNorth extends Fragment {
 
                             }
 
-//                            Chip chip = new Chip(getContext());
-//                            chip.setCheckable(true);
-//                            chip.setChipBackgroundColorResource(R.color.white);
-//                            chip.setChipStrokeColorResource(R.color.grey_300);
-//                            chip.setCloseIconTintResource(R.color.grey_500);
-//                            chip.setWidth(400);
-//                            chip.setHeight(150);
-//                            chip.setGravity(Gravity.CENTER);
-//                            chip.setChipStrokeWidth(1f);
-//                            chip.setText(result.name);
-//                            chip.setTextColor(getResources().getColor(R.color.grey_300));
-//
-
-//                                textView.setText("전체");
-
                             final TextView textView = new TextView(getContext());
                             final FrameLayout frameLayout = new FrameLayout(getContext());
                             textView.setText(result.name);
-
-
-//                            button.setId(View.generateViewId());
                             FrameLayout.LayoutParams paramsOne = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
 
                             paramsOne.setMargins(5, 10, 5, 10);
@@ -134,13 +116,10 @@ public class SeoulNorth extends Fragment {
                             imageView.setId(View.generateViewId());
 
                             int imagviewId = imageView.getId();
-//                            params.setMarginStart(100);
-//                            imageView.setForegroundGravity(Gravity.END| Gravity.TOP);
 
 
                             FrameLayout.LayoutParams paramsTwo = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.TOP | Gravity.RIGHT);
 //                레이아웃을 맞춰줘야 한다.
-//                            https://stackoverflow.com/questions/8005526/setting-of-imageviews-gravity-to-the-center-in-android-programmatically 리니어인 경우 이 경우 참조
                             paramsTwo.setMargins(0, 9, 9, 0);
                             imageView.setLayoutParams(paramsTwo);
                             imageView.getLayoutParams().height = 30;

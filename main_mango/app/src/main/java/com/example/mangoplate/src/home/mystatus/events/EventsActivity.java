@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mangoplate.R;
-import com.example.mangoplate.src.home.search_restaurant.RestaurantRecyclerAdapter;
 
 public class EventsActivity extends AppCompatActivity {
     private GridLayoutManager mGridLayoutManager;
@@ -20,7 +19,7 @@ public class EventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        evnets_tryGet();
+        evnets_tryGet(); // events 목록 API 통신 (GET)
 
         backkey_events=findViewById(R.id.backkey_events);
         backkey_events.setOnClickListener(new View.OnClickListener() {

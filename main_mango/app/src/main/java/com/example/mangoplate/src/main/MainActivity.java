@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     private KakaotalkSessionCallback kakaoSessionCallback = new KakaotalkSessionCallback(this);
     Session session;
     private ImageView mbtnKakaoLogin;
+    AccessToken mToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +68,21 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
             public void onClick(View v) {
                 LoginManager loginManager = LoginManager.getInstance();
                 loginManager.logInWithReadPermissions(MainActivity.this, Arrays.asList("public_profile", "email"));
-                AccessToken token = AccessToken.getCurrentAccessToken();
-                mMainFacebookJsonString="{\"at\" : \""+token.getToken()+"\"}";
-                Log.e("보낼려는 토큰",""+mMainFacebookJsonString);
-                main_tryPost("facebook",mMainFacebookJsonString);
-                if (token != null) {
-                    Log.e("토큰", "Token: " + token.getToken());
-                    Log.e("유저아이디.", "UserID: " + token.getUserId());
+                mToken = AccessToken.getCurrentAccessToken();
+                if (mToken != null) {
+                    mToken = AccessToken.getCurrentAccessToken();
+                    mMainFacebookJsonString = "{\"at\" : \"" + mToken.getToken() + "\"}";
+                    Log.e("보낼려는 토큰", "" + mMainFacebookJsonString);
+                    main_tryPost("facebook", mMainFacebookJsonString);
+                    if (mToken != null) {
+                        Log.e("토큰", "Token: " + mToken.getToken());
+                        Log.e("유저아이디.", "UserID: " + mToken.getUserId());
+                    }
+                    loginManager.registerCallback(mCallbackManager, mLoginCallback);
+                }else{
+
+
                 }
-                loginManager.registerCallback(mCallbackManager, mLoginCallback);
             }
         });
         mCallbackManager = CallbackManager.Factory.create();

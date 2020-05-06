@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity android:name=".src.home.mystatus.events.EventsActivity"></activity>
-        <activity android:name=".src.home.advertisement.Advertisement" />
+        <activity android:name=".src.home.advertisement.ActivityAdvertisement" />
         <activity
             android:name=".src.home.search_restaurant.alignment_button.AlignmentButton"
             android:theme="@style/Theme.MyDialog" />

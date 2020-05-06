@@ -10,12 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.home.HomeAcitivity;
-import com.example.mangoplate.src.home.search_restaurant.models.RecyclerRestaurantData;
 import com.example.mangoplate.src.home.search_restaurant.models.RestaurantResult;
-import com.example.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 
 import java.util.ArrayList;
 
@@ -28,11 +25,12 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
     private ArrayList<RestaurantResult> listData = new ArrayList<>();
 
     private HomeAcitivity mHomeAcitivity;
-    RestaurantRecyclerAdapter(HomeAcitivity homeAcitivity)
-    {
-        this.mHomeAcitivity=homeAcitivity;
+
+    RestaurantRecyclerAdapter(HomeAcitivity homeAcitivity) {
+        this.mHomeAcitivity = homeAcitivity;
 
     }
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -76,7 +74,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         private String ratingColor;
 
         ImageView img_res;
-        TextView  title_res;
+        TextView title_res;
         TextView area_res;
         TextView seenNum_res;
         TextView reviewNum_res;
@@ -86,49 +84,41 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            title_res=itemView.findViewById(R.id.title_restarant);
-            img_res=itemView.findViewById(R.id.img_restarant);
-            area_res=itemView.findViewById(R.id.area_restaurant); // 얘는 settext 할 때 거리를 붙여야함
-            seenNum_res=itemView.findViewById(R.id.seen_num_restarant);
-            reviewNum_res=itemView.findViewById(R.id.review_num_restarant);
-            rating_res=itemView.findViewById(R.id.rating_restarant);
+            title_res = itemView.findViewById(R.id.title_restarant);
+            img_res = itemView.findViewById(R.id.img_restarant);
+            area_res = itemView.findViewById(R.id.area_restaurant); // 얘는 settext 할 때 거리를 붙여야함
+            seenNum_res = itemView.findViewById(R.id.seen_num_restarant);
+            reviewNum_res = itemView.findViewById(R.id.review_num_restarant);
+            rating_res = itemView.findViewById(R.id.rating_restarant);
 //            textView1 = itemView.findViewById(R.id.textView1);
 //            textView2 = itemView.findViewById(R.id.textView2);
 //            imageView = itemView.findViewById(R.id.imageView);
         }
 
-        @SuppressLint("ResourceAsColor")
+        @SuppressLint({"ResourceAsColor", "SetTextI18n"})
         void onBind(RestaurantResult data) {
-            if(data.getImg()!=null)
-            {
+            if (data.getImg() != null) {
 //                Glide.with(mHomeAcitivity).load(img).into(img_res);
                 Glide.with(itemView.getContext())
                         .load(data.getImg()).placeholder(R.drawable.loading)
                         .into(img_res);
 
-                Log.e("뭐가 문제요",""+data.getImg());
+                Log.e("뭐가 문제요", "" + data.getImg());
             }
-            title_res.setText(""+data.getTitle());
-            area_res.setText(""+data.getArea()+"-"+data.getDistance());
-            seenNum_res.setText(""+data.getSeenNum());
-            reviewNum_res.setText(""+data.getReviewNum());
-            rating_res.setText(""+data.getRating());
-            Log.e("뭐가 문제요",""+data.getRatingColor());
-            if(data.getRatingColor().equals("gray"))
-            {
+            title_res.setText("" + data.getTitle());
+            area_res.setText("" + data.getArea() + "-" + data.getDistance());
+            seenNum_res.setText("" + data.getSeenNum());
+            reviewNum_res.setText("" + data.getReviewNum());
+            rating_res.setText("" + data.getRating());
+            Log.e("뭐가 문제요", "" + data.getRatingColor());
+            if (data.getRatingColor().equals("gray")) {
                 rating_res.setTextColor(Color.parseColor("#757575"));
 
-            }else if(data.getRatingColor().equals("orange"))
-            {
+            } else if (data.getRatingColor().equals("orange")) {
                 rating_res.setTextColor(Color.parseColor("#FF7101"));
 
-            }else{
-
-
             }
-//            textView1.setText(data.getTitle());
-//            textView2.setText(data.getContent());
-//            imageView.setImageResource(data.getResId());
+
         }
     }
 }

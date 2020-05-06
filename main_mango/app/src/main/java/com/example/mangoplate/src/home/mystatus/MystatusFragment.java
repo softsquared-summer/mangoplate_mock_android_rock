@@ -16,20 +16,18 @@ import androidx.fragment.app.Fragment;
 
 public class MystatusFragment extends Fragment {
     ViewGroup mRootView;
-    ImageView eventsTab;
+    ImageView mEventsTab;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_mystatus, container, false);
-
-        eventsTab =mRootView.findViewById(R.id.event_tab);
-
-
-        eventsTab.setOnClickListener(new View.OnClickListener() {
+        mEventsTab = mRootView.findViewById(R.id.event_tab);
+        mEventsTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent moveEvent =new Intent(getActivity(), EventsActivity.class);
+                Intent moveEvent = new Intent(getActivity(), EventsActivity.class);
                 startActivity(moveEvent);
             }
         });

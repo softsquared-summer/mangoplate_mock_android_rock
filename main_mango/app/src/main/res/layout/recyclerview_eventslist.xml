@@ -10,14 +10,14 @@
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:background="@color/white"
-    android:layout_height="220dp">
+    android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/image_events"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ad_eatdeal" />
@@ -42,4 +42,6 @@
         android:text="데이트"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_events" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

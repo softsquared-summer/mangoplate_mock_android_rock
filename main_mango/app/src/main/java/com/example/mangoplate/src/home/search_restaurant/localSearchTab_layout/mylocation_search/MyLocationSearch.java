@@ -1,7 +1,7 @@
 package com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +17,8 @@ import android.widget.TextView;
 
 import com.example.mangoplate.R;
 import com.example.mangoplate.src.ApplicationClass;
-import com.example.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.interfaces.MylocationSearchRetrofitInterface;
-import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_north.interfaces.SeoulNorthRetrofitInterface;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.Result;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.seoul_south.models.ResultList;
 import com.google.android.material.tabs.TabLayout;
@@ -71,8 +69,8 @@ public class MyLocationSearch extends Fragment {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ApplicationClass.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         MylocationSearchRetrofitInterface searchTapRetrofitInterface = retrofit.create(MylocationSearchRetrofitInterface.class);
 
-        Log.e("내 근처 위도,경도 ","lat "+lat+"lng"+lng);
-        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN, lat ,lng).enqueue(new Callback<ResultList>() {
+        Log.e("내 근처 위도,경도 ", "lat " + lat + "lng" + lng);
+        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN, lat, lng).enqueue(new Callback<ResultList>() {
             int checkNumber = 0;// 얘는 포문 돌아가는 숫자를 세기 위해서 존재.
 
 
@@ -82,7 +80,7 @@ public class MyLocationSearch extends Fragment {
                 if (response.code() == 200) {
                     final ResultList resultList = response.body();
                     LayoutInflater inflater = (LayoutInflater) localSearchTabLayout.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final GridLayout gridLayout = (GridLayout) mView.findViewById(R.id.seoulSouth_dynamic_layout);
+                    final GridLayout gridLayout = mView.findViewById(R.id.seoulSouth_dynamic_layout);
                     if (resultList.result != null && resultList.result.size() > 0) {
                         for (Result result : resultList.result) {
                             Log.e("성공", "" + result.id);
@@ -96,29 +94,11 @@ public class MyLocationSearch extends Fragment {
 
                             }
 
-//                            Chip chip = new Chip(getContext());
-//                            chip.setCheckable(true);
-//                            chip.setChipBackgroundColorResource(R.color.white);
-//                            chip.setChipStrokeColorResource(R.color.grey_300);
-//                            chip.setCloseIconTintResource(R.color.grey_500);
-//                            chip.setWidth(400);
-//                            chip.setHeight(150);
-//                            chip.setGravity(Gravity.CENTER);
-//                            chip.setChipStrokeWidth(1f);
-//                            chip.setText(result.name);
-//                            chip.setTextColor(getResources().getColor(R.color.grey_300));
-//
-
-//                                textView.setText("전체");
 
                             final TextView textView = new TextView(getContext());
                             final FrameLayout frameLayout = new FrameLayout(getContext());
                             textView.setText(result.name);
-
-
-//                            button.setId(View.generateViewId());
                             FrameLayout.LayoutParams paramsOne = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-
                             paramsOne.setMargins(5, 10, 5, 10);
                             textView.setLayoutParams(paramsOne);
                             textView.setForegroundGravity(Gravity.END);
@@ -126,11 +106,11 @@ public class MyLocationSearch extends Fragment {
 
                             int inputId = View.generateViewId(); // 고정으로 해야돼
                             textView.setId(inputId);
-                            textViewIdValue = new ArrayList<Integer>();
+                            textViewIdValue = new ArrayList<>();
                             textViewIdValue.add(textView.getId());
                             Log.e("id값좀 보자", "" + inputId);
                             Log.e("TextViewid값좀 보자", "" + textView.getId());
-                            ArrayList<Boolean> checkOnOffTextView = new ArrayList<Boolean>();
+                            ArrayList<Boolean> checkOnOffTextView = new ArrayList<>();
 
                             textView.setWidth(310);
                             textView.setHeight(90);
@@ -138,17 +118,15 @@ public class MyLocationSearch extends Fragment {
                             textView.setBackgroundResource(R.drawable.off_rouned_border_textview);
                             final ImageView imageView = new ImageView(getContext());
                             imageView.setImageResource(R.drawable.checkimage);
-
                             imageView.setId(View.generateViewId());
-
                             int imagviewId = imageView.getId();
 //                            params.setMarginStart(100);
 //                            imageView.setForegroundGravity(Gravity.END| Gravity.TOP);
 
 
-                            FrameLayout.LayoutParams paramsTwo = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.TOP | Gravity.RIGHT);
-//                레이아웃을 맞춰줘야 한다.
-//                            https://stackoverflow.com/questions/8005526/setting-of-imageviews-gravity-to-the-center-in-android-programmatically 리니어인 경우 이 경우 참조
+                            @SuppressLint("RtlHardcoded") FrameLayout.LayoutParams paramsTwo = new FrameLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, Gravity.TOP | Gravity.RIGHT);
+//                           레이아웃을 맞춰줘야 한다.
+//                           https://stackoverflow.com/questions/8005526/setting-of-imageviews-gravity-to-the-center-in-android-programmatically 리니어인 경우 이 경우 참조
                             paramsTwo.setMargins(0, 9, 9, 0);
                             imageView.setLayoutParams(paramsTwo);
                             imageView.getLayoutParams().height = 30;
@@ -240,4 +218,5 @@ public class MyLocationSearch extends Fragment {
 
             }
         });
-    }}
+    }
+}

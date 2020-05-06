@@ -46,22 +46,15 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
     Context mContext;
     String mImageUrl;
     int mEventId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.hide(); // 이 두줄을 쓰면 타이틀 바를 없앨 수가 있습니다.
         setContentView(R.layout.acitivity_home);
-        mhomeService=new HomeService(this);
-        mhomeService.tryEventGet();
-        mhomeService.tryEventsGet();
-        mContext=this;
-
-        mViewAnimator = findViewById(R.id.animator);
-         mFloatingActionButton=findViewById(R.id.home_floatingActionButton);
-        mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        mFab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        mFab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        setView();
+        setmBottomNavigationView();
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,10 +65,14 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
             }
 
 
-
         });
 
-        mHomeViewPager = (ViewPager) findViewById(R.id.viewpager_home);
+
+    }
+
+    void setmBottomNavigationView() {
+
+        mHomeViewPager = findViewById(R.id.viewpager_home);
         mHomeContentsPagerAdapter = new HomeContentsPagerAdapter(
                 getSupportFragmentManager(), 4);
         mHomeViewPager.setAdapter(mHomeContentsPagerAdapter);
@@ -86,22 +83,18 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
                 FragmentTransaction transaction = mfragmentManager.beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.search_restaurant: {
-//                        transaction.replace(R.id.frame_layout, mFragmentSearch_restaurant).commitAllowingStateLoss();
                         mHomeViewPager.setCurrentItem(0);
                         break;
                     }
                     case R.id.discount: {
                         mHomeViewPager.setCurrentItem(1);
-//                        transaction.replace(R.id.frame_layout, mFragmentDiscount).commitAllowingStateLoss();
                         break;
                     }
                     case R.id.news: {
-//                        transaction.replace(R.id.frame_layout, mFragmentNews).commitAllowingStateLoss();
                         mHomeViewPager.setCurrentItem(2);
                         break;
                     }
                     case R.id.mystatus: {
-//                        transaction.replace(R.id.frame_layout, mystatus).commitAllowingStateLoss();
                         mHomeViewPager.setCurrentItem(3);
                         break;
                     }
@@ -116,18 +109,15 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == 0) {
                     mBottomNavigationView.getMenu().findItem(R.id.search_restaurant).setChecked(true);
-//                    mBottomNavigationView.setSelectedItemId(R.id.search_restaurant);
-                }else if (position == 1) {
+                } else if (position == 1) {
                     mBottomNavigationView.getMenu().findItem(R.id.discount).setChecked(true);
-//                    mBottomNavigationView.setSelectedItemId(R.id.discount);
-                }else if (position == 2) {
+                } else if (position == 2) {
                     mBottomNavigationView.getMenu().findItem(R.id.news).setChecked(true);
-//                    mBottomNavigationView.setSelectedItemId(R.id.news);
-                }else if (position == 3) {
+                } else if (position == 3) {
                     mBottomNavigationView.getMenu().findItem(R.id.mystatus).setChecked(true);
-//                    mBottomNavigationView.setSelectedItemId(R.id.mystatus);
                 }
             }
+
             @Override
             public void onPageSelected(int position) {
 
@@ -139,13 +129,25 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
             }
         });
 
+    }
+
+    void setView() {
+        mhomeService = new HomeService(this);
+        mhomeService.tryEventGet();
+        mhomeService.tryEventsGet();
+        mContext = this;
+        mViewAnimator = findViewById(R.id.animator);
+        mFloatingActionButton = findViewById(R.id.home_floatingActionButton);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        mFab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        mFab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
     }
 
-    public void anim() {
+    private void anim() {
         if (isFabOpen) {
-            Log.e("어디지?",""+(int)mFloatingActionButton.getY());
-            mViewAnimator.setDisplayedChild(mViewAnimator.getDisplayedChild()+1, false, new Point((int)mFloatingActionButton.getX(), (int)mFloatingActionButton.getY()));
+            Log.e("어디지?", "" + (int) mFloatingActionButton.getY());
+            mViewAnimator.setDisplayedChild(mViewAnimator.getDisplayedChild() + 1, false, new Point((int) mFloatingActionButton.getX(), (int) mFloatingActionButton.getY()));
 
             final OvershootInterpolator interpolator = new OvershootInterpolator();
             ViewCompat.animate(mFloatingActionButton).
@@ -158,7 +160,6 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
             isFabOpen = false;
 
         } else {
-//            mViewAnimator.setDisplayedChild(mViewAnimator.getDisplayedChild()+1, true, new Point((int)mFloatingActionButton.getX(), 500));
             // 버튼 위치를 정확히 구해서 하면 되긴해 .
             mFloatingActionButton.setBackgroundColor(00000);
             final OvershootInterpolator interpolator = new OvershootInterpolator();
@@ -175,14 +176,7 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-//            @Override
-//            public void onCompleteLogout() {
-//                Log.e("되긴되니?","ㅇ?");
-//                Toast.makeText(HomeAcitivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-////                                redirectLoginActivity();
-//            }
-//        });
+
     }
 
     @Override
@@ -199,8 +193,7 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
 //        madapter.notifyDataSetChanged();
 
 
-
-    }
+}
 
 
 

@@ -24,7 +24,6 @@ import com.example.mangoplate.src.home.search_restaurant.distance_selected_layou
 import com.example.mangoplate.src.home.search_restaurant.filter_button.FilterLayout;
 import com.example.mangoplate.src.home.search_restaurant.interfaces.SearchRestaurantViewFragment;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout;
-import com.example.mangoplate.src.home.search_restaurant.models.RecyclerRestaurantData;
 import com.example.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.MyLocationSearch;
 import com.google.android.material.tabs.TabLayout;
 
@@ -76,6 +75,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private int LOCALl_SEARCH_TABLAYOUT = 1;
 
     private SearchRestaurantService searchRestaurantService;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -84,17 +84,16 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         mHomeAcitivity = (HomeAcitivity) getActivity();
     }
 
-    // 코드에서 그 사람의 얼굴이 보인다 .
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_searchrestaurant, container, false);
-        mPager = (ViewPager) mRootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
+        mPager = mRootView.findViewById(R.id.Fragment_searchRestaurant_photos_viewpager); //스네이크 케이스로 패키지도 클래스가 파스칼 id도 파스칼 .더 정확한건 안드로이드 가이드 .
         mLocalName = mRootView.findViewById(R.id.Localname);
         ImageView filter = mRootView.findViewById(R.id.filter);
         alignmentButton = mRootView.findViewById(R.id.alignment_button);
         recyclerViewSearchRestaurant = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
-        alignmentButton.setText(Html.fromHtml("<u>" + "추천순 ▾"+ "</u>"));
+        alignmentButton.setText(Html.fromHtml("<u>" + "추천순 ▾" + "</u>"));
 //        alignmentButton.setTextColor(getResources().getColor(R.color.grey_200));
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
@@ -106,24 +105,9 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
             }
         });
-        //광고 이미지 .
-        PagerAdapter adapter = new AdvertisementPhotosAdapter(getContext());
 
-//사용자의 위치 수신을 위한 세팅
-        mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-//사용자의 현재 위치
-        Location userLocation = getMyLocation();
-        if (userLocation != null) {
-            double latitude = userLocation.getLatitude();
-            double longitude = userLocation.getLongitude();
-            Intent passData = new Intent(getActivity(), MyLocationSearch.class);
-            lat = latitude;
-            lng = longitude;
-            passData.putExtra("lat", lat);
-            passData.putExtra("lng", lng);
-            System.out.println("////////////현재 내 위치값 : " + latitude + "," + longitude);
-        }
-
+        setMyLocation(); // 내 위치 정보 받아오기 .
+        setViewPager();// 광고 배너( 자동으로 넘어가는)
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +118,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         });
 //...
 
-
-        mPager.setAdapter(adapter);
-        TabLayout tabLayout = (TabLayout) mRootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
-        tabLayout.setupWithViewPager(mPager, true);
-        ///주석 신경.
 
         mDistanceSelector = mRootView.findViewById(R.id.distance_selector);
         mDistanceSelector.setOnClickListener(new View.OnClickListener() {
@@ -156,23 +135,45 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             public void onClick(View v) {
                 if (blockClickFlag) {
                     Intent intent = new Intent(mHomeAcitivity, LocalSearchTabLayout.class);
-//                intent.putExtra("data", "Test Popup");
                     startActivityForResult(intent, LOCALl_SEARCH_TABLAYOUT);
-//                    startActivity(intent);
-
-
-//                    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
 //                    blockClickFlag = false; // 얘를  다시 돌아오면 true로 바꾼다 .
-
-
                 }
             }
         });
-        init();
-        getData();
-//        madapter.notifyDataSetChanged();
+        init(); //recycler view setting
 
         return mRootView;
+    }
+
+    void setMyLocation() //내 위치 세팅
+    {
+
+        //사용자의 위치 수신을 위한 세팅
+        mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+//사용자의 현재 위치
+        Location userLocation = getMyLocation();
+        if (userLocation != null) {
+            double latitude = userLocation.getLatitude();
+            double longitude = userLocation.getLongitude();
+            Intent passData = new Intent(getActivity(), MyLocationSearch.class);
+            lat = latitude;
+            lng = longitude;
+            passData.putExtra("lat", lat);
+            passData.putExtra("lng", lng);
+            System.out.println("////////////현재 내 위치값 : " + latitude + "," + longitude);
+        }
+
+    }
+
+    void setViewPager() // 뷰 페이저 세팅
+    {
+
+        //광고 이미지 .
+        PagerAdapter pagerAdapter = new AdvertisementPhotosAdapter(getContext());
+        mPager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = mRootView.findViewById(R.id.Fragment_searchRestaurant_tab_layout);
+        tabLayout.setupWithViewPager(mPager, true);
+
     }
 
     @Override
@@ -180,7 +181,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
         if (requestCode == LOCALl_SEARCH_TABLAYOUT) {
             if (resultCode == mHomeAcitivity.RESULT_OK) {
-
                 for (int i = 0; i < outputDatas.size(); i++) {
                     Log.e("제발 되요", outputDatas.get(i));
                     outputDatas.get(i);
@@ -190,15 +190,9 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                 } else {
                     mLocalName.setText(Html.fromHtml("<u>" + outputDatas.get(outputDatas.size() - 1) + " 외 " + (outputDatas.size() - 1) + "곳 " + "</u>"));
                 }
-                searchRestaurantService=new SearchRestaurantService(mHomeAcitivity,mContext);
+                searchRestaurantService = new SearchRestaurantService(mHomeAcitivity, mContext);
                 searchRestaurantService.makeAreaString();
                 outputDatas.clear();
-                //    언더라인 그리기 .
-                // t.setText(Html.fromHtml("<u>" + sitename + "</u>")); // 밑줄
-
-
-
-
             }
 
         }
@@ -282,25 +276,6 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         mRecyclerViewRestaurantInformation.setLayoutManager(mGridLayoutManager);
         madapter = new RestaurantRecyclerAdapter(mHomeAcitivity);
         mRecyclerViewRestaurantInformation.setAdapter(madapter);
-    }
-
-    private void getData() {
-
-        RecyclerRestaurantData data = new RecyclerRestaurantData();
-//            data.setTitle(listTitle.get(i));
-//            data.setContent(listContent.get(i));
-//            data.setResId(listResId.get(i));
-
-        // 각 값이 들어간 data를 adapter에 추가합니다.
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-//        madapter.addItem(data);
-
     }
 
     public void advertismentTimerStart() {
