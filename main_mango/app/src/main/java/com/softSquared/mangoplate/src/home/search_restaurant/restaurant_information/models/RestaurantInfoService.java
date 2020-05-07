@@ -35,9 +35,11 @@ public class RestaurantInfoService {
     private Context mContext;
     private String area = ""; // 쿼리 ?area= .......;
     private ArrayList<RestaurantResult> listData = new ArrayList<>();
+    int mRestaurantId;
 
-    public RestaurantInfoService(final RetaurantInformationLayout mRetaurantInformationLayout) {
+    public RestaurantInfoService(final RetaurantInformationLayout mRetaurantInformationLayout,int restaurantId) {
         this.mRetaurantInformationLayout = mRetaurantInformationLayout;
+        this.mRestaurantId =restaurantId;
     }
 
 
@@ -62,7 +64,6 @@ public class RestaurantInfoService {
 
                                 Log.e("망고 식당이름!", "" + mRestaurantInfoResult.getResult().getName());
                                 Log.e("망고 식당이름!", "" + mRestaurantInfoResult.getResult().getAddress());
-                                Log.e("망고 식당이름!", "" + mRestaurantInfoResult.getResult().getImages().toString());
 //                                madapter.addItem(result);
 
 

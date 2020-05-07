@@ -1,58 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_height="match_parent"
+<LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
 
+    android:background="@color/grey_300"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--https://readystory.tistory.com/127 coordinator레이아웃 설명은 여기서 -->
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_discount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:fitsSystemWindows="true">
+    <androidx.recyclerview.widget.RecyclerView
 
-
-
-
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/fragment_tab_discount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabGravity="center"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                app:tabIndicatorColor="@color/Mangoplate_orange"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/Mangoplate_orange"
-                app:tabTextColor="@color/grey_500" />
-
-
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
-
-
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager_discount"
+        android:id="@+id/recyclerview_eatdeals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        >
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-        />
-
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <!--    여기다가 리사이클러 뷰 커스텀 카드뷰로 해서 .-->
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

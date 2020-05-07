@@ -53,10 +53,10 @@ public class EventsService {
 
                             if (eventsResponse.getResult() != null) {
 
-                                Log.e("이벤트 광고 홈리스폰스", "" +eventsResult.getImageUrl());
+                                Log.e("이벤트 광고 URL", "" +eventsResult.getImageUrl());
 
-                                Log.e("이벤트 광고 이미지URL", "" + eventsResult.getTitle());
-                                Log.e("이벤트 광고 이미지URL", "" + eventsResult.getStatus());
+                                Log.e("이벤트 광고 TITLE", "" + eventsResult.getTitle());
+                                Log.e("이벤트 광고 STATUS", "" + eventsResult.getStatus());
                                 mAdapter.addItem(eventsResult);
                             }
 

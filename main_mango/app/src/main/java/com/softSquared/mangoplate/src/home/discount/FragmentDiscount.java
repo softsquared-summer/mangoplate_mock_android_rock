@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.softSquared.mangoplate.R;
 import com.softSquared.mangoplate.src.home.HomeAcitivity;
+import com.softSquared.mangoplate.src.home.mystatus.events.EventsService;
 import com.softSquared.mangoplate.src.home.search_restaurant.RestaurantRecyclerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,7 +24,6 @@ public class FragmentDiscount extends Fragment {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
-    private PagerAdapterDiscountContents mPagerAdapterDiscountContents;
     ViewGroup mRootView;
     HomeAcitivity mHomeAcitivity;
     Toolbar mAppToolbar;
@@ -39,46 +39,19 @@ public class FragmentDiscount extends Fragment {
 
         mContext = context;
         mHomeAcitivity = (HomeAcitivity) getActivity();
+         EatDealsService mainService = new EatDealsService(mHomeAcitivity);
+        mainService.tryGetEdeals();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = (ViewGroup) inflater.inflate(R.layout.fragment_discount, container, false);
-        setmViewPager();
 
 
         return mRootView;
     }
 
 
-    void setmViewPager(){ // EAT딜 , 망고픽 스토리 ,TOP리스트 표시하는 뷰 페이저
 
-        mTabLayout = mRootView.findViewById(R.id.fragment_tab_discount);
-        mTabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM);
-        mTabLayout.addTab(mTabLayout.newTab().setText("EAT딜"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("망고픽 스토리"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("TOP 리스트"));
-        mViewPager = mRootView.findViewById(R.id.viewPager_discount);
-        mPagerAdapterDiscountContents = new PagerAdapterDiscountContents(
-                mHomeAcitivity.getSupportFragmentManager(), mTabLayout.getTabCount());
-        mViewPager.setAdapter(mPagerAdapterDiscountContents);
-        mViewPager.addOnPageChangeListener(
-                new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-    }
 }

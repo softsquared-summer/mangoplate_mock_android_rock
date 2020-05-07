@@ -26,6 +26,7 @@ import com.softSquared.mangoplate.src.home.search_restaurant.interfaces.SearchRe
 import com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout;
 import com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.MyLocationSearch;
 import com.google.android.material.tabs.TabLayout;
+import com.softSquared.mangoplate.src.home.naverMapActivity.naverMapAcitivty;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,6 +68,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     private LocationManager mLocationManager;
     private static final int REQUEST_CODE_LOCATION = 2;
 
+    private ImageView mapButton;
     public static double lat;
     public static double lng;
     TextView mLocalName;
@@ -95,6 +97,16 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         recyclerViewSearchRestaurant = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
         alignmentButton.setText(Html.fromHtml("<u>" + "추천순 ▾" + "</u>"));
 //        alignmentButton.setTextColor(getResources().getColor(R.color.grey_200));
+        mapButton=mRootView.findViewById(R.id.restaurant_map);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mHomeAcitivity, naverMapAcitivty.class);
+//                intent.putExtra("data", "Test Popup");
+                startActivityForResult(intent, 3);
+
+            }
+        });
         alignmentButton.setOnClickListener(new View.OnClickListener() { // 정렬 버튼
             @Override
             public void onClick(View v) {
@@ -251,6 +263,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     public void onPause() {
         super.onPause();
         mTimer.cancel();
+        madapter.notifyDataSetChanged();
     }
 
     @Override

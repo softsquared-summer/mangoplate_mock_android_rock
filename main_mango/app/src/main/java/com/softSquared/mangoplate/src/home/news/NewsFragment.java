@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.softSquared.mangoplate.R;
 import com.softSquared.mangoplate.src.home.HomeAcitivity;
-import com.softSquared.mangoplate.src.home.discount.PagerAdapterDiscountContents;
 import com.softSquared.mangoplate.src.home.search_restaurant.RestaurantRecyclerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,7 +24,6 @@ public class NewsFragment extends Fragment {
     private TabLayout mTabLayout;
     private Context mContext;
     private ViewPager mViewPager;
-    private PagerAdapterDiscountContents mContentPagerAdapter;
     ViewGroup mRootView;
     HomeAcitivity mHomeAcitivity;
     Toolbar mAppToolbar;
@@ -63,9 +61,7 @@ public class NewsFragment extends Fragment {
      mTabLayout.addTab(mTabLayout.newTab().setText("홀릭"));
      mViewPager = (ViewPager) mRootView.findViewById(R.id.newspager_contents);
 //        mViewPager.setOffscreenPageLimit(4);
-     mContentPagerAdapter = new PagerAdapterDiscountContents(
-             mHomeAcitivity.getSupportFragmentManager(), mTabLayout.getTabCount());
-     mViewPager.setAdapter(mContentPagerAdapter);
+
      mViewPager.addOnPageChangeListener(
              new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 

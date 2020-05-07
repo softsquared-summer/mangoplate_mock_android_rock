@@ -75,6 +75,8 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         private float rating;
         private String ratingColor;
 
+        int mRestaurantId;
+        private Intent mMoveIntent;
         ImageView img_res;
         TextView title_res;
         TextView area_res;
@@ -83,7 +85,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
         TextView rating_res;
 
 
-        ItemViewHolder(View itemView) {
+        ItemViewHolder(final View itemView) {
             super(itemView);
 
             title_res = itemView.findViewById(R.id.title_restarant);
@@ -102,9 +104,11 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
 
-                        Intent intent=new Intent(mHomeAcitivity, RetaurantInformationLayout.class);
-                        intent.putExtra("postion",pos);
-                        mHomeAcitivity.startActivity(intent);
+                         mMoveIntent=new Intent(mHomeAcitivity, RetaurantInformationLayout.class);
+
+
+                         mMoveIntent.putExtra("restaurantId",mRestaurantId);
+                        mHomeAcitivity.startActivity(mMoveIntent);
                     }
                 }
             });
@@ -120,6 +124,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
 
                 Log.e("뭐가 문제요", "" + data.getImg());
             }
+            mRestaurantId=data.getRestaurantId();
             title_res.setText("" + data.getTitle());
             area_res.setText("" + data.getArea() + "-" + data.getDistance());
             seenNum_res.setText("" + data.getSeenNum());
