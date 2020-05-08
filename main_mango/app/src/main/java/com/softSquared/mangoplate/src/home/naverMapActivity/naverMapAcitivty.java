@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,8 +19,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
@@ -39,6 +42,7 @@ import com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFra
 import com.softSquared.mangoplate.src.home.search_restaurant.interfaces.SearchRetrofitInterface;
 import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResult;
 import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
+import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.RetaurantInformationLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +60,7 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
     private InfoWindow infoWindow;
     private List<Marker> markerList = new ArrayList<Marker>();
     private boolean isCameraAnimated = false;
+    int mRestaurantId;
     RestaurantMapResultList mRestaurantMapResultList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,9 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
 
         mapFragment.getMapAsync(this);
 
-
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
     }
 
     @Override
@@ -92,16 +99,21 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
 
         locationSource = new FusedLocationSource(this, ACCESS_LOCATION_PERMISSION_REQUEST_CODE);
         naverMap.setLocationSource(locationSource);
+
+
+
         tryGetRestaurantsList();
         UiSettings uiSettings = naverMap.getUiSettings();
+        uiSettings.setZoomControlEnabled(false);
         uiSettings.setLocationButtonEnabled(true);
 
         naverMap.addOnCameraChangeListener(this);
         naverMap.addOnCameraIdleListener(this);
         naverMap.setOnMapClickListener(this);
+
         LocationOverlay locationOverlay = naverMap.getLocationOverlay();
         locationOverlay.setVisible(true);
-        locationOverlay.setCircleRadius(1000);
+        locationOverlay.setCircleRadius(10000);
         LatLng mapCenter = naverMap.getCameraPosition().target;
 
 
@@ -123,7 +135,7 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
                  float rating;
                  String ratingColor;
 
-                int mRestaurantId;
+
                 Intent mMoveIntent;
                 TextView title_res;
                 TextView area_res;
@@ -148,6 +160,7 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
                 seenNum_res.setText("" + mapResult.getSeenNum());
                 reviewNum_res.setText("" + mapResult.getReviewNum());
                 rating_res.setText("" + mapResult.getRating());
+
                 Log.e("뭐가 문제요", "" + mapResult.getRatingColor());
                 if (mapResult.getRatingColor().equals("gray")) {
                     rating_res.setTextColor(Color.parseColor("#757575"));
@@ -276,6 +289,12 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
          @Override
          public boolean onClick(@NonNull Overlay overlay) {
 
+            Intent mMoveIntent;
+             mMoveIntent=new Intent(naverMapAcitivty.this, RetaurantInformationLayout.class);
+
+
+             mMoveIntent.putExtra("restaurantId",mRestaurantId);
+             startActivity(mMoveIntent);
              finish();
              return false;
          }

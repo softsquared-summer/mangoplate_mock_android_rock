@@ -119,6 +119,65 @@ public class SearchRestaurantService {
 
     }
 
+    void tryStartRestaurantsList() {
+
+        final SearchRetrofitInterface searchRetrofitInterface = getRetrofit().create(SearchRetrofitInterface.class);
+        Log.e("망고 lat", "" + lat);
+        Log.e("망고 lng", "" + lat);
+        Log.e("망고 main", "main");
+        Log.e("망고 area", area);
+        searchRetrofitInterface.toString();
+
+        init();
+        searchRetrofitInterface.getStartRestaurants(X_ACCESS_TOKEN, (float) lat, (float) lng, "main").enqueue(new Callback<RestaurantResultList>() {
+            @Override
+            public void onResponse(Call<RestaurantResultList> call, Response<RestaurantResultList> response) {
+                mRestaurantResultList = response.body();
+
+                if (mRestaurantResultList.getResult() != null && mRestaurantResultList.getResult().size() > 0) {
+                    for (RestaurantResult result : mRestaurantResultList.getResult()) {
+                        if (response.code() == 200) {
+
+                            if (mRestaurantResultList.getResult() != null) {
+
+                                Log.e("망고 식당이름", "" + result.getTitle());
+                                Log.e("망고 지역", "" + result.getArea());
+                                Log.e("망고 이미지url", "" + result.getImg());
+                                Log.e("망고 rating", "" + result.getRating());
+                                Log.e("망고 본 사람수", "" + result.getSeenNum());
+                                madapter.addItem(result);
+
+
+                            }
+
+                        } else {
+                            mHomeActivityView.validateFailure(null);
+                            if (mRestaurantResultList.getResult() != null) {
+
+                                Log.e("실패", "ㅎㅎㅎ");
+
+                            }
+                        }
+
+
+                    }
+
+                    madapter.notifyDataSetChanged();
+                }
+
+//            }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<RestaurantResultList> call, Throwable t) {
+
+            }
+        });
+
+    }
+
     private void init() {
         int numberOfColumns = 2;// 한줄에 2개의 컬럼을 추가
         searchRestaurantRecyclerView = mHomeAcitivity.findViewById(R.id.fragment_recyclerView_searchRestaurant);

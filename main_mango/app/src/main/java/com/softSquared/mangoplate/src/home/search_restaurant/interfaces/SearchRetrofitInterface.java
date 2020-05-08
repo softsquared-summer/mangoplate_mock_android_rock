@@ -12,5 +12,6 @@ public interface SearchRetrofitInterface {
     //    @GET("/test")
     @GET("/restaurants")
     Call<RestaurantResultList> getRestaurants(@Header("x-access-token") String acessToken, @Query("lat") float lat, @Query("lng") float lng, @Query("type") String type, @Query("area") String area);
-
+    @GET("/restaurants")
+    Call<RestaurantResultList> getStartRestaurants(@Header("x-access-token") String acessToken, @Query("lat") float lat, @Query("lng") float lng, @Query("type") String type);
 }

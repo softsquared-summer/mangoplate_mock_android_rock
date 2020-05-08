@@ -2,6 +2,8 @@ package com.softSquared.mangoplate.src.home.advertisement;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +32,9 @@ public class ActivityAdvertisement extends BaseActivity {
                 finish();
             }
         });
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
     }
 
     @Override

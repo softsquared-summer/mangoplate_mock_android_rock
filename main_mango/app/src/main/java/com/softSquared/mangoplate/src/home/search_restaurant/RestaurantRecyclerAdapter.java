@@ -28,8 +28,8 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
 
     private HomeAcitivity mHomeAcitivity;
 
-    RestaurantRecyclerAdapter(HomeAcitivity homeAcitivity) {
-        this.mHomeAcitivity = homeAcitivity;
+    public RestaurantRecyclerAdapter(HomeAcitivity mHomeAcitivity) {
+        this.mHomeAcitivity = mHomeAcitivity;
 
     }
 
@@ -109,6 +109,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
 
                          mMoveIntent.putExtra("restaurantId",mRestaurantId);
                         mHomeAcitivity.startActivity(mMoveIntent);
+
                     }
                 }
             });

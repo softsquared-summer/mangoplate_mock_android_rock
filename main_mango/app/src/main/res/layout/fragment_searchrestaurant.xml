@@ -100,6 +100,7 @@
         android:layout_height="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
+
         android:background="@drawable/custom_ripple_effect"
         android:src="@drawable/restaurant_map"
         app:layout_constraintEnd_toEndOf="parent"

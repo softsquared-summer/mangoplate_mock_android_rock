@@ -3,6 +3,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -43,6 +45,9 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         // mainApplication.java
         FacebookSdk.sdkInitialize(getApplicationContext());// 페이스북은 이렇게 카카오톡은 Application.class 수정해야함.
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
         mbtnFacebookLogin = (ImageView) findViewById(R.id.main_facebookbutton);
         ImageView main_menu = (ImageView) findViewById(R.id.main_menu);
         AppEventsLogger.activateApp(this);

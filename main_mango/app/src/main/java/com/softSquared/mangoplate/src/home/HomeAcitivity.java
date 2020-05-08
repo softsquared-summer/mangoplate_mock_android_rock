@@ -8,7 +8,9 @@ import androidx.viewpager.widget.ViewPager;
 import it.sephiroth.android.library.viewrevealanimator.ViewRevealAnimator;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -55,9 +57,14 @@ public class HomeAcitivity extends BaseActivity implements HomeActivityView {
         setContentView(R.layout.acitivity_home);
         setView();
         setmBottomNavigationView();
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
                 anim();
 
