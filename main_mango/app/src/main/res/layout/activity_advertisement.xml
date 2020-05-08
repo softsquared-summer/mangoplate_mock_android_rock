@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
+
     tools:context=".src.home.advertisement.ActivityAdvertisement">
 
     <ImageView
@@ -31,8 +32,10 @@
         android:layout_height="match_parent"
        android:layout_gravity="start"
         android:padding="20dp"
-        android:textSize="18dp"
+        android:background="@color/grey_100"
         android:text="다시 보지 않기"
+        android:textSize="18dp"
+        android:textColor="@color/grey_600"
         />
 
         <TextView
@@ -41,6 +44,9 @@
             android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:gravity="center|end"
+            android:textColor="@color/grey_600"
+
+            android:background="@color/grey_100"
             android:padding="20dp"
             android:textSize="18dp"
             android:text="닫기"

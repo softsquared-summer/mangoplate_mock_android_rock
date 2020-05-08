@@ -76,10 +76,10 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     TextView alignment_button; //추천순 ▼ 버튼
     private int DISTANCE_SELECTED_lAYOUT = 2;
     private int LOCALl_SEARCH_TABLAYOUT = 1;
+    boolean isFirst=true;
 
     private SearchRestaurantService searchRestaurantService;
 
-    boolean isFirst=true; // 처음만 리프레시 .
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -121,11 +121,9 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         });
 
 
-        mLocalName.setText(Html.fromHtml("<u>" + "내 주변" + "</u>"));
+        mLocalName.setText(Html.fromHtml("<u>" + "내 주변 " + "</u>"));
         setMyLocation(); // 내 위치 정보 받아오기 .
         setViewPager();// 광고 배너( 자동으로 넘어가는)
-
-
 
 
         filter.setOnClickListener(new View.OnClickListener() {
@@ -262,16 +260,12 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     @Override
     public void onResume() {
         super.onResume();
-//        init();// 항상 초기화
-        if(isFirst)
-        {
-            mSearchRestaurantService=new SearchRestaurantService(mHomeAcitivity,getContext());
-            mSearchRestaurantService. tryStartRestaurantsList();
+        init();// 항상 초기화
+        if(isFirst) {
+            mSearchRestaurantService = new SearchRestaurantService(mHomeAcitivity, getContext());
+            mSearchRestaurantService.tryStartRestaurantsList();
 
-            isFirst=false;
         }
-
-        //        madapter.notifyDataSetChanged();
         advertismentTimerStart(); //광고 핸들러 시작 여기다 둔 이유: onPause() -> onResume() 이 동작순서에 광고는 재시작 되어야한다.
     }
 

@@ -1,6 +1,7 @@
 package com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,6 +161,13 @@ public class RestaurantInfoRecyclerAdapter extends RecyclerView.Adapter<Restaura
               oldAddress.setText(""+data.getOldAddress());
 //              phone.setText(""+data.getPhone());
 //              userName.setText(""+data.getUserName());
+            if (data.getRatingColor().equals("gray")) {
+                rating.setTextColor(Color.parseColor("#757575"));
+
+            } else if (data.getRatingColor().equals("orange")) {
+                rating.setTextColor(Color.parseColor("#FF7101"));
+
+            }
               infoUpdate.setText(""+data.getInfoUpdate());
               infoTime.setText(""+data.getInfoTime());
               infoHoliday.setText(""+data.getInfoHoliday());

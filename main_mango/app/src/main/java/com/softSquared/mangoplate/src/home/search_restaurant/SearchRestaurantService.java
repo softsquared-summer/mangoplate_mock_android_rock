@@ -13,6 +13,7 @@ import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantRe
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -76,7 +77,7 @@ public class SearchRestaurantService {
                 mRestaurantResultList = response.body();
 
                 if (mRestaurantResultList.getResult() != null && mRestaurantResultList.getResult().size() > 0) {
-                    for (RestaurantResult result : mRestaurantResultList.getResult()) {
+                    for (final RestaurantResult result : mRestaurantResultList.getResult()) {
                         if (response.code() == 200) {
 
                             if (mRestaurantResultList.getResult() != null) {
@@ -87,7 +88,23 @@ public class SearchRestaurantService {
                                 Log.e("망고 rating", "" + result.getRating());
                                 Log.e("망고 본 사람수", "" + result.getSeenNum());
                                 madapter.addItem(result);
+                                searchRestaurantRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                                    @Override
+                                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                                        super.onScrollStateChanged(recyclerView, newState);
+                                    }
 
+                                    @Override
+                                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                                        super.onScrolled(recyclerView, dx, dy);
+
+                                        int lastPosition = ((GridLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                                        int totalCount = recyclerView.getAdapter().getItemCount();
+
+                                        if(lastPosition == totalCount){
+                                            madapter.addItem(result);                                        }
+                                    }
+                                });
 
                             }
 
@@ -185,5 +202,6 @@ public class SearchRestaurantService {
         searchRestaurantRecyclerView.setLayoutManager(mGridLayoutManager);
         madapter = new RestaurantRecyclerAdapter(mHomeAcitivity);
         searchRestaurantRecyclerView.setAdapter(madapter);
+
     }
 }

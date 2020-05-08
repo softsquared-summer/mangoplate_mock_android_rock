@@ -240,11 +240,12 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="100dp"
-                android:nestedScrollingEnabled="false"
+
 
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+<!--    android:nestedScrollingEnabled="false"-->
 <!--    https://black-jin0427.tistory.com/164 recyclerview 이중 스크롤 문제 -->
     <!--    [출처] [Android] ScrollView 안에 RecyclerView 스크롤 부드럽게|작성자 Printf-->
 

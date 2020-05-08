@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,10 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
@@ -33,15 +29,10 @@ import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.softSquared.mangoplate.R;
-import com.softSquared.mangoplate.src.ApplicationClass;
 import com.softSquared.mangoplate.src.BaseActivity;
 import com.softSquared.mangoplate.src.home.naverMapActivity.interfaces.SearchMapRetrofitInterface;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResult;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResultList;
-import com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
-import com.softSquared.mangoplate.src.home.search_restaurant.interfaces.SearchRetrofitInterface;
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResult;
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.RetaurantInformationLayout;
 
 import java.util.ArrayList;
@@ -52,7 +43,7 @@ import static com.softSquared.mangoplate.src.ApplicationClass.getRetrofit;
 import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
 import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
 
-public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClickListener, Overlay.OnClickListener, OnMapReadyCallback, NaverMap.OnCameraChangeListener, NaverMap.OnCameraIdleListener{
+public class MapAcitivty extends BaseActivity implements NaverMap.OnMapClickListener, Overlay.OnClickListener, OnMapReadyCallback, NaverMap.OnCameraChangeListener, NaverMap.OnCameraIdleListener{
 
     private static final int ACCESS_LOCATION_PERMISSION_REQUEST_CODE = 100;
     private FusedLocationSource locationSource;
@@ -124,7 +115,7 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
             protected View getContentView(@NonNull InfoWindow infoWindow) {
                 Marker marker = infoWindow.getMarker();
                 RestaurantMapResult mapResult = (RestaurantMapResult) marker.getTag();
-                View view = View.inflate(naverMapAcitivty.this, R.layout.recyclerview_restaurantlist, null);
+                View view = View.inflate(MapAcitivty.this, R.layout.recyclerview_restaurantlist, null);
 
 
                  String area;
@@ -145,7 +136,7 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
 
 
                 ImageView img =view.findViewById(R.id.img_restarant);
-                Glide.with(naverMapAcitivty.this).load(mapResult.getImg()).placeholder(R.drawable.loading).into(img);
+                Glide.with(MapAcitivty.this).load(mapResult.getImg()).placeholder(R.drawable.loading).into(img);
 
                 title_res = view.findViewById(R.id.title_restarant);
                 area_res = view.findViewById(R.id.area_restaurant); // 얘는 settext 할 때 거리를 붙여야함
@@ -290,11 +281,11 @@ public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClic
          public boolean onClick(@NonNull Overlay overlay) {
 
             Intent mMoveIntent;
-             mMoveIntent=new Intent(naverMapAcitivty.this, RetaurantInformationLayout.class);
+             mMoveIntent=new Intent(MapAcitivty.this, RetaurantInformationLayout.class);
 
 
              mMoveIntent.putExtra("restaurantId",mRestaurantId);
-             startActivity(mMoveIntent);
+             startActivityForResult(mMoveIntent,777);
              finish();
              return false;
          }

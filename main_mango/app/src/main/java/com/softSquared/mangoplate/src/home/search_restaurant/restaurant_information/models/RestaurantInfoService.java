@@ -13,6 +13,7 @@ import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_informat
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -100,7 +101,22 @@ public class RestaurantInfoService {
         mGridLayoutManager = new GridLayoutManager(mContext, numberOfColumns);
         mInfoRestaurantRecyclerView.setLayoutManager(mGridLayoutManager);
         madapter = new RestaurantInfoRecyclerAdapter(mRetaurantInformationLayout);
-        mInfoRestaurantRecyclerView.setAdapter(madapter);
+        mInfoRestaurantRecyclerView.setAdapter(madapter);RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                GridLayoutManager layoutManager = GridLayoutManager.class.cast(recyclerView.getLayoutManager());
+                int totalItemCount = layoutManager.getItemCount();
+                int lastVisible = layoutManager.findLastCompletelyVisibleItemPosition();
+
+                if (lastVisible >= totalItemCount - 1) {
+                    madapter.addItem(mRestaurantInfoResult.getResult());
+                }
+            }
+        };
+        mInfoRestaurantRecyclerView.addOnScrollListener(onScrollListener);
+
     }
 }
 
