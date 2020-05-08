@@ -283,13 +283,15 @@
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textStyle="bold"
             android:text="서울특별시 동대문구 이문로25길 34"
             ></TextView>
+
         <TextView
             android:id="@+id/old_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
 
             android:text="서울특별시 동대문구 이문로25길 34"
             ></TextView>
@@ -424,21 +426,28 @@
             android:columnCount="2"
             android:rowCount="4"
             >
-        <TextView
 
-            android:layout_height="0dp"
-            android:layout_width="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="편의정보"
-            android:layout_row="0"
-            android:layout_column="0"
-            ></TextView>
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:text="편의정보"></TextView>
+
             <TextView
                 android:id="@+id/infoUpdate"
+                android:textSize="12dp"
+
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:gravity="right"
+                android:textColor="@color/grey_300"
+                android:gravity="right|center"
+                android:paddingRight="15dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:text="편의정보"
@@ -450,12 +459,14 @@
                 android:layout_width="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
+                android:paddingLeft="15dp"
                 android:text="영업시간"
                 android:layout_row="1"
                 android:layout_column="0"
                 ></TextView>
             <TextView
                 android:id="@+id/info_time"
+                android:paddingRight="15dp"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:layout_rowWeight="1"
@@ -471,6 +482,7 @@
                 android:layout_width="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
+                android:paddingLeft="15dp"
                 android:text="휴일"
                 android:layout_row="2"
                 android:layout_column="0"
@@ -482,7 +494,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:gravity="right"
-
+                android:paddingRight="15dp"
                 android:text="편의정보"
                 android:layout_row="2"
                 android:layout_column="1"
@@ -492,8 +504,9 @@
                 android:layout_width="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:text="가격정보"
-
+                android:paddingLeft="15dp"
+                android:text="가격"
+                android:layout_marginRight="10dp"
                 android:layout_row="3"
                 android:layout_column="0"
                 ></TextView>
@@ -504,7 +517,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:gravity="right"
-
+                android:paddingRight="15dp"
                 android:text="편의정보"
                 android:layout_row="3"
                 android:layout_column="1"

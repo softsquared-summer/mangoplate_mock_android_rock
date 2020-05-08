@@ -255,17 +255,20 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     public void onStart() {
         super.onStart();
 
+        if(isFirst) {
+            init();// 항상 초기화
+            mSearchRestaurantService = new SearchRestaurantService(mHomeAcitivity, getContext());
+            mSearchRestaurantService.tryStartRestaurantsList();
+
+
+            isFirst=false;
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        init();// 항상 초기화
-        if(isFirst) {
-            mSearchRestaurantService = new SearchRestaurantService(mHomeAcitivity, getContext());
-            mSearchRestaurantService.tryStartRestaurantsList();
 
-        }
         advertismentTimerStart(); //광고 핸들러 시작 여기다 둔 이유: onPause() -> onResume() 이 동작순서에 광고는 재시작 되어야한다.
     }
 

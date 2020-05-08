@@ -158,7 +158,7 @@ public class RestaurantInfoRecyclerAdapter extends RecyclerView.Adapter<Restaura
               rating.setText(""+data.getRating());
 //              userStar.setText(""+data.getUserStar());
               address.setText(""+data.getAddress());
-              oldAddress.setText(""+data.getOldAddress());
+              oldAddress.setText("  "+data.getOldAddress());
 //              phone.setText(""+data.getPhone());
 //              userName.setText(""+data.getUserName());
             if (data.getRatingColor().equals("gray")) {

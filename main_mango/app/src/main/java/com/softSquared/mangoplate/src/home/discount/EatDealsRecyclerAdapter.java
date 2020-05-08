@@ -95,7 +95,6 @@ public class EatDealsRecyclerAdapter extends RecyclerView.Adapter<EatDealsRecycl
 
         }
 
-        @SuppressLint({"ResourceAsColor", "SetTextI18n"})
         void onBind(EatDealsResult data) {
             if (data.getImageUrl() != null) {
                 Glide.with(itemView.getContext())
@@ -110,18 +109,22 @@ public class EatDealsRecyclerAdapter extends RecyclerView.Adapter<EatDealsRecycl
                 status.setVisibility(View.INVISIBLE);
                 percent.setVisibility(View.INVISIBLE);
 
-            } else if (data.getStatus().equals("재입고")) {
+            }
+            if (data.getStatus() != null &&data.getStatus().equals("재입고")) {
                 status.setText(data.getStatus());
-                status.setBackgroundResource(R.color.yellow_500);
-//                status.setTextColor(R.color.Black);
-            } else if (data.getStatus().equals("HOT")) {
+                status.setTextSize(10);
+                status.setBackgroundResource(R.drawable.btn_shape_yellow_eatdeals);
+             status.setTextColor(homeAcitivity.getResources().getColor(R.color.black));
+            }
+            if (data.getStatus() != null && data.getStatus().equals("HOT")) {
                 status.setText(data.getStatus());
-                status.setBackgroundResource(R.color.red_400);
-                status.setTextColor(R.color.White);
-            } else {
+                status.setBackgroundResource(R.drawable.btn_shape_red_eatdeals);
+            }
 
+
+            if(data.getStatus() != null && data.getStatus().equals("NEW"))
+            {
                 status.setText(data.getStatus());
-                status.setTextColor(R.color.White);
             }
 
 

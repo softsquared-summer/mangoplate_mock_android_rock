@@ -2,7 +2,6 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
 
-    android:background="@color/grey_300"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--https://readystory.tistory.com/127 coordinator레이아웃 설명은 여기서 -->
@@ -10,9 +9,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
 
+        android:background="@color/white"
         android:id="@+id/recyclerview_eatdeals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="30dp"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
