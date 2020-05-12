@@ -6,6 +6,7 @@ import com.softSquared.mangoplate.src.ApplicationClass;
 import com.softSquared.mangoplate.src.main.interfaces.MainActivityView;
 import com.softSquared.mangoplate.src.main.interfaces.MainRetrofitInterface;
 import com.softSquared.mangoplate.src.main.models.DefaultResponse;
+import com.softSquared.mangoplate.src.main.models.SignInJwtToken;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -23,14 +24,13 @@ class MainService { //여기서는 서비스 컨트롤
     }
 
 
-    void tryPost(String type,String mainJsonString){
+    void tryPost(String type,String jwt){
 
         final MainRetrofitInterface mainRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
         Log.e("성공",""+"돌긴 도니 ");
-        RequestBody requestBody= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),mainJsonString);
+//        RequestBody requestBody= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),mainJsonString);
 //        Log.e("성공",""+ Base64.decode(requestBody.toString(),1));
-        mainRetrofitInterface.toString();
-        mainRetrofitInterface.postTest(type,requestBody).enqueue(new Callback<DefaultResponse>() {
+        mainRetrofitInterface.postTest(type, new SignInJwtToken(type,jwt)).enqueue(new Callback<DefaultResponse>() {
 
 
             @Override

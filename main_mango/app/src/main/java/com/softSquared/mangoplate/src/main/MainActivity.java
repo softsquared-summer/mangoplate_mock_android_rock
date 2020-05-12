@@ -38,9 +38,11 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     Session session;
     private ImageView mbtnKakaoLogin;
     AccessToken mToken;
+    private MainService mainService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainService = new MainService(this);
         getHashKey();//VbKsFknDcqZ3CHUR47Mlsw2cGOU=
         // mainApplication.java
         FacebookSdk.sdkInitialize(getApplicationContext());// 페이스북은 이렇게 카카오톡은 Application.class 수정해야함.
@@ -76,9 +78,9 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
                 mToken = AccessToken.getCurrentAccessToken();
                 if (mToken != null) {
                     mToken = AccessToken.getCurrentAccessToken();
-                    mMainFacebookJsonString = "{\"at\" : \"" + mToken.getToken() + "\"}";
+//                    mMainFacebookJsonString = "{\"at\" : \"" + mToken.getToken() + "\"}";
                     Log.e("보낼려는 토큰", "" + mMainFacebookJsonString);
-                    main_tryPost("facebook", mMainFacebookJsonString);
+                    main_tryPost("facebook", mToken.toString());
                     if (mToken != null) {
                         Log.e("토큰", "Token: " + mToken.getToken());
                         Log.e("유저아이디.", "UserID: " + mToken.getUserId());
@@ -126,11 +128,13 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
             }
         }
     }
-    private void main_tryPost(String type, String jsonString) {
-              showProgressDialog();
+  public void main_tryPost(String type, String jwtToken) {
 
-        final MainService mainService = new MainService(this);
-        mainService.tryPost(type,jsonString);
+
+        showProgressDialog();
+
+
+        mainService.tryPost(type,jwtToken);
     }
 
     @Override

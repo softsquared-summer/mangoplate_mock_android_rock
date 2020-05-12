@@ -1,6 +1,7 @@
 package com.softSquared.mangoplate.src.main.interfaces;
 
 import com.softSquared.mangoplate.src.main.models.DefaultResponse;
+import com.softSquared.mangoplate.src.main.models.SignInJwtToken;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -23,5 +24,5 @@ public interface MainRetrofitInterface {
 
     @POST("/jwt")
     @Headers("Content-Type: application/json")
-    Call<DefaultResponse> postTest( @Query("type")String type, @Body RequestBody params);
+    Call<DefaultResponse> postTest( @Query("type")String type, @Body SignInJwtToken params);
 }
