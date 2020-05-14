@@ -36,8 +36,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.softSquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
 
 public class MyLocationSearch extends Fragment {
     LocalSearchTabLayout localSearchTabLayout;
@@ -69,8 +67,8 @@ public class MyLocationSearch extends Fragment {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ApplicationClass.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         MylocationSearchRetrofitInterface searchTapRetrofitInterface = retrofit.create(MylocationSearchRetrofitInterface.class);
 
-        Log.e("내 근처 위도,경도 ", "lat " + lat + "lng" + lng);
-        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN, lat, lng).enqueue(new Callback<ResultList>() {
+        Log.e("내 근처 위도,경도 ", "lat " +  ApplicationClass.lat + "lng" +  ApplicationClass. lng);
+        searchTapRetrofitInterface.getDistrictsByRock(X_ACCESS_TOKEN,  ApplicationClass.lat,  ApplicationClass.lng).enqueue(new Callback<ResultList>() {
             int checkNumber = 0;// 얘는 포문 돌아가는 숫자를 세기 위해서 존재.
 
 

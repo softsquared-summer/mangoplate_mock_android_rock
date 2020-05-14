@@ -38,9 +38,6 @@ import com.softSquared.mangoplate.src.BaseActivity;
 import com.softSquared.mangoplate.src.home.naverMapActivity.interfaces.SearchMapRetrofitInterface;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResult;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResultList;
-import com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment;
-import com.softSquared.mangoplate.src.home.search_restaurant.interfaces.SearchRetrofitInterface;
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResult;
 import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.RetaurantInformationLayout;
 
@@ -49,8 +46,8 @@ import java.util.List;
 
 import static com.softSquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softSquared.mangoplate.src.ApplicationClass.getRetrofit;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
+import static com.softSquared.mangoplate.src.ApplicationClass.lat;
+import static com.softSquared.mangoplate.src.ApplicationClass.lng;
 
 public class naverMapAcitivty extends BaseActivity implements NaverMap.OnMapClickListener, Overlay.OnClickListener, OnMapReadyCallback, NaverMap.OnCameraChangeListener, NaverMap.OnCameraIdleListener{
 

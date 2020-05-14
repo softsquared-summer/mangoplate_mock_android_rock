@@ -22,9 +22,6 @@ import retrofit2.Response;
 
 import static com.softSquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softSquared.mangoplate.src.ApplicationClass.getRetrofit;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
-import static com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout.outputDatas;
 
 public class RestaurantInfoService {
     private HomeActivityView mHomeActivityView;

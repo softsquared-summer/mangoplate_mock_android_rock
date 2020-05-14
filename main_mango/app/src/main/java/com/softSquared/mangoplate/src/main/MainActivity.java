@@ -1,4 +1,5 @@
 package com.softSquared.mangoplate.src.main;
+
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,7 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -25,9 +28,11 @@ import com.softSquared.mangoplate.src.main.interfaces.MainActivityView;
 import com.facebook.login.LoginManager;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
 public class MainActivity extends BaseActivity implements MainActivityView { // 여기서는 뷰만 컨트롤
     private TextView mTvHelloWorld;
     private ImageView mbtnFacebookLogin;
@@ -39,6 +44,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
     private ImageView mbtnKakaoLogin;
     AccessToken mToken;
     private MainService mainService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +63,9 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         callbackManager = CallbackManager.Factory.create();
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(main_menu);
         Glide.with(this).load(R.drawable.mangoplate).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.mangoplate)
-               .into(gifImage);
+                .into(gifImage);
 //        출처: https://gogorchg.tistory.com/entry/Android-Glide-에서-Gif-로드가-너무-느려요 [항상 초심으로]
-        mbtnKakaoLogin =  findViewById(R.id.main_kakaobutton);
+        mbtnKakaoLogin = findViewById(R.id.main_kakaobutton);
         mbtnKakaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,14 +85,14 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
                 if (mToken != null) {
                     mToken = AccessToken.getCurrentAccessToken();
 //                    mMainFacebookJsonString = "{\"at\" : \"" + mToken.getToken() + "\"}";
-                    Log.e("보낼려는 토큰", "" + mMainFacebookJsonString);
-                    main_tryPost("facebook", mToken.toString());
-                    if (mToken != null) {
+                    Log.e("보낼려는 토큰", "" + mToken.getToken());
+                    main_tryPost("facebook", mToken.getToken());
+
                         Log.e("토큰", "Token: " + mToken.getToken());
                         Log.e("유저아이디.", "UserID: " + mToken.getUserId());
-                    }
+
                     loginManager.registerCallback(mCallbackManager, mLoginCallback);
-                }else{
+                } else {
 
 
                 }
@@ -96,10 +102,7 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         mLoginCallback = new FacebookSessionCallback(this);
 
 
-
-
     }
-
 
 
     @Override
@@ -108,7 +111,8 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-    private void getHashKey(){
+
+    private void getHashKey() {
         PackageInfo packageInfo = null;
         try {
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -128,13 +132,14 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
             }
         }
     }
-  public void main_tryPost(String type, String jwtToken) {
+
+    public void main_tryPost(String type, String jwtToken) {
 
 
         showProgressDialog();
 
 
-        mainService.tryPost(type,jwtToken);
+        mainService.tryPostFacebook(jwtToken);
     }
 
     @Override
@@ -152,8 +157,9 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
         switch (view.getId()) {
 
 
-//            case main_facebookbutton:
-//                break;
+            case R.id.main_facebookbutton:
+
+                break;
 //            case R.id.main_btn_hello_world:
 //                tryGetTest();
 //                break;

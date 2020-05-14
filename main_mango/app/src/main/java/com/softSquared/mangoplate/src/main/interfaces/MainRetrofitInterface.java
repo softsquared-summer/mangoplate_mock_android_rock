@@ -2,6 +2,7 @@ package com.softSquared.mangoplate.src.main.interfaces;
 
 import com.softSquared.mangoplate.src.main.models.DefaultResponse;
 import com.softSquared.mangoplate.src.main.models.SignInJwtToken;
+import com.softSquared.mangoplate.src.main.models.SignInKakaoTalk;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -24,5 +25,9 @@ public interface MainRetrofitInterface {
 
     @POST("/jwt")
     @Headers("Content-Type: application/json")
-    Call<DefaultResponse> postTest( @Query("type")String type, @Body SignInJwtToken params);
+    Call<DefaultResponse> postFacebook( @Query("type")String type, @Body SignInJwtToken params);
+
+    @POST("/jwt")
+    @Headers("Content-Type: application/json")
+    Call<DefaultResponse> postKakao( @Query("type")String type, @Body SignInKakaoTalk params);
 }

@@ -16,7 +16,7 @@ import com.kakao.util.exception.KakaoException;
 
 public class KakaotalkSessionCallback implements ISessionCallback {
 
-    int mKakaoId;
+    String mKakaoId;
     String mKaKoImageUrl;
     String mKakaoName;
 
@@ -86,32 +86,33 @@ public class KakaotalkSessionCallback implements ISessionCallback {
                             Profile profile = kakaoAccount.getProfile();
 
                             if (profile != null) {
-                                Log.d("KAKAO_API", "nickname: " + profile.getNickname());
 
-                                mKakaoId= (int) result.getId();
+
+                                mKakaoId= Integer.toString((int) result.getId());
                                 mKakaoName=profile.getNickname();
                                 mKaKoImageUrl=profile.getProfileImageUrl();
 
+                                Log.e("어떻게"," "+mKakaoId+""+mKakaoName);
                                 MainService mainService= new MainService(act);
-
+                                Log.d("KAKAO_API", "nickname: " + profile.getNickname());
 //                                PreferenceManager.setString(act, "nickname", ""+profile.getNickname()); 이건 다시 찾아보기
                                 Log.d("KAKAO_API", "profile image: " + profile.getProfileImageUrl());
                                 Log.d("KAKAO_API", "thumbnail image: " + profile.getThumbnailImageUrl());
                                 Log.d("KAKAO API ", "HI " + kakaoAccount.profileNeedsAgreement());
                                 if(mKaKoImageUrl != null)
-                                {
-                                    mKakaoJsonString="{\"id\":"+"\""+mKakaoId+"\","+"\"name\":"+"\","+mKakaoName+"\","+"\"profileUrl\":"+"\""+mKaKoImageUrl+"\""+"}";
-                                    Log.e("KAKAO JSON ", "HI " + mKakaoJsonString);
-                                }else{
-
-                                    mKakaoJsonString="{\"id\":"+"\""+mKakaoId+"\","+"\"name\":"+"\""+mKakaoName+"\""+"}";
-                                    Log.e("KAKAO JSON ", "HI " + mKakaoJsonString);
-                                }
-                                mainService.tryPost("kakao",mKakaoJsonString);
+//                                {
+//                                    mKakaoJsonString="{\"id\":"+"\""+mKakaoId+"\","+"\"name\":"+"\","+mKakaoName+"\","+"\"profileUrl\":"+"\""+mKaKoImageUrl+"\""+"}";
+//                                    Log.e("KAKAO JSON ", "HI " + mKakaoJsonString);
+//                                }else{
+//
+//                                    mKakaoJsonString="{\"id\":"+"\""+mKakaoId+"\","+"\"name\":"+"\""+mKakaoName+"\""+"}";
+//                                    Log.e("KAKAO JSON ", "HI " + mKakaoJsonString);
+//                                }
+                                mainService.tryPostKakaotalk(mKakaoId,mKakaoName);
 
                                 Thread sleep=new Thread();
                                 try {
-                                    sleep.sleep(1000);
+                                    sleep.sleep(3000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }// 안되면 속도를 늦추면 되지 .

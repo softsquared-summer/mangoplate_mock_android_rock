@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.softSquared.mangoplate.R;
+import com.softSquared.mangoplate.src.ApplicationClass;
 import com.softSquared.mangoplate.src.home.HomeAcitivity;
 import com.softSquared.mangoplate.src.home.interfaces.HomeActivityView;
 
@@ -22,8 +23,6 @@ import retrofit2.Response;
 
 import static com.softSquared.mangoplate.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.softSquared.mangoplate.src.ApplicationClass.getRetrofit;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lat;
-import static com.softSquared.mangoplate.src.home.search_restaurant.SearchRestaurantFragment.lng;
 import static com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.LocalSearchTabLayout.outputDatas;
 
 public class SearchRestaurantService {
@@ -64,14 +63,14 @@ public class SearchRestaurantService {
     void tryGetRestaurantsList() {
 
         final SearchRetrofitInterface searchRetrofitInterface = getRetrofit().create(SearchRetrofitInterface.class);
-        Log.e("망고 lat", "" + lat);
-        Log.e("망고 lng", "" + lat);
+        Log.e("망고 lat", "" + ApplicationClass.lat);
+        Log.e("망고 lng", "" + ApplicationClass.lng);
         Log.e("망고 main", "main");
         Log.e("망고 area", area);
         searchRetrofitInterface.toString();
 
         init();
-        searchRetrofitInterface.getRestaurants(X_ACCESS_TOKEN, (float) lat, (float) lng, "main", area).enqueue(new Callback<RestaurantResultList>() {
+        searchRetrofitInterface.getRestaurants(X_ACCESS_TOKEN, (float)  ApplicationClass.lat, (float)  ApplicationClass.lng, "main", area).enqueue(new Callback<RestaurantResultList>() {
             @Override
             public void onResponse(Call<RestaurantResultList> call, Response<RestaurantResultList> response) {
                 mRestaurantResultList = response.body();
@@ -139,14 +138,14 @@ public class SearchRestaurantService {
     void tryStartRestaurantsList() {
 
         final SearchRetrofitInterface searchRetrofitInterface = getRetrofit().create(SearchRetrofitInterface.class);
-        Log.e("망고 lat", "" + lat);
-        Log.e("망고 lng", "" + lat);
+        Log.e("망고 lat", "" + ApplicationClass.lat);
+        Log.e("망고 lng", "" + ApplicationClass.lng);
         Log.e("망고 main", "main");
         Log.e("망고 area", area);
         searchRetrofitInterface.toString();
 
         init();
-        searchRetrofitInterface.getStartRestaurants(X_ACCESS_TOKEN, (float) lat, (float) lng, "main").enqueue(new Callback<RestaurantResultList>() {
+        searchRetrofitInterface.getStartRestaurants(X_ACCESS_TOKEN, (float) ApplicationClass.lat, (float) ApplicationClass.lng, "main").enqueue(new Callback<RestaurantResultList>() {
             @Override
             public void onResponse(Call<RestaurantResultList> call, Response<RestaurantResultList> response) {
                 mRestaurantResultList = response.body();

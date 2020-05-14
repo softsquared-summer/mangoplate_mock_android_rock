@@ -106,8 +106,6 @@ public class RestaurantInfoRecyclerAdapter extends RecyclerView.Adapter<Restaura
               reviewNum=itemView.findViewById(R.id.review_num_information);
               starNum=itemView.findViewById(R.id.star_num_information);
               rating=itemView.findViewById(R.id.rating_information);
-//              ratingColor=itemView.findViewById(R.id.rating_information);
-//              userStar=itemView.findViewById(R.id.star_num_information);
               address=itemView.findViewById(R.id.address);
               oldAddress=itemView.findViewById(R.id.old_address);
              int userId;
@@ -115,9 +113,6 @@ public class RestaurantInfoRecyclerAdapter extends RecyclerView.Adapter<Restaura
               infoTime=itemView.findViewById(R.id.info_time);
               infoHoliday=itemView.findViewById(R.id.info_holiday);
               infoPrice=itemView.findViewById(R.id.info_price);
-//             TextView infoParking=itemView.findViewById(R.id.info);
-//             TextView infoSite=itemView.findViewById();
-//
 
 
         }
@@ -156,11 +151,8 @@ public class RestaurantInfoRecyclerAdapter extends RecyclerView.Adapter<Restaura
               reviewNum.setText(""+data.getReviewNum());
               starNum.setText(""+data.getStarNum());
               rating.setText(""+data.getRating());
-//              userStar.setText(""+data.getUserStar());
               address.setText(""+data.getAddress());
               oldAddress.setText("  "+data.getOldAddress());
-//              phone.setText(""+data.getPhone());
-//              userName.setText(""+data.getUserName());
             if (data.getRatingColor().equals("gray")) {
                 rating.setTextColor(Color.parseColor("#757575"));
 

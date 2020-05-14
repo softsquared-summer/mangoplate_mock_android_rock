@@ -4,18 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class SignInJwtToken {
 
-    @SerializedName("type")
-    String type;
     @SerializedName("at")
-    String jwt;
+    String at;
 
 
-    public SignInJwtToken(String type,String jwt) {
-        this.jwt = jwt;
-        this.type = type;
+    public SignInJwtToken(String at) {
+        this.at = at;
     }
 
     public String getJwt() {
-        return jwt;
+        return at;
     }
 }

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.softSquared.mangoplate.R;
+import com.softSquared.mangoplate.src.ApplicationClass;
 import com.softSquared.mangoplate.src.home.HomeAcitivity;
 import com.softSquared.mangoplate.src.home.search_restaurant.alignment_button.AlignmentButton;
 import com.softSquared.mangoplate.src.home.search_restaurant.distance_selected_layout.DistanceSelectedLayout;
@@ -70,8 +71,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
 
     SearchRestaurantService mSearchRestaurantService;
     private ImageView mapButton;
-    public static double lat;
-    public static double lng;
+
     TextView mLocalName;
     TextView alignment_button; //추천순 ▼ 버튼
     private int DISTANCE_SELECTED_lAYOUT = 2;
@@ -173,10 +173,10 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             double latitude = userLocation.getLatitude();
             double longitude = userLocation.getLongitude();
             Intent passData = new Intent(getActivity(), MyLocationSearch.class);
-            lat = latitude;
-            lng = longitude;
-            passData.putExtra("lat", lat);
-            passData.putExtra("lng", lng);
+            ApplicationClass.lat = latitude;
+            ApplicationClass.lng = longitude;
+            passData.putExtra("lat", ApplicationClass.lat);
+            passData.putExtra("lng", ApplicationClass.lng);
             System.out.println("////////////현재 내 위치값 : " + latitude + "," + longitude);
         }
 
