@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -92,15 +93,17 @@ public class MainActivity extends BaseActivity implements MainActivityView { // 
                         Log.e("유저아이디.", "UserID: " + mToken.getUserId());
 
                     loginManager.registerCallback(mCallbackManager, mLoginCallback);
+
                 } else {
 
+                    Toast.makeText(getBaseContext(),"페이스북 로그인을 실패하였습니다.",Toast.LENGTH_LONG);
 
                 }
             }
         });
-        mCallbackManager = CallbackManager.Factory.create();
-        mLoginCallback = new FacebookSessionCallback(this);
 
+        mCallbackManager = CallbackManager.Factory.create();
+        mLoginCallback = new FacebookSessionCallback(MainActivity.this);
 
     }
 

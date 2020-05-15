@@ -173,8 +173,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             double latitude = userLocation.getLatitude();
             double longitude = userLocation.getLongitude();
             Intent passData = new Intent(getActivity(), MyLocationSearch.class);
-            ApplicationClass.lat = latitude;
-            ApplicationClass.lng = longitude;
+            ApplicationClass.lat =(float) latitude;
+            ApplicationClass.lng =(float) longitude;
             passData.putExtra("lat", ApplicationClass.lat);
             passData.putExtra("lng", ApplicationClass.lng);
             System.out.println("////////////현재 내 위치값 : " + latitude + "," + longitude);

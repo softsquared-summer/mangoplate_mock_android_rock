@@ -53,7 +53,7 @@ public class FacebookSessionCallback implements FacebookCallback<LoginResult> {
                 new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
-                        Log.e("result",object.toString());
+//                        Log.e("result",object.toString());
                     }
                 });
 

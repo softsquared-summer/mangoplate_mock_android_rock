@@ -28,8 +28,8 @@ public class ApplicationClass extends Application { //쓸꺼면 여기에 상수
     //널이면 재할당.
 
     private static ApplicationClass instance;
-    public static double lat;
-    public static double lng;
+    public static float lat;
+    public static float lng;
     public static ApplicationClass getGlobalApplicationContext() {
         if (instance == null) {
             throw new IllegalStateException("This Application does not inherit com.kakao.GlobalApplication");
