@@ -2,7 +2,7 @@ package com.softSquared.mangoplate.src.home.search_restaurant.models;
 
 import java.util.List;
 
-public class RestaurantResultList {
+public class RestaurantResultResponse {
     List<RestaurantResult> result;
     boolean isSuccess;
     int code;

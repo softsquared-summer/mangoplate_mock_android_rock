@@ -28,6 +28,8 @@ import com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layo
 import com.softSquared.mangoplate.src.home.search_restaurant.localSearchTab_layout.mylocation_search.MyLocationSearch;
 import com.google.android.material.tabs.TabLayout;
 import com.softSquared.mangoplate.src.home.naverMapActivity.naverMapAcitivty;
+import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResult;
+import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultResponse;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -76,7 +78,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     TextView alignment_button; //추천순 ▼ 버튼
     private int DISTANCE_SELECTED_lAYOUT = 2;
     private int LOCALl_SEARCH_TABLAYOUT = 1;
-    boolean isFirst=true;
+    boolean isFirst = true;
 
     private SearchRestaurantService searchRestaurantService;
 
@@ -99,7 +101,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         recyclerViewSearchRestaurant = mRootView.findViewById(R.id.fragment_recyclerView_searchRestaurant);
         alignmentButton.setText(Html.fromHtml("<u>" + "추천순 ▾" + "</u>"));
 //        alignmentButton.setTextColor(getResources().getColor(R.color.grey_200));
-        mapButton=mRootView.findViewById(R.id.restaurant_map);
+        mapButton = mRootView.findViewById(R.id.restaurant_map);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +159,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                 }
             }
         });
-        init(); //recycler view setting
+        init(); //리사이클러 뷰 세팅
 
         return mRootView;
     }
@@ -173,8 +175,8 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
             double latitude = userLocation.getLatitude();
             double longitude = userLocation.getLongitude();
             Intent passData = new Intent(getActivity(), MyLocationSearch.class);
-            ApplicationClass.lat =(float) latitude;
-            ApplicationClass.lng =(float) longitude;
+            ApplicationClass.lat = (float) latitude;
+            ApplicationClass.lng = (float) longitude;
             passData.putExtra("lat", ApplicationClass.lat);
             passData.putExtra("lng", ApplicationClass.lng);
             System.out.println("////////////현재 내 위치값 : " + latitude + "," + longitude);
@@ -207,7 +209,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
                 } else {
                     mLocalName.setText(Html.fromHtml("<u>" + outputDatas.get(outputDatas.size() - 1) + " 외 " + (outputDatas.size() - 1) + "곳 " + "</u>"));
                 }
-                searchRestaurantService = new SearchRestaurantService(mHomeAcitivity, mContext);
+                searchRestaurantService = new SearchRestaurantService(this, mContext);
                 searchRestaurantService.makeAreaString();
                 outputDatas.clear();
             }
@@ -255,13 +257,13 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     public void onStart() {
         super.onStart();
 
-        if(isFirst) {
+        if (isFirst) {
             init();// 항상 초기화
-            mSearchRestaurantService = new SearchRestaurantService(mHomeAcitivity, getContext());
+            mSearchRestaurantService = new SearchRestaurantService(this, getContext());
             mSearchRestaurantService.tryStartRestaurantsList();
 
 
-            isFirst=false;
+            isFirst = false;
         }
     }
 
@@ -303,7 +305,7 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
         mGridLayoutManager = new GridLayoutManager(getContext(), numberOfColumns);
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerViewRestaurantInformation.setLayoutManager(mGridLayoutManager);
-        madapter = new RestaurantRecyclerAdapter(mHomeAcitivity);
+        madapter = new RestaurantRecyclerAdapter(this);
         mRecyclerViewRestaurantInformation.setAdapter(madapter);
     }
 
@@ -339,6 +341,19 @@ public class SearchRestaurantFragment extends Fragment implements SearchRestaura
     public void validateFailure(String message) {
 
     }
-}
 
+    @Override
+    public void successUpdateRecyclerView(RestaurantResultResponse restaurantInfoResultList) {
+        init();
+        for (RestaurantResult result : restaurantInfoResultList.getResult()) {
+
+            madapter.addItem(result);
+
+        }
+
+        madapter.notifyDataSetChanged();
+ //여기다가 추가 뷰 컨트롤 서비스에서 하지말고 .
+    }
+
+}
 

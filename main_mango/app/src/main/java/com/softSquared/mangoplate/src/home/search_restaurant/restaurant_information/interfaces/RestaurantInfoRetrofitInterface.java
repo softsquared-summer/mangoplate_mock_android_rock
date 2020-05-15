@@ -1,6 +1,5 @@
 package com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.interfaces;
 
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.models.RestaurantInfoResult;
 
 import retrofit2.Call;

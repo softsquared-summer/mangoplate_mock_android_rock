@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,10 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
@@ -33,12 +29,10 @@ import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.softSquared.mangoplate.R;
-import com.softSquared.mangoplate.src.ApplicationClass;
 import com.softSquared.mangoplate.src.BaseActivity;
 import com.softSquared.mangoplate.src.home.naverMapActivity.interfaces.SearchMapRetrofitInterface;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResult;
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResultList;
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.RetaurantInformationLayout;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package com.softSquared.mangoplate.src.home.naverMapActivity.interfaces;
 
 import com.softSquared.mangoplate.src.home.naverMapActivity.models.RestaurantMapResultList;
-import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResultList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

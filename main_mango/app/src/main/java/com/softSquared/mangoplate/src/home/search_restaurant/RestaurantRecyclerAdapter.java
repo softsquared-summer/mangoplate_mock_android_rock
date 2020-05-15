@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.softSquared.mangoplate.R;
 import com.softSquared.mangoplate.src.home.HomeAcitivity;
+import com.softSquared.mangoplate.src.home.search_restaurant.interfaces.SearchRestaurantViewFragment;
 import com.softSquared.mangoplate.src.home.search_restaurant.restaurant_information.RetaurantInformationLayout;
 import com.softSquared.mangoplate.src.home.search_restaurant.models.RestaurantResult;
 
@@ -26,10 +28,10 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
     // adapter에 들어갈 list 입니다.
     private ArrayList<RestaurantResult> listData = new ArrayList<>();
 
-    private HomeAcitivity mHomeAcitivity;
+    private SearchRestaurantViewFragment mSearchRestaurantViewFragment;
 
-    public RestaurantRecyclerAdapter(HomeAcitivity mHomeAcitivity) {
-        this.mHomeAcitivity = mHomeAcitivity;
+    public RestaurantRecyclerAdapter(SearchRestaurantViewFragment searchRestaurantViewFragment) {
+        this.mSearchRestaurantViewFragment = searchRestaurantViewFragment;
 
     }
 
@@ -104,11 +106,11 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantRe
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
 
-                         mMoveIntent=new Intent(mHomeAcitivity, RetaurantInformationLayout.class);
+                         mMoveIntent=new Intent(itemView.getContext(), RetaurantInformationLayout.class);
 
 
                          mMoveIntent.putExtra("restaurantId",mRestaurantId);
-                        mHomeAcitivity.startActivity(mMoveIntent);
+                        itemView.getContext().startActivity(mMoveIntent);
 
                     }
                 }
